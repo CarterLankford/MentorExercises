@@ -1,6 +1,9 @@
 /**
- * Square class created to represent gemoetrical squares and supporting functions
- * To show the world how to be Square, but to do it with class. /s 
+ * The exercise: Design and write a Square class to represent geomtrical square
+ * For your design consider this:
+ *     - What attributes do you need to represent squares?
+ *     - We would like to have methods to get the area and perimeter of the square
+ *     - What other actions/methods do you think that can be added to the square?
  */
 
 class Square {
