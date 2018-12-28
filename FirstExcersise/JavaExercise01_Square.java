@@ -58,3 +58,19 @@ class Square {
     }
 
 }
+
+// change to "public double getArea()", create object and call, read slides. 
+
+
+/**
+ * Square mySquare = new Square(4);
+ * 
+ * System.out.println(mySquare.getArea());
+ * 
+ * //later
+ * try{
+ * 	mySquare = new Square(0);
+ * }catch(IllegalArgumentException e){
+ * ...
+ * }
+ */
