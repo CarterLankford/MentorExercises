@@ -55,3 +55,5 @@ class Square {
     }
 
 }
+
+// change to "public double getArea()", create object and call, read slides. 
