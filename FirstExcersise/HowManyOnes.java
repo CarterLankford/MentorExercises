@@ -20,31 +20,30 @@ class HowManyOnes {
         myArray[10] = 1;
         myArray[11] = 1;
         myArray[12] = 1;
-        myArray[13] = 0;
+        myArray[13] = 1; //was 0
         myArray[14] = 1;
         myArray[15] = 1;
-        myArray[16] = 0;
- 
+        myArray[16] = 1; //was 0
 
-        //My idea of how to do this, used notepad and cmd to write/test
-        //Copy and paste into git. 
         int highestCount = 0;
         int currentCount = 0;
 
+
         for (int x : myArray){ 
-            if (x == 1) {
+            if (x == 0) {
+                currentCount = 0;
+            } else {
                 currentCount++;
-            } else if (x == 0) {
-                if (currentCount > 0) {
-                    if (currentCount > highestCount) {
-                        highestCount = currentCount;
-                    }
-                    currentCount = 0; 
-                }
-            }           
+            }
+
+            if (highestCount <= currentCount && currentCount > 0){
+                    highestCount = currentCount;
+            }
+
+            //System.out.println("c:" + currentCount + " h:" + highestCount);           
         }
         System.out.println("output = " + highestCount);
     }
 }
 
-// [0,0,1,1,0,0,0,1,0,0,1,1,1,1,1,1,1] can't count a 0 if it's not there
+
