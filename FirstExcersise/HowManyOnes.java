@@ -23,19 +23,21 @@ class HowManyOnes {
         myArray[13] = 1; //was 0
         myArray[14] = 1;
         myArray[15] = 1;
-        myArray[16] = 1; //was 0
+        myArray[16] = 2; //was 0
 
         int highestCount = 0;
         int currentCount = 0;
 
 
         for (int x : myArray){ 
-            if (x == 0) {
-                currentCount = 0;
+            //Goal: To see if a value 1 or not. 
+            if (x == 1) {
+                currentCount++; //Found the value we are searching for, increase the count by 1.             
             } else {
-                currentCount++;
+                currentCount = 0; //This is not the value we want, count will need to restart. 
             }
 
+            //Goal: If the current cound is at or above the highestCount, this will set the highestCount equal to the currentCount. 
             if (highestCount <= currentCount && currentCount > 0){
                     highestCount = currentCount;
             }
