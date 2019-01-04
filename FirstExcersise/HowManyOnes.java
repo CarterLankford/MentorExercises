@@ -11,7 +11,7 @@ class HowManyOnes {
         myArray[1] = 0;
         myArray[2] = 1;
         myArray[3] = 1;
-        myArray[4] = 0;
+        myArray[4] = 1;
         myArray[5] = 0;
         myArray[6] = 0;
         myArray[7] = 1;
@@ -20,11 +20,16 @@ class HowManyOnes {
         myArray[10] = 1;
         myArray[11] = 1;
         myArray[12] = 1;
-        myArray[13] = 1; //was 0
-        myArray[14] = 1;
+        myArray[13] = 0; //was 0
+        myArray[14] = 0;
         myArray[15] = 1;
         myArray[16] = 2; //was 0
 
+        
+        System.out.println("output = " + count(myArray));
+    }
+
+    private static int count(int[] myArray){
         int highestCount = 0;
         int currentCount = 0;
 
@@ -32,19 +37,22 @@ class HowManyOnes {
         for (int x : myArray){ 
             //Goal: To see if a value 1 or not. 
             if (x == 1) {
-                currentCount++; //Found the value we are searching for, increase the count by 1.             
+                currentCount++; //Found the value we are searching for, increase the count by 1.
+                if (highestCount < currentCount){
+                    highestCount = currentCount;
+                }             
             } else {
                 currentCount = 0; //This is not the value we want, count will need to restart. 
             }
 
-            //Goal: If the current cound is at or above the highestCount, this will set the highestCount equal to the currentCount. 
-            if (highestCount <= currentCount && currentCount > 0){
-                    highestCount = currentCount;
-            }
+           
+            
 
-            //System.out.println("c:" + currentCount + " h:" + highestCount);           
+            //System.out.println("c:" + currentCount + " h:" + highestCount);       
+
         }
-        System.out.println("output = " + highestCount);
+        return highestCount;
+
     }
 }
 

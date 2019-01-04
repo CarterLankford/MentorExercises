@@ -12,11 +12,20 @@ public class Square {
     private double side;
 
     public static void main(String[] args) {
+        for(String arg : args){
+            System.out.println(arg);
+        }
         Square sq = new Square(); //Create the object
 
-        sq.setSide((double)5.1); //Set the value of the object
+        // float a = 5.1;
+        // double b = 5.1;
 
-	System.out.println(sq.getArea()); //Show result of a function
+        // short c = 2;
+        // int d = 2;
+
+        sq.setSide(5.1); //Set the value of the object
+
+	    System.out.println(sq.getArea()); //Show result of a function
     }
 
     public double getArea() {
@@ -35,7 +44,7 @@ public class Square {
         this.side = side; 
     }
 
-    private static boolean IsValidValue(double x) {
+    private static boolean isValidValue(double x) {
         boolean isValidValue = false;
 
         if (x >= 0){
