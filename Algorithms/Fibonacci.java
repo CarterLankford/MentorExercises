@@ -22,7 +22,7 @@ class Fibonacci {
 	public static void main(String[] args) {
 		Fibonacci fb = new Fibonacci();
 
-		fb.setIndex(5);
+		fb.setIndex(12);
 		fb.calculateResult();
 	
 	}
@@ -31,25 +31,48 @@ class Fibonacci {
 		Fibonacci fb = new Fibonacci();
 
 		int x = 0;	//Setting Counter at 0	
+
 		while (x <= requestedIndex){
-			if (x == 0) {
+			if (x > 2) {
+				result = fb.getSum(firstValue, secondValue);
+				System.out.println(result + " I:" + x);
+				firstValue = secondValue;
+				secondValue = result;
+				x++;
+			} else if (x == 0) {
 				System.out.println(result + " I:" + x);
 				x++; //We know everhting will equal 0
-			} else if (x == 1) {
+			} else {
 				firstValue = 1;
 				result = fb.getSum(firstValue, secondValue);
 				System.out.println(result + " I:" + x);
 				firstValue = secondValue;
 				secondValue = result;
 				x++;
-			} else {
-				result = fb.getSum(firstValue, secondValue);
-				System.out.println(result + " I:" + x);
-				firstValue = secondValue;
-				secondValue = result;
-				x++;
 			}
+
+			
 		}
+
+		// while (x <= requestedIndex){
+		// 	if (x == 0) {
+		// 		System.out.println(result + " I:" + x);
+		// 		x++; //We know everhting will equal 0
+		// 	} else if (x == 1) {
+		// 		firstValue = 1;
+		// 		result = fb.getSum(firstValue, secondValue);
+		// 		System.out.println(result + " I:" + x);
+		// 		firstValue = secondValue;
+		// 		secondValue = result;
+		// 		x++;
+		// 	} else {
+		// 		result = fb.getSum(firstValue, secondValue);
+		// 		System.out.println(result + " I:" + x);
+		// 		firstValue = secondValue;
+		// 		secondValue = result;
+		// 		x++;
+		// 	}
+		// }
 		return result;
 	}
 
@@ -64,5 +87,12 @@ class Fibonacci {
 
 	public void setIndex(int requestedIndex) {
 		this.requestedIndex = requestedIndex;
+	}
+
+	//Testing an idea. 
+	public void setSumVariables(long secondValue, long result) {
+		this.firstValue = secondValue;
+		this.secondValue = result;
+
 	}
 }
