@@ -1,1 +1,21 @@
 Document will list summary of current topics being covered on udemy course
+
+Topics covered:
+ + Setting up IntelliJ on windows
+   - how to install JDK
+   - link JDK to path
+ 
+ + Introduction to variables, Datatypes and Operators
+   - Defined Primitive data types
+     * Byte, short, long, fload, double, char, boolean
+   - Defined Operators
+     * Brief coverage of Precedence
+ 
+ + Intro to Expressions, Statements, code blocks, methods
+   - Into to Statements: if, switch 
+   - Intro to code blocks: white space, indentation
+   - intro to Methods: overloading, input
+
+ + Control Flow Statements
+   - More on switch statement
+   - More on if else
