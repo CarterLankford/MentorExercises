@@ -14,85 +14,45 @@ should be for the initial index request
 
 
 class Fibonacci {
-	private int requestedIndex;
-	private long firstValue;
-	private long secondValue;
-	private long result;
 
 	public static void main(String[] args) {
-		Fibonacci fb = new Fibonacci();
+		// Suggestion
+		// System.out.println(calculateResult(12L)); // 233
+		
 
-		fb.setIndex(12);
-		fb.calculateResult();
-	
+		System.out.println(calculateResult(12)); // 233
 	}
 
-	public long calculateResult() {
-		Fibonacci fb = new Fibonacci();
 
-		int x = 0;	//Setting Counter at 0	
+	//using calculateresult as is (once converted into a static method) figure out the calculation. 
+	// public long calculateResult() {
+	// 	Fibonacci fb = new Fibonacci();
+	// 	int x = 0;	//Setting Counter at 0	
+	// 	while (x <= requestedIndex){			
+	// 		result = fb.getSum(firstValue, secondValue);
+	// 		firstValue = secondValue;
+	// 		secondValue = result;
+	// 		x++;
+	// 		System.out.println( result + " I:" + x);			
+	// 	}
+	// 	return result;
+	// }
 
-		while (x <= requestedIndex){
-			if (x > 2) {
-				result = fb.getSum(firstValue, secondValue);
-				System.out.println(result + " I:" + x);
-				firstValue = secondValue;
-				secondValue = result;
-				x++;
-			} else if (x == 0) {
-				System.out.println(result + " I:" + x);
-				x++; //We know everhting will equal 0
-			} else {
-				firstValue = 1;
-				result = fb.getSum(firstValue, secondValue);
-				System.out.println(result + " I:" + x);
-				firstValue = secondValue;
-				secondValue = result;
-				x++;
-			}
+	public static long calculateResult(int requestedIndex) {
+		long firstNumber = 0L;
+		long secondNumber = 1L;
+		long result = 0L;
+		int currentIndex = 0;
 
-			
+		while (currentIndex <= requestedIndex) {
+			result = firstNumber + secondNumber;
+
+			firstNumber = secondNumber;
+			secondNumber = result;
+			currentIndex++;
+			System.out.println("R:" + result + " I:" + currentIndex);
 		}
 
-		// while (x <= requestedIndex){
-		// 	if (x == 0) {
-		// 		System.out.println(result + " I:" + x);
-		// 		x++; //We know everhting will equal 0
-		// 	} else if (x == 1) {
-		// 		firstValue = 1;
-		// 		result = fb.getSum(firstValue, secondValue);
-		// 		System.out.println(result + " I:" + x);
-		// 		firstValue = secondValue;
-		// 		secondValue = result;
-		// 		x++;
-		// 	} else {
-		// 		result = fb.getSum(firstValue, secondValue);
-		// 		System.out.println(result + " I:" + x);
-		// 		firstValue = secondValue;
-		// 		secondValue = result;
-		// 		x++;
-		// 	}
-		// }
 		return result;
-	}
-
-	public long getSum(long firstInt, long secondInt) {
-		result = firstInt + secondInt;
-		return result;
-	}
-
-	public int getIndex() {
-		return requestedIndex;
-	}
-
-	public void setIndex(int requestedIndex) {
-		this.requestedIndex = requestedIndex;
-	}
-
-	//Testing an idea. 
-	public void setSumVariables(long secondValue, long result) {
-		this.firstValue = secondValue;
-		this.secondValue = result;
-
 	}
 }
