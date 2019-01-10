@@ -19,8 +19,10 @@ class Fibonacci {
 		// Suggestion
 		// System.out.println(calculateResult(12L)); // 233
 		
-
-		System.out.println(calculateResult(12)); // 233
+			// System.out.println(calculateResult(1000000) + "\n"); // 144
+			System.out.println(fib(1000000) + "\n"); // 144
+		// for(int i = 0; i<1000; i++){
+		// }
 	}
 
 
@@ -39,20 +41,38 @@ class Fibonacci {
 	// }
 
 	public static long calculateResult(int requestedIndex) {
+		if(requestedIndex < 2){
+			return requestedIndex;
+		}
+
 		long firstNumber = 0L;
 		long secondNumber = 1L;
 		long result = 0L;
-		int currentIndex = 0;
-
-		while (currentIndex <= requestedIndex) {
+		
+		for (int currentIndex = 2; currentIndex <= requestedIndex; currentIndex++){
 			result = firstNumber + secondNumber;
 
 			firstNumber = secondNumber;
 			secondNumber = result;
-			currentIndex++;
-			System.out.println("R:" + result + " I:" + currentIndex);
+			// System.out.println("R:" + result + " I:" + currentIndex);
 		}
+		// while (currentIndex <= requestedIndex) {
+		// 	result = firstNumber + secondNumber;
+
+		// 	firstNumber = secondNumber;
+		// 	secondNumber = result;
+		// 	System.out.println("R:" + result + " I:" + currentIndex);
+		// 	currentIndex++;
+		// }
 
 		return result;
+	}
+
+// Recursion example of fibonacci, DO NOT USE: SUPER EXPENSIVE
+	public static long fib(int index){
+		if(index < 2){
+			return index;
+		}
+		return fib(index - 1) + fib(index - 2);
 	}
 }
