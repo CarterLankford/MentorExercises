@@ -2,10 +2,10 @@ class Fibonacci {
 
 	public static void main(String[] args) {
 		// Suggestion
-		// System.out.println(calculateResult(12L)); // 233	
-		System.out.println(fib(1000000) + "\n"); // 144
-		// for(int i = 0; i<1000; i++){
-		// }
+		// System.out.println(fib(1000000) + "\n"); 
+		for(int i = 0; i<1000; i++){
+			calculateResult(3);
+		}
 	}
 
 	public static long calculateResult(int requestedIndex) {
@@ -23,6 +23,7 @@ class Fibonacci {
 
 			firstNumber = secondNumber;
 			secondNumber = result;
+			System.out.println(result);
 		}
 
 		//How to do as While loop, converted to for loop since end of index is known
@@ -42,10 +43,13 @@ class Fibonacci {
 	}
 
 // Recursion example of fibonacci, DO NOT USE: SUPER EXPENSIVE
+/*
+	
 	public static long fib(int index){
 		if(index < 2){
 			return index;
 		}
 		return fib(index - 1) + fib(index - 2);
 	}
+*/
 }
