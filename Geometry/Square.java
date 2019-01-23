@@ -18,4 +18,9 @@ public class Square implements Shape {
     public void setSide(float side) {
         this.side = side; 
     }
+
+    @Override
+    public String toString(){
+        
+    }
 }
