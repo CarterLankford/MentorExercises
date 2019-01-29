@@ -16,6 +16,34 @@ class PalindromeV2{
 
 		int checkLeft = 0;
 		int checkRight = strStartingString.length() - 1;
+		//  A B B A
+		// A B C B A
+		// checkRight = 4 - 1 = 3
+
+		/*
+		int charsToCompare = Math.floor(strStartingString.length() / 2);
+
+		//if (strStartingString.length() % 2 == 0){
+		//	charsToCompare = strStartingString.length() / 2;
+		//} else {
+		//	charsToCompare = Math.floor(strStartingString.length() / 2);
+		// 2.5 = 2
+		//	2.8 = 2
+		//	2.0 = 2
+		//}
+
+		for int i=0; i<charsToCompare; i++){
+			if (checkString[checkLeft] == checkString[checkRight]) {
+				// System.out.println(checkString[checkLeft] + " " + checkString[checkRight]);
+				checkLeft++;
+				checkRight--;
+			} else {
+				isPalindrom = false;
+				break;
+			}
+		}
+		*/
+
 
 		char checkString[] = strStartingString.toCharArray(); 
 
@@ -24,7 +52,7 @@ class PalindromeV2{
 
 			while(checkLeft < checkRight){
 				if (checkString[checkLeft] == checkString[checkRight]) {
-					System.out.println(checkString[checkLeft] + " " + checkString[checkRight]);
+					// System.out.println(checkString[checkLeft] + " " + checkString[checkRight]);
 					checkLeft++;
 					checkRight--;
 				} else {
@@ -38,7 +66,7 @@ class PalindromeV2{
 			System.out.println("String length is even");
 			while(checkLeft <= checkRight){
 				if (checkString[checkLeft] == checkString[checkRight]) {
-					System.out.println(checkString[checkLeft] + " " + checkString[checkRight]);
+					// System.out.println(checkString[checkLeft] + " " + checkString[checkRight]);
 					checkLeft++;
 					checkRight--;
 				} else {
@@ -49,5 +77,11 @@ class PalindromeV2{
 			System.out.println("Is Panindrome= " + isPalindrom);	
 		}
 
+		for(checkLeft = 0, checkRight = str.length() - 1; checkLeft < checkRight; checkLeft++, checkRight--){
+			if (checkString[checkLeft] != checkString[checkRight]) {
+				isPalindrom = false;
+				break;
+			}
+		}
 	}
 }

@@ -1,5 +1,5 @@
 public class Circle implements Shape{
-    private static final float PI = (float)3.14159; // turned into constant to better utilize memory
+    private static final float PI = 3.14159f; // turned into constant to better utilize memory
     private static int numberOfInstances = 0; // example to show static vs instance: is it independent or dependant on the instance; circle example
     private float radius; 
 
