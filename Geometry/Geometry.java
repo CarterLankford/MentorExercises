@@ -25,6 +25,16 @@ public class Geometry{
     	String a = "Hello";
     	a = "Hello" + " World";
 
+
+        RegularPolygon rp = new RegularPolygon();
+        rp.setNumberOfSides((float)4);
+        rp.setLengthOfSide((float)10);
+        System.out.println(rp.getApothem());
+
+        RegularPolygon square = new RegularPolygon();
+        square.setNumberOfSides((float)4);
+        
+
     }
 
     private static void displayPerimteter(Shape anyShape){
