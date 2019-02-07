@@ -21,7 +21,7 @@ class PalindromeV3{
 		for (int i = 0; i < y; i++) {
 			int last = x - 1 - i;
 			if (chkString[i] != chkString[last]) {
-				isPalindrome = !isPalindrome;
+				isPalindrome = false;
 				break;
 			}
 		}

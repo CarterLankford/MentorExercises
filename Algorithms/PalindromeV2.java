@@ -9,7 +9,8 @@ class PalindromeV2{
 		for (int i = 0; i < j; i++){
 			int last = n - 1 - i;
 			if (checkString[i] != checkString[last]){
-				isPalindrom = !isPalindrom;
+				// isPalindrom = !isPalindrom; //original is confusing
+				isPalindrom = false; // correction of the above
 				break;
 			}
 		}
