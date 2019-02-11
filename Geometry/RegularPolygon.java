@@ -1,6 +1,6 @@
 public class RegularPolygon implements Shape{
 	protected float lengthOfSide;
-	private float numberOfSides;
+	private int numberOfSides;
 
 	// TODO: Add parameter constrcutor
 
@@ -25,7 +25,7 @@ public class RegularPolygon implements Shape{
 		return lengthOfSide;
 	}
 
-	public float getNumberOfSides() {
+	public int getNumberOfSides() {
 		return numberOfSides;
 	}
 
@@ -33,12 +33,12 @@ public class RegularPolygon implements Shape{
 		this.lengthOfSide = lengthOfSide;
 	}
 
-	public void setNumberOfSides(float numberOfSides) {
+	public void setNumberOfSides(int numberOfSides) {
 		this.numberOfSides = numberOfSides;
 	}
 
 	// Why can't we combind it? - Ask at next meeting
-	public void setRegularPolygonVar(float lengthOfSide, float numberOfSides) {
+	public void setRegularPolygonVar(float lengthOfSide, int numberOfSides) {
 		this.lengthOfSide = lengthOfSide;
 		this. numberOfSides = numberOfSides;
 	}

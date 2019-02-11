@@ -2,7 +2,7 @@ public class Square extends RegularPolygon {
 
     public Square(){
         super();
-        super.setNumberOfSides((float)4);
+        super.setNumberOfSides(4);
     }
 
     @Override
@@ -11,7 +11,7 @@ public class Square extends RegularPolygon {
     }
 
     @Override
-    public void setNumberOfSides(float numberOfSides){
+    public void setNumberOfSides(int numberOfSides){
         
     }
 

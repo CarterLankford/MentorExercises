@@ -32,7 +32,7 @@ public class Geometry{
   //       System.out.println(rp.getApothem());
 
         RegularPolygon square = new RegularPolygon();
-        square.setNumberOfSides((float)4);
+        square.setNumberOfSides(4);
         square.setLengthOfSide((float) 4);
         
         Square sq = new Square();
