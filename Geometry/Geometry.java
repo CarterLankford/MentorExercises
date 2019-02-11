@@ -1,39 +1,45 @@
 public class Geometry{
 	public static void main(String[] args) {
-        Circle cr = new Circle(); //creating object
-        cr.setRadius((float)25); //setting object variable
+  //       Circle cr = new Circle(); //creating object
+  //       cr.setRadius((float)25); //setting object variable
 
-        // System.out.println(cr.getArea()); //calling for return of object's area
+  //       // System.out.println(cr.getArea()); //calling for return of object's area
         
-        Square sq = new Square();
-        sq.setSide((float)20);
+  //       Square sq = new Square();
+  //       sq.setSide((float)20);
 
-        displayPerimteter(cr);
-        displayPerimteter(sq);
+  //       displayPerimteter(cr);
+  //       displayPerimteter(sq);
 
-        System.out.println(cr instanceof Object);
+  //       System.out.println(cr instanceof Object);
         
-        System.out.println(sq instanceof Object);
-        System.out.println(sq instanceof Shape);
-        System.out.println(sq instanceof Square);
+  //       System.out.println(sq instanceof Object);
+  //       System.out.println(sq instanceof Shape);
+  //       System.out.println(sq instanceof Square);
 		
-		System.out.println("Hello" instanceof Object);
-    	System.out.println("Hello" instanceof String);
+		// System.out.println("Hello" instanceof Object);
+  //   	System.out.println("Hello" instanceof String);
 
-    	System.out.println(new String("Hello") instanceof String);
+  //   	System.out.println(new String("Hello") instanceof String);
 
-    	String a = "Hello";
-    	a = "Hello" + " World";
+  //   	String a = "Hello";
+  //   	a = "Hello" + " World";
 
 
-        RegularPolygon rp = new RegularPolygon();
-        rp.setNumberOfSides((float)4);
-        rp.setLengthOfSide((float)10);
-        System.out.println(rp.getApothem());
+  //       RegularPolygon rp = new RegularPolygon();
+  //       rp.setNumberOfSides((float)4);
+  //       rp.setLengthOfSide((float)10);
+  //       System.out.println(rp.getApothem());
 
         RegularPolygon square = new RegularPolygon();
         square.setNumberOfSides((float)4);
+        square.setLengthOfSide((float) 4);
         
+        Square sq = new Square();
+        sq.setLengthOfSide((float) 4);
+
+        System.out.println("RegularPolygon: " + square.getPerimeter() + " " + square.getArea());
+        System.out.println("Square: " + sq.getPerimeter() + " " + sq.getArea());
 
     }
 

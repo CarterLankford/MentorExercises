@@ -1,6 +1,8 @@
 public class RegularPolygon implements Shape{
-	private float lengthOfSide;
+	protected float lengthOfSide;
 	private float numberOfSides;
+
+	// TODO: Add parameter constrcutor
 
 	@Override
 	public float getArea() {
@@ -15,7 +17,8 @@ public class RegularPolygon implements Shape{
 	public float getApothem() {
 		// return lengthOfSide / ( 2 * tan (180 / numberOfSides) );
 		// return (float) Math.tan(4.0);
-		return lengthOfSide / ((float)2 * (float)Math.tan(180 / numberOfSides));	
+		double angle = Math.toRadians(180 / numberOfSides);
+		return lengthOfSide / ((float)2 * (float)Math.tan(angle));	
 	}
 
 	public float getLengthOfSide() {

@@ -1,22 +1,18 @@
-public class Square implements Shape {
-    private float side;
+public class Square extends RegularPolygon {
+
+    public Square(){
+        super();
+        super.setNumberOfSides((float)4);
+    }
 
     @Override
     public float getArea() {
-        return side * side; 
+        return this.lengthOfSide * this.lengthOfSide; 
     }
 
     @Override
-    public float getPerimeter() {
-        return side * 4;
-    }
-    
-    public float getSide() {
-        return side;
-    }
-
-    public void setSide(float side) {
-        this.side = side; 
+    public void setNumberOfSides(float numberOfSides){
+        
     }
 
     // @Override
