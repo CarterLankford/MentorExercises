@@ -7,6 +7,11 @@ public class Circle implements Shape{
     	Circle.numberOfInstances++;  // counts amount of new instances of the object created; 
     }
 
+    public Circle(float radius) {
+        this();
+        this.radius = radius;
+    }
+
     public static float getPI(){
     	return PI;
     }

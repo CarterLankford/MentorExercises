@@ -1,8 +1,15 @@
 public class RegularPolygon implements Shape{
 	protected float lengthOfSide;
 	private int numberOfSides;
+	
+	public RegularPolygon() {
+		System.out.println("Creating a RegularPolygon");
+	}
 
-	// TODO: Add parameter constrcutor
+	public RegularPolygon(float lengthOfSide, int numberOfSides) {
+		this.lengthOfSide = lengthOfSide;
+		this.numberOfSides = numberOfSides;
+	}
 
 	@Override
 	public float getArea() {
