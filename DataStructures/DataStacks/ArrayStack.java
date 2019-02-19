@@ -2,15 +2,8 @@ public class ArrayStack {
 	private int arraySize;
 	private int [] anArray;
 
-
-	public ArrayStack() {
-
-	}
-
-
 	public void setArraySize(int arraySize){
 		this.arraySize = arraySize;
-		// anArray = new int[arraySize];
 	}
 
 	//getting hung up here, can an array be created dynamicly? - we do in main
