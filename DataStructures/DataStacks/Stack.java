@@ -1,8 +1,8 @@
 public interface Stack {
-	boolean push(int);
+	boolean push();
 	boolean isFull();
 	boolean isEmpty();
-	int pop();
+	boolean pop();
 	int peek();
 	int size();
 
