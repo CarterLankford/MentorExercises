@@ -5,5 +5,4 @@ public interface Stack {
 	boolean pop();
 	int peek();
 	int size();
-
 }
