@@ -34,9 +34,7 @@ class PalindromeV4{
 			first++;
 			last--;
 		}
-
 		System.out.println(isPanlindrome);
-
 	}
 
 	private static int Sanitize(int inputChar){
