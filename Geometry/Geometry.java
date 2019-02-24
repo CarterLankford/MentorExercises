@@ -31,6 +31,9 @@ public class Geometry{
   //       rp.setLengthOfSide((float)10);
   //       System.out.println(rp.getApothem());
 
+        int value = 15;
+        assert value > 20;
+
         RegularPolygon square = new RegularPolygon();
         square.setNumberOfSides(4);
         square.setLengthOfSide((float) 4);

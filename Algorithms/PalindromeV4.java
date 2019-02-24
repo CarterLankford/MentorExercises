@@ -8,25 +8,45 @@ class PalindromeV4{
 		int x = myString.length();
 		int y = (int)Math.floor((double)x / 2);
 
+		/*...
+		char[] myStringChr = myString.toCharArray();
+
+		char[] cleanString = new char[](myStringChr.length);
+
+		int j = 0;
+		for (i = 0; myStringChr; i++) { 
+			int cleanChar = Sanitize(myStringChr[i]);
+			if(cleanChar != -1){
+				cleanString[j++] = cleanChar;
+			}
+		}
+
+		
+		...*/
+
 
 		int first = 0;
 		int last = x - 1;
 
 		while (first < y && last > first){ 
 
-			while (Sanitize((int)chkString[first]) == -1){
+			int firstSanitized = Sanitize((int)chkString[first]);
+			int lastSanitized = Sanitize((int)chkString[last])
+
+			while (firstSanitized == -1){
 				first++;
+				firstSanitized = Sanitize((int)chkString[first]);
 			}
 
-			while(Sanitize((int)chkString[last]) == -1){
+			while(lastSanitized == -1){
 				last--;
+				lastSanitized = Sanitize((int)chkString[last])
 			}
 
-			System.out.println((char)Sanitize(chkString[first]) + " " + (char)Sanitize(chkString[last]) );
+			System.out.println((char)firstSanitized + " " + (char)lastSanitized );
 			System.out.println("when values are compared at the end, it will be first:" + first + " Last:" + last + "\n" );
 
-
-			if (Sanitize(chkString[first]) != Sanitize(chkString[last])){
+			if (firstSanitized != lastSanitized){
 				isPanlindrome = false;
 				break;
 			}

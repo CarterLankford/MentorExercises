@@ -1,51 +1,64 @@
-public class ArrayStack {
+public class ArrayStack implements Stack{
 	//TODO: 
 	// add relationship with interface and overrides for the functions
-	private int arraySize;
-	private int [] anArray;
+	
+	private Integer[] anArray;
+	private int stackElementCount = 0;
 
-	public void setArraySize(int arraySize){
-		this.arraySize = arraySize;
+
+	public ArrayStack() { 
+		anArray = new Integer[10];
 	}
 
-	//getting hung up here, can an array be created dynamicly? - we do in main
-	// trying something similar in the constructor 
-	public void createArrayStack(){
-		anArray = new int[arraySize];
-	}
-
-	// public void push(int myValue){
-	// 	anArray[0] = myValue;
-	// }
-
-	public int getValueAt(int theIndex){
-		return anArray[theIndex];
-	}
-
+	
 	//need all functions from interface in here, will lay them out
 
+	@Override //work here
 	public boolean push(int inputValue){
 		anArray[0] = inputValue;
+		if(isFull()){
+			System.out.println("Not Full");
+		}
+
+		stackElementCount++;
+		System.out.println(inputValue);
+
 		return true; //just doing this for now until logic is built to return if successful or not
 	}
 
+	@Override
 	public boolean isFull(){
-		return true; // place holder until logic is built
+		return stackElementCount == 10; 
 	}
 
+	@Override
 	public boolean isEmpty(){
-		return true; // place holder until logic is built
+		return stackElementCount == 0;
 	}
 
-	public int pop(){
+	@Override //work here
+	public Integer pop(){
+		stackElementCount--;
 		return anArray[0]; // want the top value which will always be index 0, need to add logic to check if empty or not
 	}
 
-	public int peek(){
+	@Override
+	public Integer peek(){
 		return anArray[0]; // want the top value which will always be index 0, need to add logic to check if empty or not
 	}
 
+	@Override
 	public int size(){
-		return arraySize;
+		return stackElementCount;
+	}
+
+	@Override
+	public String toString(){
+		String result = "[";
+		for (int i = 0; i < stackElementCount; i++){
+			result = result + anArray[i] + " ";  
+		}
+		result += "]";
+		return result;
 	}
 }
