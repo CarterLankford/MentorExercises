@@ -31,7 +31,7 @@ class PalindromeV4{
 		while (first < y && last > first){ 
 
 			int firstSanitized = Sanitize((int)chkString[first]);
-			int lastSanitized = Sanitize((int)chkString[last])
+			int lastSanitized = Sanitize((int)chkString[last]);
 
 			while (firstSanitized == -1){
 				first++;
@@ -40,7 +40,7 @@ class PalindromeV4{
 
 			while(lastSanitized == -1){
 				last--;
-				lastSanitized = Sanitize((int)chkString[last])
+				lastSanitized = Sanitize((int)chkString[last]);
 			}
 
 			System.out.println((char)firstSanitized + " " + (char)lastSanitized );

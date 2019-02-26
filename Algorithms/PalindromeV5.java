@@ -7,17 +7,17 @@ class PalindromeV5{
 		// had to count how many valid char before creating array, other wise array would 
 		// have some null values.
 
-		int q = 0; // Will count the ammount of times a alpha numberic value appears
-		for (int i = 0; i < chkStringChar.length; i++) {
-			int targetChar = Sanitize(chkStringChar[i]);
-			if(targetChar != -1) {
-				q++;
-			}
-		}
+		// int q = 0; // Will count the ammount of times a alpha numberic value appears
+		// for (int i = 0; i < chkStringChar.length; i++) {
+		// 	int targetChar = Sanitize(chkStringChar[i]);
+		// 	if(targetChar != -1) {
+		// 		q++;
+		// 	}
+		// }
 
-		char[] sanitizedStringChar = new char[q]; 
+		char[] sanitizedStringChar = new char[chkStringChar.length]; 
 
-		int j = 0; //Keep track of the sanitized array index for adding new values
+		int j = 0; //Keep track of the sanitized array size
 		for (int i = 0; i < chkStringChar.length; i++) {
 			int targetChar = Sanitize(chkStringChar[i]);
 			if(targetChar != -1) {
@@ -25,11 +25,11 @@ class PalindromeV5{
 			}
 		}
 
-		int x = sanitizedStringChar.length; //need to know max ammount of times to count
+		int x = j; //need to know max ammount of times to count
 		int y = (int)Math.floor((double)x / 2); // to show halfway point
-
+		x -= 1;
 		for (int i = 0; i < y; i++) {
-			int last = x - 1 - i;
+			int last = x - i;
 			// could add an if to check if either is null and if so bypass the if check and
 			// then dn't check until its two valid char, could do a -- for the non null, to 
 			// keep it in the same spot

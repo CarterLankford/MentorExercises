@@ -15,11 +15,18 @@ public class ArrayStack implements Stack{
 
 	@Override //work here
 	public boolean push(int inputValue){
-		anArray[0] = inputValue;
 		if(isFull()){
-			System.out.println("Not Full");
+			System.out.println("Already Full");
+			return false;
 		}
-
+		// TODO: add right shift
+		int q = stackElementCount;
+		for (int i=0; i < stackElementCount; i++) {
+			int y = q -1;
+			anArray[q] = anArray[y];
+			q--;
+		}
+		anArray[0] = inputValue;
 		stackElementCount++;
 		System.out.println(inputValue);
 
@@ -38,6 +45,11 @@ public class ArrayStack implements Stack{
 
 	@Override //work here
 	public Integer pop(){
+		if(isEmpty()){
+			System.out.println("Already empty");
+			return null;
+		}
+		// TODO: add left shift
 		stackElementCount--;
 		return anArray[0]; // want the top value which will always be index 0, need to add logic to check if empty or not
 	}
@@ -52,6 +64,7 @@ public class ArrayStack implements Stack{
 		return stackElementCount;
 	}
 
+	//TODO: fix the spacing
 	@Override
 	public String toString(){
 		String result = "[";

@@ -33,6 +33,7 @@ public class Geometry{
 
     //TODO
     //write a test case for everything
+    //add edge cases, min, max, med, negitive
 
 
     //RegularPolygon
@@ -69,9 +70,15 @@ public class Geometry{
                        "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
                        "Area: " + sqa.getArea() + "\n" +
                        "Perimeter: " + sqa.getPerimeter() + "\n" + "\n");
+    sqa.setNumberOfSides(7);
+    System.out.println("Square: input of length of sides after calling setNumberOfSides()");
+    System.out.println("Length of side: " + sqa.getLengthOfSide() + "\n" +
+                       "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
+                       "Area: " + sqa.getArea() + "\n" +
+                       "Perimeter: " + sqa.getPerimeter() + "\n" + "\n");
 
 
-    //Cricle
+    //Circle
     System.out.println("Circle Default constructor");
     Circle cir = new Circle();
     cir.setRadius((float)5);
