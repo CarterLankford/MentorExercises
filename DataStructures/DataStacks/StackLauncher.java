@@ -16,6 +16,17 @@ public class StackLauncher {
 		System.out.println("Push: " + merp.push(93) + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
 		System.out.println("Push: " + merp.push(821) + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
 		System.out.println("Push: " + merp.push(1) + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
+		System.out.println("Pop: " + merp.pop() + " ElementCount: " + merp.size() + " ToString: " + merp.toString());
 
 
 		// System.out.println("toString: " + merp.toString());

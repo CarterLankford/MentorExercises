@@ -1,6 +1,4 @@
 public class ArrayStack implements Stack{
-	//TODO: 
-	// add relationship with interface and overrides for the functions
 	
 	private Integer[] anArray;
 	private int stackElementCount = 0;
@@ -10,8 +8,6 @@ public class ArrayStack implements Stack{
 		anArray = new Integer[10];
 	}
 
-	
-	//need all functions from interface in here, will lay them out
 
 	@Override //work here
 	public boolean push(int inputValue){
@@ -19,7 +15,7 @@ public class ArrayStack implements Stack{
 			System.out.println("Already Full");
 			return false;
 		}
-		// TODO: add right shift
+
 		int q = stackElementCount;
 		for (int i=0; i < stackElementCount; i++) {
 			int y = q -1;
@@ -28,9 +24,7 @@ public class ArrayStack implements Stack{
 		}
 		anArray[0] = inputValue;
 		stackElementCount++;
-		System.out.println(inputValue);
-
-		return true; //just doing this for now until logic is built to return if successful or not
+		return true; 
 	}
 
 	@Override
@@ -49,9 +43,16 @@ public class ArrayStack implements Stack{
 			System.out.println("Already empty");
 			return null;
 		}
-		// TODO: add left shift
+
+		int popVar = anArray[0];
+		int q = stackElementCount;
+		for (int i = 1; i < stackElementCount; i++){
+			anArray[i - 1] = anArray[i];
+
+		}
+
 		stackElementCount--;
-		return anArray[0]; // want the top value which will always be index 0, need to add logic to check if empty or not
+		return popVar; 
 	}
 
 	@Override
@@ -64,12 +65,17 @@ public class ArrayStack implements Stack{
 		return stackElementCount;
 	}
 
-	//TODO: fix the spacing
 	@Override
 	public String toString(){
 		String result = "[";
 		for (int i = 0; i < stackElementCount; i++){
-			result = result + anArray[i] + " ";  
+			// result = result + anArray[i] + " "; 
+			if (i > 0) {
+				result = result + " " + anArray[i];
+			} else {
+				result = result	+ anArray[i];
+			}
+			
 		}
 		result += "]";
 		return result;
