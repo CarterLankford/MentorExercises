@@ -3,7 +3,7 @@ public class RegularPolygon implements Shape{
 	private int numberOfSides;
 	
 	public RegularPolygon() {
-		System.out.println("Creating a RegularPolygon");
+		// System.out.println("Creating a RegularPolygon");
 	}
 
 	public RegularPolygon(float lengthOfSide, int numberOfSides) {

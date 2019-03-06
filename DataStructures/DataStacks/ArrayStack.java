@@ -48,7 +48,7 @@ public class ArrayStack implements Stack{
 		int q = stackElementCount;
 		for (int i = 1; i < stackElementCount; i++){
 			anArray[i - 1] = anArray[i];
-
+			anArray[i] = null;
 		}
 
 		stackElementCount--;

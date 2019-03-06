@@ -37,45 +37,57 @@ public class Geometry{
 
 
     //RegularPolygon
-    System.out.println("Regular Polygon Default constructor");
-    RegularPolygon rgp = new RegularPolygon();
-    rgp.setLengthOfSide((float)6);
-    rgp.setNumberOfSides(7);
-    System.out.println("Length of Side: " + rgp.getLengthOfSide() + "\n" +
-                       "Number of Sides: " + rgp.getNumberOfSides() + "\n" +
-                       "Area: " + rgp.getArea() + "\n" +
-                       "Perimeter: " + rgp.getPerimeter() + "\n" +
-                       "Apothem: " + rgp.getApothem() + "\n" + "\n");
+    //going to try to build a function to do this multiple times with similar values
+    unitTestingRegularPolygon((float)-1, -1);
+    unitTestingRegularPolygon((float)1, 1);
+    unitTestingRegularPolygon((float)6, 7);
+    unitTestingRegularPolygon((float)900, 900);
 
-    System.out.println("Regular Polygon: input num of sides & length of sides");
-    RegularPolygon rgp2 = new RegularPolygon((float)6, 7);
-    System.out.println("Length of Side: " + rgp2.getLengthOfSide() + "\n" +
-                       "Number of Sides: " + rgp2.getNumberOfSides() + "\n" +
-                       "Area: " + rgp2.getArea() + "\n" +
-                       "Perimeter: " + rgp2.getPerimeter() + "\n" +
-                       "Apothem: " + rgp2.getApothem() + "\n" + "\n");
+    // System.out.println("Regular Polygon Default constructor");
+    // RegularPolygon rgp = new RegularPolygon();
+    // rgp.setLengthOfSide((float)6);
+    // rgp.setNumberOfSides(7);
+    // System.out.println("Length of Side: " + rgp.getLengthOfSide() + "\n" +
+    //                    "Number of Sides: " + rgp.getNumberOfSides() + "\n" +
+    //                    "Area: " + rgp.getArea() + "\n" +
+    //                    "Perimeter: " + rgp.getPerimeter() + "\n" +
+    //                    "Apothem: " + rgp.getApothem() + "\n" + "\n");
+
+    // System.out.println("Regular Polygon: input num of sides & length of sides");
+    // RegularPolygon rgp2 = new RegularPolygon((float)6, 7);
+    // System.out.println("Length of Side: " + rgp2.getLengthOfSide() + "\n" +
+    //                    "Number of Sides: " + rgp2.getNumberOfSides() + "\n" +
+    //                    "Area: " + rgp2.getArea() + "\n" +
+    //                    "Perimeter: " + rgp2.getPerimeter() + "\n" +
+    //                    "Apothem: " + rgp2.getApothem() + "\n" + "\n");
 
     //Square
-    System.out.println("Square Default constructor");
-    Square sq = new Square();
-    sq.setLengthOfSide((float)10);
-    System.out.println("Length of side: " + sq.getLengthOfSide() + "\n" +
-                       "Number of Sides: " + sq.getNumberOfSides() + "\n" +
-                       "Area: " + sq.getArea() + "\n" +
-                       "Perimeter: " + sq.getPerimeter() + "\n" + "\n");
+    unitTestingSquare((float)-1, -1);
+    unitTestingSquare((float)1, 1);
+    unitTestingSquare((float)20, 20);
+    unitTestingSquare((float)900, 900);
+
+
+    // System.out.println("Square Default constructor");
+    // Square sq = new Square();
+    // sq.setLengthOfSide((float)10);
+    // System.out.println("Length of side: " + sq.getLengthOfSide() + "\n" +
+    //                    "Number of Sides: " + sq.getNumberOfSides() + "\n" +
+    //                    "Area: " + sq.getArea() + "\n" +
+    //                    "Perimeter: " + sq.getPerimeter() + "\n" + "\n");
     
-    System.out.println("Square: input of length of sides");
-    Square sqa = new Square((float)10);
-    System.out.println("Length of side: " + sqa.getLengthOfSide() + "\n" +
-                       "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
-                       "Area: " + sqa.getArea() + "\n" +
-                       "Perimeter: " + sqa.getPerimeter() + "\n" + "\n");
-    sqa.setNumberOfSides(7);
-    System.out.println("Square: input of length of sides after calling setNumberOfSides()");
-    System.out.println("Length of side: " + sqa.getLengthOfSide() + "\n" +
-                       "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
-                       "Area: " + sqa.getArea() + "\n" +
-                       "Perimeter: " + sqa.getPerimeter() + "\n" + "\n");
+    // System.out.println("Square: input of length of sides");
+    // Square sqa = new Square((float)10);
+    // System.out.println("Length of side: " + sqa.getLengthOfSide() + "\n" +
+    //                    "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
+    //                    "Area: " + sqa.getArea() + "\n" +
+    //                    "Perimeter: " + sqa.getPerimeter() + "\n" + "\n");
+    // sqa.setNumberOfSides(7);
+    // System.out.println("Square: input of length of sides after calling setNumberOfSides()");
+    // System.out.println("Length of side: " + sqa.getLengthOfSide() + "\n" +
+    //                    "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
+    //                    "Area: " + sqa.getArea() + "\n" +
+    //                    "Perimeter: " + sqa.getPerimeter() + "\n" + "\n");
 
 
     //Circle
@@ -116,8 +128,45 @@ public class Geometry{
     	System.out.println("Perimeter of " + anyShape.getClass().getName() + " is " + anyShape.getPerimeter());
     }
 
+    private static void unitTestingRegularPolygon(float lengthOfSide, int numberOfSides) {
+      RegularPolygon rgp = new RegularPolygon();
+      RegularPolygon rgp2 = new RegularPolygon((float)lengthOfSide, numberOfSides);
+      rgp.setLengthOfSide((float)lengthOfSide);
+      rgp.setNumberOfSides(numberOfSides);
 
+      System.out.println("RegularPolygon()");
+      System.out.println("Length of Side: " + rgp.getLengthOfSide() + " | " + "Number of Sides: " + rgp.getNumberOfSides() + "\n" +
+                         "Area: " + rgp.getArea() + " | " + "Perimeter: " + rgp.getPerimeter() + " | " + "Apothem: " + rgp.getApothem() + "\n");
 
+      System.out.println("RegularPolygon((float)lengthOfside, numberOfSides)");      
+      System.out.println("Length of Side: " + rgp2.getLengthOfSide() + " | " + "Number of Sides: " + rgp2.getNumberOfSides() + " | " + "\n" + 
+                         "Area: " + rgp2.getArea() + " | " + "Perimeter: " + rgp2.getPerimeter() + " | " + "Apothem: " + rgp2.getApothem() + "\n");
+    }
+
+    private static void unitTestingSquare(float lengthOfSide, int numberOfSides){
+      System.out.println("Square Default constructor");
+      Square sq = new Square();
+      sq.setLengthOfSide((float)lengthOfSide);
+      Square sqa = new Square((float)lengthOfSide);      
+      
+
+      System.out.println("Square()");
+      System.out.println("Length of side: " + sq.getLengthOfSide() + " | " + "Number of Sides: " + sq.getNumberOfSides() + "\n" +
+                         "Area: " + sq.getArea() + " | " + "Perimeter: " + sq.getPerimeter() + "\n");
+    
+      System.out.println("Square((float)lengthOfSide)");    
+      System.out.println("Length of side: " + sqa.getLengthOfSide() + " | " + "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
+                         "Area: " + sqa.getArea() + "\n" + "Perimeter: " + sqa.getPerimeter() + "\n");
+      
+      sqa.setNumberOfSides(numberOfSides);
+      System.out.println("Square: input of length of sides after calling setNumberOfSides(" + numberOfSides + ")");
+      System.out.println("Length of side: " + sqa.getLengthOfSide() + " | " + "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
+                         "Area: " + sqa.getArea() + " | " + "Perimeter: " + sqa.getPerimeter() + "\n");
+    }
+
+    private static void unitTestingCircle(){
+      
+    }
 
 
 
