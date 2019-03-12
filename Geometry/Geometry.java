@@ -58,7 +58,19 @@ public class Geometry{
 
 
     //Triangle
-    unitTestingTriangle((float) 1, (float) 2, (float) 3, 1,  2, 3);
+    // RightTriangle rt = new RightTriangle(20f, 30f, 90);
+    // System.out.println("Right Triangle: \tArea: " + rt.getArea() + "\tPerimeter: " + rt.getPerimeter());
+
+    // IsoscelesTriangle isot = new IsoscelesTriangle(20, 10, 20);
+    // System.out.println("IsoscelesTriangle: \tArea: " + isot.getArea() + "\tPerimeter: " + isot.getPerimeter());
+
+    // EquilateralTriangle eqlt = new EquilateralTriangle(5);
+    // System.out.println("EquilateralTriangle: \tArea: " + eqlt.getArea () + "\tPerimeter: " + eqlt.getPerimeter());
+
+    unitTestingTriangle((float)20, (float)10, (float)20, 80, 80, 30);
+    unitTestingTriangle((float)-20, (float)-10, (float)-20, -80, -80, -30);
+
+
 
 
     }
@@ -121,10 +133,21 @@ public class Geometry{
 
     private static void unitTestingTriangle(float s1, float s2, float s3, int a1, int a2, int a3){
       RightTriangle rt = new RightTriangle(s1, s2, a1);
-      // rt.getArea();
+      IsoscelesTriangle isot = new IsoscelesTriangle(s1, s2, a1);
+      EquilateralTriangle eqlt = new EquilateralTriangle(s1);
 
-      System.out.println("Right Triangle-" + " Area:" + rt.getArea() + " Perimeter:" + rt.getPerimeter());
+
+      System.out.println("Right Triangle: \tArea: " + rt.getArea() + "\tPerimeter: " + rt.getPerimeter());
+
+      // IsoscelesTriangle isot = new IsoscelesTriangle(20, 10, 20);
+      System.out.println("IsoscelesTriangle: \tArea: " + isot.getArea() + "\tPerimeter: " + isot.getPerimeter());
+
+      // EquilateralTriangle eqlt = new EquilateralTriangle(5);
+      System.out.println("EquilateralTriangle: \tArea: " + eqlt.getArea () + "\tPerimeter: " + eqlt.getPerimeter());
+      
     }
+
+
 
 
 
