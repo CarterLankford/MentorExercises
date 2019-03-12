@@ -57,6 +57,10 @@ public class Geometry{
     unitTestingCircle((float)900);
 
 
+    //Triangle
+    unitTestingTriangle((float) 1, (float) 2, (float) 3, 1,  2, 3);
+
+
     }
 
     private static void displayPerimteter(Shape anyShape){
@@ -113,6 +117,13 @@ public class Geometry{
       System.out.println("Radius: " + cir2.getRadius() + " | " + "Diameter: " + cir2.getDiameter() + "\n" +
                          "PI: " + cir2.getPI() + " | " + "Area: " + cir2.getArea() + "\n" +
                          "Perimeter: " + cir2.getPerimeter() + "\n");
+    }
+
+    private static void unitTestingTriangle(float s1, float s2, float s3, int a1, int a2, int a3){
+      RightTriangle rt = new RightTriangle(s1, s2, a1);
+      // rt.getArea();
+
+      System.out.println("Right Triangle-" + " Area:" + rt.getArea() + " Perimeter:" + rt.getPerimeter());
     }
 
 
