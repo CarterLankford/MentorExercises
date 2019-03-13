@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Launcher{
+	private String[] choices;
 	public static void main(String[] args){
 		boolean recivedExitCode = false;
 		Scanner sc = new Scanner(System.in);
@@ -10,17 +11,42 @@ public class Launcher{
 		
 		System.out.print("Plate Count: ");
 		int plateCount = sc.nextInt();
+		ArrayStack aStack = new ArrayStack(plateCount);
+		ArrayStack bStack = new ArrayStack(plateCount);
+		ArrayStack cStack = new ArrayStack(plateCount);
 
 		while(!x.equals("exit")){
 			if (currentTurn > 0){
 				//while looping the game magic happens here.
-				x = sc.next(); 
+				//at the beginning of the loop check to see if player won. 
+				String y = "";
+				if((bStack.isFull()) || (cStack.isFull())){
+					System.out.println("Game over you won in " + currentTurn + " moves.");
+					break;
+				}
+
+				// x = sc.next(); // Looks for next user entry
+				String merpy = sc.next(); //looks to be running twice trying to figure out how to seperate values
+				System.out.println(merpy.trim()); //an attempt at the above. 
+				//going to cheat to force the win
+				// PS this could break the game if the array has anything in it maybe....need to test that. 
+				if(x.equals("cheat")){
+					for (int i = 0; i < plateCount; i++){
+						cStack.push(plateCount - i);
+					}
+				}
+
+
 				currentTurn++;
 			} else {
 				//all the preset up stuff can happen here.
-				ArrayStack aStack = new ArrayStack();
-				ArrayStack bStack = new ArrayStack();
-				ArrayStack cStack = new ArrayStack();
+				// ArrayStack aStack = new ArrayStack(plateCount);
+				// ArrayStack bStack = new ArrayStack(plateCount);
+				// ArrayStack cStack = new ArrayStack(plateCount);
+
+				for (int i = 0; i < plateCount; i++){
+					aStack.push(plateCount - i);
+				}
 
 				System.out.println("Towers of Hanoi");
 				System.out.println("========================================");
@@ -28,23 +54,6 @@ public class Launcher{
 				currentTurn++;
 			}
 		}
-
-		// ArrayStack aStack = new ArrayStack();
-		// ArrayStack bStack = new ArrayStack();
-		// ArrayStack cStack = new ArrayStack();
-
-		// System.out.println("Towers of Hanoi");
-		// System.out.println("========================================");
-		// System.out.println(aStack.toString() + "\n" + bStack.toString() + "\n" + cStack.toString());
-
-		// if (currentTurn > 0){
-		// 	//while looping the game magic happens here. 
-		// } else {
-		// 	//all the preset up stuff can happen here.
-		// }
-
-
-
 
 		//TODO: 
 		// Gather from user how many plates int plateCount

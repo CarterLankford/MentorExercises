@@ -1,11 +1,18 @@
 public class ArrayStack implements Stack{
 	
 	private Integer[] anArray;
+	private int arrayCount = 0;
 	private int stackElementCount = 0;
 
 
 	public ArrayStack() { 
-		anArray = new Integer[10];
+		anArray = new Integer[5];
+		this.arrayCount = 5;
+	}
+
+	public ArrayStack(int arrayCount) {
+		this.arrayCount = arrayCount;
+		anArray = new Integer[arrayCount];
 	}
 
 
@@ -29,7 +36,7 @@ public class ArrayStack implements Stack{
 
 	@Override
 	public boolean isFull(){
-		return stackElementCount == 10; 
+		return stackElementCount == arrayCount; 
 	}
 
 	@Override
