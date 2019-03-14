@@ -25,9 +25,9 @@ public class Launcher{
 					break;
 				}
 
-				// x = sc.next(); // Looks for next user entry
-				String merpy = sc.next(); //looks to be running twice trying to figure out how to seperate values
-				System.out.println(merpy.trim()); //an attempt at the above. 
+				x = sc.nextLine(); // Looks for next user entry
+				
+				
 				//going to cheat to force the win
 				// PS this could break the game if the array has anything in it maybe....need to test that. 
 				if(x.equals("cheat")){
