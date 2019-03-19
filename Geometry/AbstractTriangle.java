@@ -3,7 +3,7 @@ public abstract class AbstractTriangle implements Shape {
 	private int a1, a2, a3;
 
 	// Parameter constructor
-	public AbstractTriangle(float s1, float s2, float s3, int a1, int a2, int a3) {
+	protected AbstractTriangle(float s1, float s2, float s3, int a1, int a2, int a3) {
 		AbstractTriangle.validateAngles(a1, a2, a3);
 		AbstractTriangle.validateSides(s1, s2, s3);
 
@@ -69,13 +69,12 @@ public abstract class AbstractTriangle implements Shape {
     	this.s3 = s3;
     }
 
-
 	// Validation methods
 	private static void validateAngles(int a1, int a2, int a3){
         // the sum of all angles should be 180 degrees
         if(180 != a1 + a2 + a3){
             // TODO: this is an error!!
-            throw new IllegalArgumentException("Angles proviided do not add up to 180");
+            throw new IllegalArgumentException("Angles provided do not add up to 180");
         }
     }
 
@@ -86,7 +85,5 @@ public abstract class AbstractTriangle implements Shape {
             throw new IllegalArgumentException("Sides provided do not meet triangle inequality");
         }
     }
-
-
 	
 }

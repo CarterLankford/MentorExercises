@@ -15,7 +15,7 @@ public class Launcher{
 		ArrayStack bStack = new ArrayStack(plateCount);
 		ArrayStack cStack = new ArrayStack(plateCount);
 
-		while(!x.equals("exit")){
+		while(!x.equals("exit")){ // equalsIgnoreCase
 			if (currentTurn > 0){
 				//while looping the game magic happens here.
 				//at the beginning of the loop check to see if player won. 
@@ -146,12 +146,65 @@ public class Launcher{
 					*/
 
 					// Case Version - with logic corrections that aren't in the if version
+
+					// VYH: Add a function that receives fromStack toStack:
+
+					/*
+						boolean move(Stack fromStack, Stack toStack){
+							boolean result = false;
+							if(
+							!fromStack.isEmpty() 
+							&& (toStack.isEmpty() || fromStack.peek() < toStack.peek() )
+							){
+									toStack.push(fromStack.pop());
+									result = true;
+								}
+							}
+							return result;
+						}
+
+					Stack fromStack;
+					Stack toStack;
+
+					switch(fromOriginalArray){
+						case 'a':
+							fromStack = aStack;
+							break;
+						case 'b':
+							fromStack = bStack;
+							break;
+						case 'c':
+							fromStack = cStack;
+							break;
+						default:
+							// TODO: add some error handling here
+					}
+
+					switch(toTargetArray){
+						case 'a':
+							toStack = aStack;
+							break;
+						case 'b':
+							toStack = bStack;
+							break;
+						case 'c':
+							toStack = cStack;
+							break;
+						default:
+							// TODO: add some error handling here	
+					}
+
+					System.out.println(move(fromStack, toStack));
+					*/
+
 					switch (fromOriginalArray){
 						case 'a':
 							if(toTargetArray == 'b' && !aStack.isEmpty()){
 								if (bStack.isEmpty() || aStack.peek() < bStack.peek()) {
 									bStack.push(aStack.peek());
-									aStack.pop();	
+									aStack.pop();
+
+									// bStack.push(aStack.pop()); ~ VYH	
 								}								
 							} else if(toTargetArray == 'c' && !aStack.isEmpty()){
 								if (cStack.isEmpty() || aStack.peek() < cStack.peek()) {
@@ -214,13 +267,13 @@ public class Launcher{
 				System.out.println("A:" + aStack.toString() + "\n" + "B:" + bStack.toString() + "\n" + "C:" + cStack.toString());
 				currentTurn++;
 
-
-
 			} else {
+				// VYH: All of this is game setup, should happen before the while
 				for (int i = 0; i < plateCount; i++){
 					aStack.push(plateCount - i);
 				}
 
+				// VYH: Write a function to print all towers: printTowers()
 				System.out.println("Towers of Hanoi");
 				System.out.println("========================================");
 				System.out.println(aStack.toString() + "\n" + bStack.toString() + "\n" + cStack.toString());
@@ -229,7 +282,7 @@ public class Launcher{
 		}
 
 		//TODO: 
-		// [] Gather from user how many plates int plateCount
+		// [] Gather from user how many plates int plateCount ~ VYH: done
 		// [] create the 3 arrays ABC and pass them the count variable
 		// [] Load A with all the plates
 		// [] Print the first screen
@@ -258,12 +311,6 @@ public class Launcher{
 	}
 
 	private static boolean MoveValue(char fromOriginalArray, char toTargetArray){
-
-		//System.out.println(aStack[0]);
-
-
-
-
 
 
 		return true;

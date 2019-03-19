@@ -2,6 +2,8 @@ public class CalcNumberOfDays{
 	private static final int LEAPYEAR = 366;
 	private static final int STANDARDYEAR = 365;
 
+	// java CalcNumberOfDays 1800 2000 1>output.txt 2>error.txt
+
 	public static void main(String[] args) {
 		int inputOne = Integer.parseInt(args[0]);
 		int inputTwo = Integer.parseInt(args[1]);
@@ -12,6 +14,10 @@ public class CalcNumberOfDays{
 			if (inputOne >= 1900 && inputTwo >= 1900 && inputOne != inputTwo) {
 				int leapYearCount = 0;
 				int regularYearCount = 0;
+
+				// This is another possibility:
+				// inputOne = Math.min(inputOne, inputTwo);
+				// inputTwo = Math.max(inputOne, inputTwo);
 
 				//Rather than creating additional variables, inputOne will be set to the lower year
 				//and inputTwo will become the higher year. 
@@ -35,11 +41,11 @@ public class CalcNumberOfDays{
 				System.out.println("Days: " + ((leapYearCount * LEAPYEAR) + (regularYearCount * STANDARDYEAR)) );
 			} else {
 				//Error message response
-				System.out.println("Illegal Vriable(s) Used" + "\nHint: (Var1 != Var2 && Var >= 1900)");
+				System.err.println("Illegal Vriable(s) Used" + "\nHint: (Var1 != Var2 && Var >= 1900)");
 			}
 		} else {
 			//Error message response
-			System.out.println("Illegal ammout of varbiles entered (only enter two years)");
+			System.err.println("Illegal ammout of variables entered (only enter two years)");
 		}
 	}
 }

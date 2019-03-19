@@ -71,6 +71,14 @@ public class Geometry{
     unitTestingTriangle((float)-20, (float)-10, (float)-20, -80, -80, -30);
 
 
+    try {
+      AbstractTriangle triangle = new IsoscelesTriangle(180f, 180f, 35);
+      System.out.println("This will never be reached");
+    } catch (IllegalArgumentException exception){
+      exception.printStackTrace();
+    } finally {
+
+    }
 
 
     }
