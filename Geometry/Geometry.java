@@ -140,15 +140,43 @@ public class Geometry{
     }
 
     private static void unitTestingTriangle(float s1, float s2, float s3, int a1, int a2, int a3){
-      RightTriangle rt = new RightTriangle(s1, s2, a1);
-      IsoscelesTriangle isot = new IsoscelesTriangle(s1, s2, a1);
+      // RightTriangle rt = new RightTriangle(s1, s2, a1);
+      // IsoscelesTriangle isot = new IsoscelesTriangle(s1, s2, a1);
       EquilateralTriangle eqlt = new EquilateralTriangle(s1);
 
+      try {
+        AbstractTriangle triangle = new IsoscelesTriangle(180f, 180f, 35);
+        System.out.println("This will never be reached");
+      } catch (IllegalArgumentException exception){
+        exception.printStackTrace();
+      } finally {
 
-      System.out.println("Right Triangle: \tArea: " + rt.getArea() + "\tPerimeter: " + rt.getPerimeter());
+      }
+
+      System.out.println("Isosceles Triangle:");
+      try {
+        AbstractTriangle isot = new IsoscelesTriangle(s1, s2, a1);
+        System.out.println("Area: " + isot.getArea() + "\tPerimeter: " + isot.getPerimeter());
+      } catch (IllegalArgumentException exception){
+        exception.printStackTrace();
+      } finally {
+        System.out.print("\n");
+      }
+
+      System.out.println("Right Triangle" + "\tInput: \ts1:" + s1 + " \ts2:" + s2 + " \ta1:" + a1);
+      try {
+        AbstractTriangle rt = new RightTriangle(s1, s2, a1);
+        System.out.println("Area: " + rt.getArea() + "\tPerimeter: " + rt.getPerimeter());
+      } catch (IllegalArgumentException exception){
+        exception.printStackTrace();
+      } finally {
+        System.out.print("\n");
+      }
+
+      // System.out.println("Right Triangle: \tArea: " + rt.getArea() + "\tPerimeter: " + rt.getPerimeter());
 
       // IsoscelesTriangle isot = new IsoscelesTriangle(20, 10, 20);
-      System.out.println("IsoscelesTriangle: \tArea: " + isot.getArea() + "\tPerimeter: " + isot.getPerimeter());
+      // System.out.println("IsoscelesTriangle: \tArea: " + isot.getArea() + "\tPerimeter: " + isot.getPerimeter());
 
       // EquilateralTriangle eqlt = new EquilateralTriangle(5);
       System.out.println("EquilateralTriangle: \tArea: " + eqlt.getArea () + "\tPerimeter: " + eqlt.getPerimeter());
