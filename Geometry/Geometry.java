@@ -1,105 +1,92 @@
 public class Geometry{
-	public static void main(String[] args) {
-  //       Circle cr = new Circle(); //creating object
-  //       cr.setRadius((float)25); //setting object variable
-
-  //       // System.out.println(cr.getArea()); //calling for return of object's area
-        
-  //       Square sq = new Square();
-  //       sq.setSide((float)20);
-
-  //       displayPerimteter(cr);
-  //       displayPerimteter(sq);
-
-  //       System.out.println(cr instanceof Object);
-        
-  //       System.out.println(sq instanceof Object);
-  //       System.out.println(sq instanceof Shape);
-  //       System.out.println(sq instanceof Square);
-		
-		// System.out.println("Hello" instanceof Object);
-  //   	System.out.println("Hello" instanceof String);
-
-  //   	System.out.println(new String("Hello") instanceof String);
-
-  //   	String a = "Hello";
-  //   	a = "Hello" + " World";
+    public static void main(String[] args) {
+        //TODO:
+        //[*] write a test case for everything
+        //[] rewite test methods to include try/catch
+            //[] Circle
+            //[] Regular Polygon
+            //[] Square
+            //[] Triangle
+        //[*] add edge cases, min, max, med, negitive
+        //[] Add error handling to RegularPolygon
+        //[*] Add error handling to AbstractTriangle
 
 
-  //       RegularPolygon rp = new RegularPolygon();
-  //       rp.setNumberOfSides((float)4);
-  //       rp.setLengthOfSide((float)10);
-  //       System.out.println(rp.getApothem());
-
-    //TODO
-    //write a test case for everything
-    //add edge cases, min, max, med, negitive
-
-
-    //RegularPolygon
-    unitTestingRegularPolygon((float)-1, -1);
-    unitTestingRegularPolygon((float)1, 1);
-    unitTestingRegularPolygon((float)6, 7);
-    unitTestingRegularPolygon((float)900, 900);
+        //RegularPolygon
+        unitTestingRegularPolygon((float)-4, -5);
+        unitTestingRegularPolygon((float)1, 1);
+        System.out.println("Start");
+        unitTestingRegularPolygon((float)6, 7);
+        System.out.println("End");
+        unitTestingRegularPolygon((float)900, 900);
 
 
-    //Square
-    unitTestingSquare((float)-1, -1);
-    unitTestingSquare((float)1, 1);
-    unitTestingSquare((float)20, 20);
-    unitTestingSquare((float)900, 900);
+    // //Square
+    // unitTestingSquare((float)-1, -1);
+    // unitTestingSquare((float)1, 1);
+    // unitTestingSquare((float)20, 20);
+    // unitTestingSquare((float)900, 900);
 
 
     //Circle
-    unitTestingCircle((float)-1);
-    unitTestingCircle((float)1);
-    unitTestingCircle((float)20);
-    unitTestingCircle((float)900);
+    // try {
+    //   unitTestingCircle((float)-1);
+    //   System.out.println("this one");
+    // } catch (IllegalArgumentException exception) {
+    //   exception.printStackTrace();
+    // } finally {
+      
+    // }
+    // unitTestingCircle((float)-1);
+    // unitTestingCircle((float)1);
+    // unitTestingCircle((float)20);
+    // unitTestingCircle((float)900);
 
 
-    //Triangle
-    // RightTriangle rt = new RightTriangle(20f, 30f, 90);
-    // System.out.println("Right Triangle: \tArea: " + rt.getArea() + "\tPerimeter: " + rt.getPerimeter());
-
-    // IsoscelesTriangle isot = new IsoscelesTriangle(20, 10, 20);
-    // System.out.println("IsoscelesTriangle: \tArea: " + isot.getArea() + "\tPerimeter: " + isot.getPerimeter());
-
-    // EquilateralTriangle eqlt = new EquilateralTriangle(5);
-    // System.out.println("EquilateralTriangle: \tArea: " + eqlt.getArea () + "\tPerimeter: " + eqlt.getPerimeter());
-
-    unitTestingTriangle((float)20, (float)10, (float)20, 80, 80, 30);
-    unitTestingTriangle((float)-20, (float)-10, (float)-20, -80, -80, -30);
+    // unitTestingTriangle((float)20, (float)10, (float)20, 80, 80, 30);
+    // unitTestingTriangle((float)-20, (float)-10, (float)-20, -80, -80, -30);
 
 
-    try {
-      AbstractTriangle triangle = new IsoscelesTriangle(180f, 180f, 35);
-      System.out.println("This will never be reached");
-    } catch (IllegalArgumentException exception){
-      exception.printStackTrace();
-    } finally {
+    // try {
+    //   AbstractTriangle triangle = new IsoscelesTriangle(180f, 180f, 35);
+    //   System.out.println("This will never be reached");
+    // } catch (IllegalArgumentException exception){
+    //   exception.printStackTrace();
+    // } finally {
 
-    }
+    // }
 
 
     }
 
     private static void displayPerimteter(Shape anyShape){
-    	System.out.println("Perimeter of " + anyShape.getClass().getName() + " is " + anyShape.getPerimeter());
+        System.out.println("Perimeter of " + anyShape.getClass().getName() + " is " + anyShape.getPerimeter());
     }
 
     private static void unitTestingRegularPolygon(float lengthOfSide, int numberOfSides) {
-      RegularPolygon rgp = new RegularPolygon();
-      RegularPolygon rgp2 = new RegularPolygon((float)lengthOfSide, numberOfSides);
-      rgp.setLengthOfSide((float)lengthOfSide);
-      rgp.setNumberOfSides(numberOfSides);
+        //RegularPolygon()
+        try {
+            RegularPolygon rgp = new RegularPolygon();
+            rgp.setLengthOfSide((float)lengthOfSide);
+            rgp.setNumberOfSides(numberOfSides);
 
-      System.out.println("RegularPolygon()");
-      System.out.println("Length of Side: " + rgp.getLengthOfSide() + " | " + "Number of Sides: " + rgp.getNumberOfSides() + "\n" +
-                         "Area: " + rgp.getArea() + " | " + "Perimeter: " + rgp.getPerimeter() + " | " + "Apothem: " + rgp.getApothem() + "\n");
+            System.out.println("RegularPolygon()");
+            System.out.println("Length of Side: " + rgp.getLengthOfSide() + " | " + "Number of Sides: " + rgp.getNumberOfSides() + "\n" +
+                               "Area: " + rgp.getArea() + " | " + "Perimeter: " + rgp.getPerimeter() + " | " + "Apothem: " + rgp.getApothem() + "\n");
 
-      System.out.println("RegularPolygon((float)lengthOfside, numberOfSides)");      
-      System.out.println("Length of Side: " + rgp2.getLengthOfSide() + " | " + "Number of Sides: " + rgp2.getNumberOfSides() + " | " + "\n" + 
-                         "Area: " + rgp2.getArea() + " | " + "Perimeter: " + rgp2.getPerimeter() + " | " + "Apothem: " + rgp2.getApothem() + "\n");
+        } catch (IllegalArgumentException exception) {
+            exception.printStackTrace();            
+        } 
+        
+        //RegularPolygon(lengthofSide, numberOfSides)
+        try {
+            RegularPolygon rgp2 = new RegularPolygon((float)lengthOfSide, numberOfSides);
+            System.out.println("RegularPolygon((float)lengthOfside, numberOfSides)");      
+            System.out.println("Length of Side: " + rgp2.getLengthOfSide() + " | " + "Number of Sides: " + rgp2.getNumberOfSides() + " | " + "\n" + 
+                               "Area: " + rgp2.getArea() + " | " + "Perimeter: " + rgp2.getPerimeter() + " | " + "Apothem: " + rgp2.getApothem() + "\n");
+        } catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
+        }
     }
 
     private static void unitTestingSquare(float lengthOfSide, int numberOfSides){
@@ -128,6 +115,7 @@ public class Geometry{
       cir.setRadius((float)radius);
       Circle cir2 = new Circle((float)radius);
 
+
       System.out.println("Circle()");
       System.out.println("Radius: " + cir.getRadius() + " | " + "Diameter: " + cir.getDiameter() + "\n" +
                          "PI: " + cir.getPI() + " | " + "Area: " + cir.getArea() + " | " + "Perimeter: " + cir.getPerimeter() + "\n" +
@@ -150,7 +138,7 @@ public class Geometry{
       } catch (IllegalArgumentException exception){
         exception.printStackTrace();
       } finally {
-
+        System.out.print("\n");
       }
 
       System.out.println("Isosceles Triangle:");
@@ -189,11 +177,11 @@ public class Geometry{
 
 
     // private static void displayPerimteter(Circle anyCircle){
-    // 	System.out.println("Perimeter of " + anyCircle.getClass().getName() + " is " + anyCircle.getPerimeter());	
+    //  System.out.println("Perimeter of " + anyCircle.getClass().getName() + " is " + anyCircle.getPerimeter());   
     // }
 
     // private static void displayPerimteter(Square anySquare){
-    // 	System.out.println("Perimeter of " + anySquare.getClass().getName() + " is " + anySquare.getPerimeter());	
+    //  System.out.println("Perimeter of " + anySquare.getClass().getName() + " is " + anySquare.getPerimeter());   
     // }
 
 }
