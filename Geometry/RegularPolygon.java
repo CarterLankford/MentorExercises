@@ -3,9 +3,7 @@ public class RegularPolygon implements Shape{
     private int numberOfSides;
     
     public RegularPolygon() {
-        // System.out.println("Creating a RegularPolygon");
-        // RegularPolygon.validateNumberOfSides(numberOfSides);
-        // RegularPolygon.validateLengthOfSide(lengthOfSide);
+
     }
 
     public RegularPolygon(float lengthOfSide, int numberOfSides) {
@@ -13,13 +11,6 @@ public class RegularPolygon implements Shape{
         RegularPolygon.validateLengthOfSide(lengthOfSide);
         this.lengthOfSide = lengthOfSide;
         this.numberOfSides = numberOfSides;
-        // if (lengthOfSide > 0 && numberOfSides >= 3) {
-        //     this.lengthOfSide = lengthOfSide;
-        //     this.numberOfSides = numberOfSides;
-        // } else {
-        //     throw new IllegalArgumentException("Invalid value passed to constructor");
-        // }
-        
     }
 
     @Override
@@ -48,10 +39,12 @@ public class RegularPolygon implements Shape{
     }
 
     public void setLengthOfSide(float lengthOfSide) {
+        RegularPolygon.validateLengthOfSide(lengthOfSide);
         this.lengthOfSide = lengthOfSide;
     }
 
     public void setNumberOfSides(int numberOfSides) {
+        RegularPolygon.validateNumberOfSides(numberOfSides);
         this.numberOfSides = numberOfSides;
     }
 

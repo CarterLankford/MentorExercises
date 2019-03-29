@@ -7,9 +7,11 @@ public class Circle implements Shape{
     	Circle.numberOfInstances++;  // counts amount of new instances of the object created; 
     }
 
-    public Circle(float radius) {
+    public Circle(float radius) {        
         this();
+        Circle.validateInputRadius(radius);
         this.radius = radius;
+        Circle.numberOfInstances++;
     }
 
     public static float getPI(){
@@ -40,5 +42,11 @@ public class Circle implements Shape{
 
     public float getRadius(){
     	return this.radius; //Allows the value of radius to be called. 
+    }
+
+    private static void validateInputRadius(float radius){
+        if (radius < 0){
+            throw new IllegalArgumentException("radius can't be less than 0");
+        }
     }
 }
