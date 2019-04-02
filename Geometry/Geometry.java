@@ -11,87 +11,151 @@ public class Geometry{
         //[*] Add error handling to RegularPolygon
         //[*] Add error handling to AbstractTriangle
 
+        
 
+        
         //RegularPolygon
-        unitTestingRegularPolygon((float)-4, -5);
-        unitTestingRegularPolygon((float)1, 1);
-        unitTestingRegularPolygon((float)6, 7);
-        unitTestingRegularPolygon((float)900, 900);
+        // unitTestingRegularPolygon((float)-4, -5, 0f, 0f, 0f);
+        // unitTestingRegularPolygon((float)1, 1, 0f, 0f, 0f);
+        // unitTestingRegularPolygon((float)6, 7, 42f, 135.10394f, 6.433521f);
+        // unitTestingRegularPolygon((float)900, 900, 2f, 2f, 2f);
 
-
+        
         // Square
-        unitTestingSquare((float)-1, -1);
-        unitTestingSquare((float)1, 1);
-        unitTestingSquare((float)20, 20);
-        unitTestingSquare((float)900, 900);
+        unitTestingSquare((float)-1, -1, 0f, 0f);
+        unitTestingSquare((float)1, 1, 4f, 1f);
+        unitTestingSquare((float)20, 20, 0f, 0f);
+        unitTestingSquare((float)900, 900, 0f, 0f);
 
-
+        /*
         //Circle
         unitTestingCircle((float)-1);
         unitTestingCircle((float)1);
         unitTestingCircle((float)20);
         unitTestingCircle((float)900);
+        // VYH unitTestingCircle((float) 900, resultOfArea, resultOfPerimeter)
 
         //Triangle
         unitTestingTriangle((float)20, (float)10, (float)20, 80, 80, 30);
         unitTestingTriangle((float)-20, (float)-10, (float)-20, -80, -80, -30); 
+        */
     }
 
     private static void displayPerimteter(Shape anyShape){
         System.out.println("Perimeter of " + anyShape.getClass().getName() + " is " + anyShape.getPerimeter());
     }
 
-    private static void unitTestingRegularPolygon(float lengthOfSide, int numberOfSides) {
+    private static void merpUnitTest(float lengthOfSide, int numberOfSides, float expectedPerimeter, float expectedArea, float expectedApothem){
+        try {
+            boolean passTest = false;
+            RegularPolygon rp = new RegularPolygon();
+            rp.setLengthOfSide((float)lengthOfSide);
+            rp.setNumberOfSides(numberOfSides);
+
+            if (rp.getPerimeter() == expectedPerimeter && rp.getArea() == expectedArea && rp.getApothem() == expectedApothem){
+                passTest = !passTest;
+            } 
+
+            System.out.println("\nmerpUnitTest(float lengthOfSide,int numberOfSides)\n" 
+                                + "lengthOfSide: " + lengthOfSide + " numberOfSides: " + numberOfSides + "\n"
+                                + "Expected Results:\n\tPerimeter: " + expectedPerimeter + "\tArea: " + expectedArea + "\tApothem: " + expectedApothem + "\n"
+                                + "Actual Results:\n\tPerimeter: " + rp.getPerimeter() + "\tArea: " + rp.getArea() + "\tApothem: " + rp.getApothem() + "\n"
+                                + "Pass Test = " + passTest + "\n");
+        } catch (IllegalArgumentException exception){
+            System.out.println("\nmerpUnitTest(float lengthOfSide, int numberOfSides)\nPass Test = false, execption thrown\n");
+        }
+
+        
+    }
+
+    private static void unitTestingRegularPolygon(float lengthOfSide, int numberOfSides, float expectedPerimeter, float expectedArea, float expectedApothem) {
         //RegularPolygon()
-        System.out.println("RegularPolygon()");
         try {
-            RegularPolygon rgp = new RegularPolygon();
-            rgp.setLengthOfSide((float)lengthOfSide);
-            rgp.setNumberOfSides(numberOfSides);            
-            System.out.println("Length of Side: " + rgp.getLengthOfSide() + " | " + "Number of Sides: " + rgp.getNumberOfSides() + "\n" +
-                               "Area: " + rgp.getArea() + " | " + "Perimeter: " + rgp.getPerimeter() + " | " + "Apothem: " + rgp.getApothem() + "\n");
+            boolean passTest = false;
+            RegularPolygon rp = new RegularPolygon();
+            System.out.println("RegularPolygon()\nInput Values(lengthOfSide: " + lengthOfSide + ", numberOfSides:" + numberOfSides + ")");
+            rp.setLengthOfSide((float)lengthOfSide);
+            rp.setNumberOfSides(numberOfSides);
 
-        } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();            
-        } 
+            if (rp.getPerimeter() == expectedPerimeter && rp.getArea() == expectedArea && rp.getApothem() == expectedApothem){
+                passTest = !passTest;
+            } 
 
-        //RegularPolygon(lengthofSide, numberOfSides)
-        System.out.println("RegularPolygon((float)lengthofSide, numberOfSides)");
+            System.out.println("Expected Results:\n\tPerimeter: " + expectedPerimeter + "\tArea: " + expectedArea + "\tApothem: " + expectedApothem + "\n"
+                                + "Actual Results:\n\tPerimeter: " + rp.getPerimeter() + "\tArea: " + rp.getArea() + "\tApothem: " + rp.getApothem() + "\n"
+                                + "Pass Test = " + passTest + "\n");
+        } catch (IllegalArgumentException exception){
+            System.out.println("Pass Test = false, execption thrown\n");
+        }
+
+        //RegularPolygon(lengthOfSide, numberOfSides)
         try {
-            RegularPolygon rgp2 = new RegularPolygon((float)lengthOfSide, numberOfSides);    
-            System.out.println("Length of Side: " + rgp2.getLengthOfSide() + " | " + "Number of Sides: " + rgp2.getNumberOfSides() + " | " + "\n" + 
-                               "Area: " + rgp2.getArea() + " | " + "Perimeter: " + rgp2.getPerimeter() + " | " + "Apothem: " + rgp2.getApothem() + "\n");
-        } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();
+            boolean passTest = false;            
+            System.out.println("RegularPolygon(lengthOfSide, numberOfSides)\nInput Values(lengthOfSide: " + lengthOfSide + ", numberOfSides:" + numberOfSides + ")");
+            RegularPolygon rp1 = new RegularPolygon(lengthOfSide, numberOfSides);
+
+            if (rp1.getPerimeter() == expectedPerimeter && rp1.getArea() == expectedArea && rp1.getApothem() == expectedApothem){
+                passTest = !passTest;
+            } 
+
+            System.out.println("Expected Results:\n\tPerimeter: " + expectedPerimeter + "\tArea: " + expectedArea + "\tApothem: " + expectedApothem + "\n"
+                                + "Actual Results:\n\tPerimeter: " + rp1.getPerimeter() + "\tArea: " + rp1.getArea() + "\tApothem: " + rp1.getApothem() + "\n"
+                                + "Pass Test = " + passTest + "\n");
+        } catch (IllegalArgumentException exception){
+            System.out.println("Pass Test = false, execption thrown\n");
         }
     }
 
-    private static void unitTestingSquare(float lengthOfSide, int numberOfSides){
-        System.out.println("Square()");
-        try {
+    private static void unitTestingSquare(float lengthOfSide, int numberOfSides, float expectedArea, float expectedPerimeter){
+        //Square()
+        try{
+            boolean passTest = false;
+            System.out.println("Square()\nInput Values(lengthOfSide: " + lengthOfSide + ", numberOfSides:" + numberOfSides + ")");
             Square sq = new Square();
-            sq.setLengthOfSide((float)lengthOfSide);
-            System.out.println("Length of side: " + sq.getLengthOfSide() + " | " + "Number of Sides: " + sq.getNumberOfSides() + "\n" +
-                               "Area: " + sq.getArea() + " | " + "Perimeter: " + sq.getPerimeter() + "\n");
+            sq.setLengthOfSide(lengthOfSide);            
+            if (sq.getPerimeter() == expectedPerimeter && sq.getArea() == expectedArea );
+                passTest = !passTest;            
 
+            System.out.println("Expected Results:\n\tPerimeter: " + expectedPerimeter + "\tArea: " + expectedArea + "\n"
+                                + "Actual Results:\n\tPerimeter: " + sq.getPerimeter() + "\tArea: " + sq.getArea() + "\n"
+                                + "Pass Test = " + passTest + "\n");
         } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();
+            System.out.println("Pass Test = false, execption thrown\n");
         }
 
-        System.out.println("Square((float)lengthOfSide)");
-        try {
-            Square sqa = new Square((float)lengthOfSide);
-            System.out.println("Length of side: " + sqa.getLengthOfSide() + " | " + "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
-                               "Area: " + sqa.getArea() + "\n" + "Perimeter: " + sqa.getPerimeter() + "\n");
-
-            sqa.setNumberOfSides(numberOfSides);
-            System.out.println("Square: input of length of sides after calling setNumberOfSides(" + numberOfSides + ")");
-            System.out.println("Length of side: " + sqa.getLengthOfSide() + " | " + "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
-                               "Area: " + sqa.getArea() + " | " + "Perimeter: " + sqa.getPerimeter() + "\n");
-
-        } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();
+        //Square((float)lengthOfSide)
+        try{
+            //TODO: add this
+        } catch (IllegalArgumentException exception){
+            System.out.println("Pass Test = false, execption thrown\n");
         }
+
+
+        // System.out.println("Square()");
+        // try {
+        //     Square sq = new Square();
+        //     sq.setLengthOfSide((float)lengthOfSide);
+        //     System.out.println("Length of side: " + sq.getLengthOfSide() + " | " + "Number of Sides: " + sq.getNumberOfSides() + "\n" +
+        //                        "Area: " + sq.getArea() + " | " + "Perimeter: " + sq.getPerimeter() + "\n");
+
+        // } catch (IllegalArgumentException exception) {
+        //     exception.printStackTrace();
+        // }
+
+        // System.out.println("Square((float)lengthOfSide)");
+        // try {
+        //     Square sqa = new Square((float)lengthOfSide);
+        //     System.out.println("Length of side: " + sqa.getLengthOfSide() + " | " + "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
+        //                        "Area: " + sqa.getArea() + "\n" + "Perimeter: " + sqa.getPerimeter() + "\n");
+
+        //     sqa.setNumberOfSides(numberOfSides);
+        //     System.out.println("Square: input of length of sides after calling setNumberOfSides(" + numberOfSides + ")");
+        //     System.out.println("Length of side: " + sqa.getLengthOfSide() + " | " + "Number of Sides: " + sqa.getNumberOfSides() + "\n" +
+        //                        "Area: " + sqa.getArea() + " | " + "Perimeter: " + sqa.getPerimeter() + "\n");
+
+        // } catch (IllegalArgumentException exception) {
+        //     exception.printStackTrace();
+        // }
 
     }
 
@@ -100,7 +164,11 @@ public class Geometry{
         System.out.println("Circle()");
         try {
             Circle cir = new Circle();
-            cir.setRadius((float)radius);            
+            cir.setRadius((float)radius);
+            // float per = cir.getPerimeter();
+            // if(per !== expectedPerimeter){
+            //   display error
+            // }
             System.out.println("Radius: " + cir.getRadius() + " | " + "Diameter: " + cir.getDiameter() + "\n" +
                                "PI: " + cir.getPI() + " | " + "Area: " + cir.getArea() + " | " + "Perimeter: " + cir.getPerimeter() + "\n" +
                                "Number of Instances: " + cir.getNumberOfInstances() + "\n");

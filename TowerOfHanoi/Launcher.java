@@ -51,57 +51,43 @@ public class Launcher{
             // validate that the actual input was # # (char space char) ~ CAL: done
             try {
                 if (merp.length >= 3) {
-                // VYH: Sanitize should return an int 0 1 or 2 if a valid character was entered ~ CAL: done
-                // VYH: Make Sanitize throw an exception if input is not valid ~ CAL: done
-                // VYH: catch exception here and move forward with next iteration ~ CAL: done
-
-                try {
+                    // VYH: Sanitize should return an int 0 1 or 2 if a valid character was entered ~ CAL: done
+                    // VYH: Make Sanitize throw an exception if input is not valid ~ CAL: done
+                    // VYH: catch exception here and move forward with next iteration ~ CAL: done
                     fromOriginalArray = Sanitize(merp[0]);
                     toTargetArray = Sanitize(merp[2]);
-                    System.out.println(moveMe(stacks[fromOriginalArray], stacks[toTargetArray]) + "\n\n");
+                    System.out.println(moveMe(stacks[fromOriginalArray], stacks[toTargetArray]));
                     currentTurn++;
-                } catch (IllegalArgumentException exception){
-                    exception.printStackTrace();
-                } finally {
-                    System.out.println("\n\n");
-                    printBoard(stacks);
-                    continue;                        
-                }                      
                 } else if (x.equals("check")){
                     System.out.println("aStack::\t" + stacks[0].size() + " " + stacks[0].isEmpty() + "\n" +
                                        "bStack::\t" + stacks[1].size() + " " + stacks[1].isEmpty() + "\n" + 
                                        "cStack::\t" + stacks[2].size() + " " + stacks[2].isEmpty() );
                 } else {
-                throw new IllegalArgumentException("Must enter two values seperated by a space.");
-                }              
+                    // throw new IllegalArgumentException("Must enter two values seperated by a space.");
+                    System.err.println("Must enter two values separated by a space.");
+                }
             } catch (IllegalArgumentException exception) {
-                exception.printStackTrace();
+                System.err.println(exception.getMessage());
+            } finally {
                 System.out.println("\n\n");
                 printBoard(stacks);
-            } finally {
-                continue;
             }
-
-            
         }
     }
 
     private static int Sanitize(int inputChar){
         //to return 0-3 
-        int outputChar = inputChar;
         if (inputChar >= 65 && inputChar <= 67 || inputChar >= 97 && inputChar <= 99) {
             if(inputChar >= 65 && inputChar <= 67){
                 //Upercase to 0-3
-                return outputChar = inputChar - 65;
+                return inputChar - 65;
             } else if (inputChar >= 97 && inputChar <= 99) {
                 //lower case to 0-3
-                return outputChar = inputChar - 97;
-            } else {
-                throw new IllegalArgumentException("Incorrect value entered");
+                return inputChar - 97;
             }
-        } else {
-            throw new IllegalArgumentException("Incorrect value entered");
         }
+
+        throw new IllegalArgumentException("Incorrect value entered");
     }
 
     private static void printBoard(Stack[] stacks){
@@ -115,7 +101,6 @@ public class Launcher{
             toStack.push(fromStack.pop());
             result = true;
         }
-                            
         return result;
     }
 }

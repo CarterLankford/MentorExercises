@@ -3150,6 +3150,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -496,
+											"top": 720,
 											"height": 13
 										},
 										{
@@ -3159,8 +3161,8 @@
 												"$ref": "AAAAAAFpxzCCWFdo6ZI="
 											},
 											"font": "Arial;13;1",
-											"left": 789,
-											"top": 519,
+											"left": 541,
+											"top": 879,
 											"width": 374.68310546875,
 											"height": 13,
 											"text": "Geometry"
@@ -3173,6 +3175,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -496,
+											"top": 720,
 											"width": 80.9072265625,
 											"height": 13,
 											"text": "(from Model1)"
@@ -3185,13 +3189,15 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -496,
+											"top": 720,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 784,
-									"top": 512,
+									"left": 536,
+									"top": 872,
 									"width": 384.68310546875,
 									"height": 25,
 									"stereotypeLabel": {
@@ -3217,8 +3223,8 @@
 										"$ref": "AAAAAAFpxzCCV1dlpVs="
 									},
 									"font": "Arial;13;0",
-									"left": 784,
-									"top": 537,
+									"left": 536,
+									"top": 897,
 									"width": 384.68310546875,
 									"height": 10
 								},
@@ -3242,8 +3248,8 @@
 												"$ref": "AAAAAAFpxzCglVePDu8="
 											},
 											"font": "Arial;13;0",
-											"left": 789,
-											"top": 552,
+											"left": 541,
+											"top": 912,
 											"width": 374.68310546875,
 											"height": 13,
 											"underline": true,
@@ -3260,8 +3266,8 @@
 												"$ref": "AAAAAAFpxzDdNVeV7HY="
 											},
 											"font": "Arial;13;0",
-											"left": 789,
-											"top": 567,
+											"left": 541,
+											"top": 927,
 											"width": 374.68310546875,
 											"height": 13,
 											"text": "+displayPerimteter(anyshape): void",
@@ -3277,8 +3283,8 @@
 												"$ref": "AAAAAAFpxzDi2Vebl7Y="
 											},
 											"font": "Arial;13;0",
-											"left": 789,
-											"top": 582,
+											"left": 541,
+											"top": 942,
 											"width": 374.68310546875,
 											"height": 13,
 											"text": "+unitTestingRegularPolygon(lengthOfSide, numberOfSides): void",
@@ -3294,8 +3300,8 @@
 												"$ref": "AAAAAAFpxzDoIlehamc="
 											},
 											"font": "Arial;13;0",
-											"left": 789,
-											"top": 597,
+											"left": 541,
+											"top": 957,
 											"width": 374.68310546875,
 											"height": 13,
 											"text": "+unitTestingSquare(lengthOfSide, numberOfSides): void",
@@ -3311,8 +3317,8 @@
 												"$ref": "AAAAAAFpxzDuUFenu60="
 											},
 											"font": "Arial;13;0",
-											"left": 789,
-											"top": 612,
+											"left": 541,
+											"top": 972,
 											"width": 374.68310546875,
 											"height": 13,
 											"text": "+unitTestingCircle(radius): void",
@@ -3328,8 +3334,8 @@
 												"$ref": "AAAAAAFpxzIwsFetv8w="
 											},
 											"font": "Arial;13;0",
-											"left": 789,
-											"top": 627,
+											"left": 541,
+											"top": 987,
 											"width": 374.68310546875,
 											"height": 13,
 											"text": "+unitTestingTriangle(s1, s2, s3, a1, a2, a3): void",
@@ -3337,8 +3343,8 @@
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 784,
-									"top": 547,
+									"left": 536,
+									"top": 907,
 									"width": 384.68310546875,
 									"height": 98
 								},
@@ -3353,6 +3359,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -248,
+									"top": 360,
 									"width": 10,
 									"height": 10
 								},
@@ -3367,14 +3375,16 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -248,
+									"top": 360,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 784,
-							"top": 512,
+							"left": 536,
+							"top": 872,
 							"width": 384.68310546875,
 							"height": 133,
 							"autoResize": true,
@@ -5105,6 +5115,14 @@
 							]
 						}
 					]
+				},
+				{
+					"_type": "UMLPackage",
+					"_id": "AAAAAAFpyoaFh5R9aSw=",
+					"_parent": {
+						"$ref": "AAAAAAFpxRr6hjDO5HI="
+					},
+					"name": "Triangles"
 				}
 			]
 		}
