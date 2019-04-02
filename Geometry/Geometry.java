@@ -78,7 +78,7 @@ public class Geometry{
             rp.setNumberOfSides(numberOfSides);
 
             if (rp.getPerimeter() == expectedPerimeter && rp.getArea() == expectedArea && rp.getApothem() == expectedApothem){
-                passTest = !passTest;
+                passTest = true;
             } 
 
             System.out.println("Expected Results:\n\tPerimeter: " + expectedPerimeter + "\tArea: " + expectedArea + "\tApothem: " + expectedApothem + "\n"
@@ -95,7 +95,7 @@ public class Geometry{
             RegularPolygon rp1 = new RegularPolygon(lengthOfSide, numberOfSides);
 
             if (rp1.getPerimeter() == expectedPerimeter && rp1.getArea() == expectedArea && rp1.getApothem() == expectedApothem){
-                passTest = !passTest;
+                passTest = true;
             } 
 
             System.out.println("Expected Results:\n\tPerimeter: " + expectedPerimeter + "\tArea: " + expectedArea + "\tApothem: " + expectedApothem + "\n"
@@ -113,8 +113,9 @@ public class Geometry{
             System.out.println("Square()\nInput Values(lengthOfSide: " + lengthOfSide + ", numberOfSides:" + numberOfSides + ")");
             Square sq = new Square();
             sq.setLengthOfSide(lengthOfSide);            
-            if (sq.getPerimeter() == expectedPerimeter && sq.getArea() == expectedArea );
-                passTest = !passTest;            
+            if (sq.getPerimeter() == expectedPerimeter && sq.getArea() == expectedArea ){
+                passTest = true;            
+            }
 
             System.out.println("Expected Results:\n\tPerimeter: " + expectedPerimeter + "\tArea: " + expectedArea + "\n"
                                 + "Actual Results:\n\tPerimeter: " + sq.getPerimeter() + "\tArea: " + sq.getArea() + "\n"
