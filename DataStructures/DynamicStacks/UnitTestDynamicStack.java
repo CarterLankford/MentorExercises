@@ -1,23 +1,13 @@
 public class UnitTestDynamicStack{
     public static void main(String[] args){
         DynamicStack ds = new DynamicStack();
-
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Added-" + ds.push(1) + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Added-" + ds.push(2) + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Added-" + ds.push(3) + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Added-" + ds.push(4) + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Added-" + ds.push(5) + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Added-" + ds.push(6) + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Added-" + ds.push(7) + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        //pop a few
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Removed-" + ds.pop() + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Removed-" + ds.pop() + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Removed-" + ds.pop() + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-        System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Removed-" + ds.pop() + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
-
-        System.out.println("\n\n\n");
-
         DynamicStack dswm = new DynamicStack(5);
+
+
+
+        
+
+        
         System.out.println("Empty-" + dswm.isEmpty() + " | Current Size-" + dswm.size() + " | Value Added-" + dswm.push(1) + " | Peek-" + dswm.peek() + " | Full-" + dswm.isFull() + " | Node Count-" + dswm.size());
         System.out.println("Empty-" + dswm.isEmpty() + " | Current Size-" + dswm.size() + " | Value Added-" + dswm.push(2) + " | Peek-" + dswm.peek() + " | Full-" + dswm.isFull() + " | Node Count-" + dswm.size());
         System.out.println("Empty-" + dswm.isEmpty() + " | Current Size-" + dswm.size() + " | Value Added-" + dswm.push(3) + " | Peek-" + dswm.peek() + " | Full-" + dswm.isFull() + " | Node Count-" + dswm.size());
@@ -32,11 +22,26 @@ public class UnitTestDynamicStack{
         System.out.println("Empty-" + dswm.isEmpty() + " | Current Size-" + dswm.size() + " | Value Removed-" + dswm.pop() + " | Peek-" + dswm.peek() + " | Full-" + dswm.isFull() + " | Node Count-" + dswm.size());
 
 
+        //Generating test data
+        Integer[] testArray = new Integer[10];
+        for (int i=0, j=4; i < testArray.length; i++) {
+            System.out.println(i + " " + j);
+            testArray[i] = j;
+            j+=4;
+        }
+
+        //Testing paramaterless constructor 
+        //In
+        for (int i=0; i < 10; i++){
+            System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Added-" + ds.push(testArray[i]) + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
+        }
+        //out
+        for (int i=0; i <= 3; i++){
+            System.out.println("Empty-" + ds.isEmpty() + " | Current Size-" + ds.size() + " | Value Removed-" + ds.pop() + " | Peek-" + ds.peek() + " | Full-" + ds.isFull() + " | Node Count-" + ds.size());
+        }
 
 
-
-
-
+        System.out.println("\n\n\n");
 
 
 
