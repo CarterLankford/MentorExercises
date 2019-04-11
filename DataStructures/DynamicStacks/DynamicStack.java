@@ -1,9 +1,7 @@
+/**
+ * This class provides two constructors: a parameterless and another one that takes a limit.
+ */
 public class DynamicStack implements Stack{
-    //TODO: 
-    // Add two constructors: parameterless and with parameter that takes a limit
-    // If no limit is set, isFull will return false always, 
-    // otherwise it will check the current size vs the limit
-    // Add getter and setter for max nodes
     private int numberOfNodes = 0;
     private Integer numberOfNodesLimit = null;
     private Node topNode = null;
@@ -54,12 +52,9 @@ public class DynamicStack implements Stack{
 
     @Override
     public boolean isFull(){
-        //TODO: Add logic
-        if (numberOfNodesLimit != null){
-            if (numberOfNodesLimit <= numberOfNodes) {
-                System.out.println("Max node count reached");
-                return true;
-            }            
+        if (null != numberOfNodesLimit && numberOfNodes >= numberOfNodesLimit){
+            System.out.println("Max node count reached");
+            return true;            
         }
         return false;
     }
