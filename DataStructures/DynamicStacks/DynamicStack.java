@@ -3,15 +3,15 @@
  */
 public class DynamicStack implements Stack{
     private int numberOfNodes = 0;
-    private Integer numberOfNodesLimit = null;
+    private Integer limit = null;
     private Node topNode = null;
 
     public DynamicStack() {
 
     }
 
-    public DynamicStack(Integer numberOfNodesLimit){
-        setNumberOfNodesLimit(numberOfNodesLimit);
+    public DynamicStack(Integer limit){
+        setLimit(limit);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class DynamicStack implements Stack{
 
     @Override
     public boolean isFull(){
-        if (null != numberOfNodesLimit && numberOfNodes >= numberOfNodesLimit){
+        if (null != limit && numberOfNodes >= limit){
             System.out.println("Max node count reached");
             return true;            
         }
@@ -65,12 +65,12 @@ public class DynamicStack implements Stack{
     }
 
     // Want to be able to view this at any point
-    public Integer getNumberOfNodesLimit(){
-        return numberOfNodesLimit;
+    public Integer getLimit(){
+        return limit;
     }
 
     //only want this set when constructed
-    private void setNumberOfNodesLimit(Integer numberOfNodesLimit){
-        this.numberOfNodesLimit = numberOfNodesLimit;
+    private void setLimit(Integer limit){
+        this.limit = limit;
     }
 }

@@ -17,7 +17,10 @@ public class UnitTestDynamicStack{
         System.out.println("\n\n\n");
 
 
-        Node nd = new Node().withPayload(5).withNext();
+        Node nd = new Node()
+            .withPayload(5)
+            .withNext(null);
+
     }
 
     public static void TestDynamicStack(int numberIn, int numberOut, DynamicStack nameOfStack){

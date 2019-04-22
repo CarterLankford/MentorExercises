@@ -3,7 +3,7 @@ public class Node {
     private int payload;
 
     public Node(){
-        
+
     }
 
     public Node(int payload, Node nextNode){
@@ -30,16 +30,19 @@ public class Node {
     }
 
     public Node withPayload(int payload){
-        //TODO: Addo logic
-        setPayload(payload);
-
-        return next;
+        this.payload = payload;
+        return this;
     } 
 
-    public Node withNext(){
+    public Node withNext(Node node){
         //TODO: Add logic
-        setNext(next);
+        // setNext(next);
+        // return Node.getNext();
+        
 
-        return next;
+        this.next = node;
+        return this;
+
+        //return next;
     }
 }
