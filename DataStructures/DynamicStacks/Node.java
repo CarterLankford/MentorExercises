@@ -32,17 +32,15 @@ public class Node {
     public Node withPayload(int payload){
         this.payload = payload;
         return this;
+    }
+
+    public Node withNext(){
+        this.next = null;
+        return next;
     } 
 
     public Node withNext(Node node){
-        //TODO: Add logic
-        // setNext(next);
-        // return Node.getNext();
-        
-
         this.next = node;
         return this;
-
-        //return next;
     }
 }
