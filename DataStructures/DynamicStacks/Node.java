@@ -34,11 +34,6 @@ public class Node {
         return this;
     }
 
-    public Node withNext(){
-        this.next = null;
-        return next;
-    } 
-
     public Node withNext(Node node){
         this.next = node;
         return this;
