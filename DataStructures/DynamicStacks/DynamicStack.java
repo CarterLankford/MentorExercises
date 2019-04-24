@@ -39,10 +39,12 @@ public class DynamicStack implements Stack{
             System.out.println("No node found");
             return null;
         }
-        int tmpNode = topNode.getPayload();
-        topNode = topNode.getNext();
+
+        Node tempTopNode = topNode; //use temp value to allow modification of current node
+        topNode = topNode.getNext(); //set class variable to next node
+        tempTopNode.setNext(null); //clearning reference
         numberOfNodes--;
-        return tmpNode;
+        return tempTopNode.getPayload();
     }
 
     @Override
