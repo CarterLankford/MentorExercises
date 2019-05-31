@@ -53,13 +53,12 @@ public class Launcher{
 
             try {
                 if (x.equalsIgnoreCase("undo")){
-                    Integer moveOne = moveHistory.pop();
-                    Integer moveTwo = moveHistory.pop();
-                    if (moveOne != null && moveTwo != null){
-                        System.out.println(moveMe(stacks[moveOne], stacks[moveTwo]));
+                    Integer moveFrom = moveHistory.pop();
+                    Integer moveTo = moveHistory.pop();
+                    if (moveFrom != null && moveTo != null){
+                        System.out.println(moveMe(stacks[moveFrom], stacks[moveTo]));
                         currentTurn++;
                     } 
-                    // System.out.println(moveMe(stacks[moveHistory.pop()], stacks[moveHistory.pop()]));
                 } else if (merp.length >= 3) {
                     fromOriginalArray = Sanitize(merp[0]);
                     toTargetArray = Sanitize(merp[2]);
