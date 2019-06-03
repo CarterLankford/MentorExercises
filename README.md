@@ -31,7 +31,16 @@ All new assignments will be entered onto this repository as [issues](https://git
 * Java Exercises: These correspond to language specific problems and programming concepts
 * Logic Problems: These correspond to challenges that do not require coding, but help to deepen the understanding of programming in general
 
-And whatever new categories are needed according to the topic being discussed (i.e. Data Structures)
+And whatever new categories are needed according to the topic being discussed (i.e. Data Structures).
+
+Some issues may be resolved within the same issue page with no code change (for example logic problems); code changes should be perfomed according to following workflow:
+
+1. Create a branch from master (which is the latest version of the code). The branch should be named `[issueType]/[issueId]` where `issueType` can be one of `feature` or `bugfix` and `issueId` is the number of the issue being solved (for example `feature/13`).
+2. If an issue is described to be solved in multiple parts, the following branch name can be used `[issueType]/[partName]-[issueId]` (for example `feature/design-14`)
+3. Once the code for the issue is finished and committed, a pull request must be opened.
+4. A single commit is preferred when submitting code changes, however multiple commits are allowed if the changes are too extensive and of course to fix review comments (see below).
+5. The pull request should include: reviewer (who is intended to provide feedback for this change), assignee (who is reponsible to solve any comments on the code), any tags pertinent to the issue in question (see section below for more information on tags), and the code changes should include unit testing code that covers simple cases, negative cases (triggering errors), edge cases (for efficiency exploration). Failed to cover these will lead to rejection of the pull request.
+6. Once all review comments are addressed and pull request approved, the code can be merged into master and the branch will be deleted.
 
 ## Tags
 
