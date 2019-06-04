@@ -60,6 +60,7 @@ public class Launcher{
                         currentTurn++;
                     } 
                 } else if (merp.length >= 3) {
+                    //TODO:Add validation to make sure middle char is a space and nothing else
                     fromOriginalArray = Sanitize(merp[0]);
                     toTargetArray = Sanitize(merp[2]);
                     System.out.println(moveMe(stacks[fromOriginalArray], stacks[toTargetArray]));
