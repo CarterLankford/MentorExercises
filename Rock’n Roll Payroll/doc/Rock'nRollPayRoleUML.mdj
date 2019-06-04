@@ -135,7 +135,7 @@
 											"top": 142,
 											"width": 468.69189453125,
 											"height": 13,
-											"text": "-employeeName: String",
+											"text": "-name: String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -169,7 +169,7 @@
 											"top": 172,
 											"width": 468.69189453125,
 											"height": 13,
-											"text": "-employeeId: int",
+											"text": "-id: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -373,7 +373,7 @@
 											"top": 345,
 											"width": 468.69189453125,
 											"height": 13,
-											"text": "+Employee(employeeName, phoneNumber)",
+											"text": "+Employee(name, phoneNumber)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -5953,7 +5953,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFq4NnhcPq81rk="
 							},
-							"name": "employeeName",
+							"name": "name",
 							"visibility": "private",
 							"type": "String"
 						},
@@ -5973,7 +5973,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFq4NnhcPq81rk="
 							},
-							"name": "employeeId",
+							"name": "id",
 							"visibility": "private",
 							"type": "int"
 						},
@@ -6094,8 +6094,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFq4OBk+v1vpf0="
 									},
-									"name": "employeeName",
-									"type": ""
+									"name": "name"
 								},
 								{
 									"_type": "UMLParameter",
@@ -6103,8 +6102,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFq4OBk+v1vpf0="
 									},
-									"name": "phoneNumber",
-									"type": ""
+									"name": "phoneNumber"
 								}
 							]
 						},
