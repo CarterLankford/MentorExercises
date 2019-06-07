@@ -59,8 +59,7 @@ public class Launcher{
                         System.out.println(moveMe(stacks[moveFrom], stacks[moveTo]));
                         currentTurn++;
                     } 
-                } else if (merp.length >= 3) {
-                    //TODO:Add validation to make sure middle char is a space and nothing else
+                } else if (merp.length == 3 && (int)merp[1] ==32) {
                     fromOriginalArray = Sanitize(merp[0]);
                     toTargetArray = Sanitize(merp[2]);
                     System.out.println(moveMe(stacks[fromOriginalArray], stacks[toTargetArray]));
@@ -81,8 +80,7 @@ public class Launcher{
                 System.err.println(exception.getMessage());
             } finally {
                 System.out.println("\n\n");
-                printBoard(stacks);
-                
+                printBoard(stacks);                
             }
         }
     }
