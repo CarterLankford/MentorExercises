@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Launcher{
     private String[] choices;
+    //private static DynamicStack moveHistory = new DynamicStack();
+
     public static void main(String[] args){
         boolean recivedExitCode = false;
         Scanner sc = new Scanner(System.in);
@@ -18,6 +20,8 @@ public class Launcher{
         stacks[0] = new ArrayStack(plateCount);
         stacks[1] = new ArrayStack(plateCount);
         stacks[2] = new ArrayStack(plateCount);
+
+        DynamicStack moveHistory = new DynamicStack();
 
 
         for (int i = 0; i < plateCount; i++){
@@ -47,16 +51,22 @@ public class Launcher{
             int toTargetArray;
             int valueToMove = 0;
 
-            // VYH: Validate your input over the first 3 chars, ignore anything else after that ~ CAL: done
-            // validate that the actual input was # # (char space char) ~ CAL: done
             try {
-                if (merp.length >= 3) {
-                    // VYH: Sanitize should return an int 0 1 or 2 if a valid character was entered ~ CAL: done
-                    // VYH: Make Sanitize throw an exception if input is not valid ~ CAL: done
-                    // VYH: catch exception here and move forward with next iteration ~ CAL: done
+                if (x.equalsIgnoreCase("undo")){
+                    Integer moveFrom = moveHistory.pop();
+                    Integer moveTo = moveHistory.pop();
+                    if (moveFrom != null && moveTo != null){
+                        System.out.println(moveMe(stacks[moveFrom], stacks[moveTo]));
+                        currentTurn++;
+                    } 
+                } else if (merp.length == 3 && (int)merp[1] ==32) {
                     fromOriginalArray = Sanitize(merp[0]);
                     toTargetArray = Sanitize(merp[2]);
                     System.out.println(moveMe(stacks[fromOriginalArray], stacks[toTargetArray]));
+
+                    moveHistory.push(fromOriginalArray);
+                    moveHistory.push(toTargetArray);
+
                     currentTurn++;
                 } else if (x.equals("check")){
                     System.out.println("aStack::\t" + stacks[0].size() + " " + stacks[0].isEmpty() + "\n" +
@@ -70,7 +80,7 @@ public class Launcher{
                 System.err.println(exception.getMessage());
             } finally {
                 System.out.println("\n\n");
-                printBoard(stacks);
+                printBoard(stacks);                
             }
         }
     }
