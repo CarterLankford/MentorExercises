@@ -899,6 +899,42 @@
 										},
 										{
 											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFq4OTaYwChLKQ=",
+											"_parent": {
+												"$ref": "AAAAAAFq4OKe1f4Nn18="
+											},
+											"model": {
+												"$ref": "AAAAAAFq4OTZ/gCbgZo="
+											},
+											"font": "Arial;13;0",
+											"left": 1725,
+											"top": 557,
+											"width": 352.2568359375,
+											"height": 13,
+											"underline": true,
+											"text": "+ALLOWEDVACATIONDAYS: int = 1",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFrU04omYBhAYo=",
+											"_parent": {
+												"$ref": "AAAAAAFq4OKe1f4Nn18="
+											},
+											"model": {
+												"$ref": "AAAAAAFrU04oboBexWc="
+											},
+											"font": "Arial;13;0",
+											"left": 1725,
+											"top": 572,
+											"width": 352.2568359375,
+											"height": 13,
+											"underline": true,
+											"text": "+MISSEDDAYDEDUCTIONS = float [0.15, 0.35, 0.55]",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
 											"_id": "AAAAAAFq4OTVQwB3t78=",
 											"_parent": {
 												"$ref": "AAAAAAFq4OKe1f4Nn18="
@@ -908,7 +944,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1725,
-											"top": 557,
+											"top": 587,
 											"width": 352.2568359375,
 											"height": 13,
 											"text": "-grossPay: float",
@@ -925,44 +961,10 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1725,
-											"top": 572,
-											"width": 352.2568359375,
-											"height": 13,
-											"text": "-netPay: float",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFq4OTaYwChLKQ=",
-											"_parent": {
-												"$ref": "AAAAAAFq4OKe1f4Nn18="
-											},
-											"model": {
-												"$ref": "AAAAAAFq4OTZ/gCbgZo="
-											},
-											"font": "Arial;13;0",
-											"left": 1725,
-											"top": 587,
-											"width": 352.2568359375,
-											"height": 13,
-											"text": "-allowedVacationDays: int",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFq4OTd3QDLp10=",
-											"_parent": {
-												"$ref": "AAAAAAFq4OKe1f4Nn18="
-											},
-											"model": {
-												"$ref": "AAAAAAFq4OTdlQDFKLw="
-											},
-											"font": "Arial;13;0",
-											"left": 1725,
 											"top": 602,
 											"width": 352.2568359375,
 											"height": 13,
-											"text": "-missedDayDeductions: int[]",
+											"text": "-netPay: float",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1324,23 +1326,6 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAFrUiF7UuLr844=",
-											"_parent": {
-												"$ref": "AAAAAAFq4OKe1v4OHN0="
-											},
-											"model": {
-												"$ref": "AAAAAAFrUiF62uLoYaU="
-											},
-											"font": "Arial;13;0",
-											"left": 1725,
-											"top": 925,
-											"width": 352.2568359375,
-											"height": 13,
-											"text": "+setAllowedVacationDays(allowedVacationDays): void",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
 											"_id": "AAAAAAFrUiF+Y+MeVO8=",
 											"_parent": {
 												"$ref": "AAAAAAFq4OKe1v4OHN0="
@@ -1350,7 +1335,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1725,
-											"top": 940,
+											"top": 925,
 											"width": 352.2568359375,
 											"height": 13,
 											"text": "+setMissedDayDeductions(missedDayDeductions): void",
@@ -1367,7 +1352,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1725,
-											"top": 955,
+											"top": 940,
 											"width": 352.2568359375,
 											"height": 13,
 											"text": "+setMaxMissedDaysAllowed(maxMissedDaysAllowed): void",
@@ -1384,7 +1369,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1725,
-											"top": 970,
+											"top": 955,
 											"width": 352.2568359375,
 											"height": 13,
 											"text": "+setPayDeduction(payDeduction): void",
@@ -1401,7 +1386,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1725,
-											"top": 985,
+											"top": 970,
 											"width": 352.2568359375,
 											"height": 13,
 											"text": "+setClockThreshold(clockThreshold): void",
@@ -1418,7 +1403,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1725,
-											"top": 1000,
+											"top": 985,
 											"width": 352.2568359375,
 											"height": 13,
 											"text": "+setIsCoordinator(iscoordinator): void",
@@ -1435,7 +1420,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1725,
-											"top": 1015,
+											"top": 1000,
 											"width": 352.2568359375,
 											"height": 13,
 											"text": "+setLateClockCount(lateClockCount): void",
@@ -1446,7 +1431,7 @@
 									"left": 1720,
 									"top": 695,
 									"width": 362.2568359375,
-									"height": 338
+									"height": 323
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -1603,11 +1588,49 @@
 									"model": {
 										"$ref": "AAAAAAFq4OLLDf5KL2Y="
 									},
+									"subViews": [
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFrU0rQpX9vh7s=",
+											"_parent": {
+												"$ref": "AAAAAAFq4OLLDv5SdhU="
+											},
+											"model": {
+												"$ref": "AAAAAAFrU0rQdn9sHBQ="
+											},
+											"font": "Arial;13;0",
+											"left": 1317,
+											"top": 1094,
+											"width": 339.98046875,
+											"height": 13,
+											"underline": true,
+											"text": "+ALLOWEDVACATIONDAYS: int = 2",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFrU1MLL4V+Loc=",
+											"_parent": {
+												"$ref": "AAAAAAFq4OLLDv5SdhU="
+											},
+											"model": {
+												"$ref": "AAAAAAFrU1MLA4V7nY0="
+											},
+											"font": "Arial;13;0",
+											"left": 1317,
+											"top": 1109,
+											"width": 339.98046875,
+											"height": 13,
+											"underline": true,
+											"text": "+MISSEDDAYDEDUCTIONS = float [0.25, 0.45]",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
 									"left": 1312,
 									"top": 1089,
 									"width": 349.98046875,
-									"height": 10
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1630,7 +1653,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1317,
-											"top": 1104,
+											"top": 1132,
 											"width": 339.98046875,
 											"height": 13,
 											"text": "+StoreManager(employeeName, phoneNumber, grossPay)",
@@ -1647,7 +1670,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1317,
-											"top": 1119,
+											"top": 1147,
 											"width": 339.98046875,
 											"height": 13,
 											"text": "+generateWeeklyReport(): String",
@@ -1664,7 +1687,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1317,
-											"top": 1134,
+											"top": 1162,
 											"width": 339.98046875,
 											"height": 13,
 											"text": "+calculatePay(): float",
@@ -1673,7 +1696,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 1312,
-									"top": 1099,
+									"top": 1127,
 									"width": 349.98046875,
 									"height": 53
 								},
@@ -8002,6 +8025,27 @@
 						},
 						{
 							"_type": "UMLAttribute",
+							"_id": "AAAAAAFq4OTZ/gCbgZo=",
+							"_parent": {
+								"$ref": "AAAAAAFq4OKe1P4FVjg="
+							},
+							"name": "ALLOWEDVACATIONDAYS",
+							"isStatic": true,
+							"type": "int",
+							"defaultValue": "1"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFrU04oboBexWc=",
+							"_parent": {
+								"$ref": "AAAAAAFq4OKe1P4FVjg="
+							},
+							"name": "MISSEDDAYDEDUCTIONS",
+							"isStatic": true,
+							"defaultValue": "float [0.15, 0.35, 0.55]"
+						},
+						{
+							"_type": "UMLAttribute",
 							"_id": "AAAAAAFq4OTU9gBx7ts=",
 							"_parent": {
 								"$ref": "AAAAAAFq4OKe1P4FVjg="
@@ -8019,26 +8063,6 @@
 							"name": "netPay",
 							"visibility": "private",
 							"type": "float"
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFq4OTZ/gCbgZo=",
-							"_parent": {
-								"$ref": "AAAAAAFq4OKe1P4FVjg="
-							},
-							"name": "allowedVacationDays",
-							"visibility": "private",
-							"type": "int"
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFq4OTdlQDFKLw=",
-							"_parent": {
-								"$ref": "AAAAAAFq4OKe1P4FVjg="
-							},
-							"name": "missedDayDeductions",
-							"visibility": "private",
-							"type": "int[]"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8417,34 +8441,6 @@
 						},
 						{
 							"_type": "UMLOperation",
-							"_id": "AAAAAAFrUiF62uLoYaU=",
-							"_parent": {
-								"$ref": "AAAAAAFq4OKe1P4FVjg="
-							},
-							"name": "setAllowedVacationDays",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFrUiKzUOZiyBs=",
-									"_parent": {
-										"$ref": "AAAAAAFrUiF62uLoYaU="
-									},
-									"name": "allowedVacationDays",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFrUiKzUOZj3l8=",
-									"_parent": {
-										"$ref": "AAAAAAFrUiF62uLoYaU="
-									},
-									"type": "void",
-									"direction": "return"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
 							"_id": "AAAAAAFrUiF95uMbpMk=",
 							"_parent": {
 								"$ref": "AAAAAAFq4OKe1P4FVjg="
@@ -8569,7 +8565,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFrUiGLPuPn7pU="
 									},
-									"name": "iscoordinator"
+									"name": "iscoordinator",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -8645,6 +8642,29 @@
 							"target": {
 								"$ref": "AAAAAAFq4OKe1P4FVjg="
 							}
+						}
+					],
+					"attributes": [
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFrU0rQdn9sHBQ=",
+							"_parent": {
+								"$ref": "AAAAAAFq4OLLDf5KL2Y="
+							},
+							"name": "ALLOWEDVACATIONDAYS",
+							"isStatic": true,
+							"type": "int",
+							"defaultValue": "2"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFrU1MLA4V7nY0=",
+							"_parent": {
+								"$ref": "AAAAAAFq4OLLDf5KL2Y="
+							},
+							"name": "MISSEDDAYDEDUCTIONS",
+							"isStatic": true,
+							"defaultValue": "float [0.25, 0.45]"
 						}
 					],
 					"operations": [
@@ -9383,7 +9403,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFrUgt977qwOhs="
 									},
-									"name": "hourlyRate"
+									"name": "hourlyRate",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9577,7 +9598,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFq4USfoxUiKiE="
 									},
-									"name": "employeeName"
+									"name": "employeeName",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9585,7 +9607,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFq4USfoxUiKiE="
 									},
-									"name": "phoneNumber"
+									"name": "phoneNumber",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9593,7 +9616,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFq4USfoxUiKiE="
 									},
-									"name": "grossTaskPay"
+									"name": "grossTaskPay",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9773,7 +9797,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFrUVjpwo6ySjU="
 									},
-									"name": "latePenalityCount"
+									"name": "latePenalityCount",
+									"type": ""
 								}
 							]
 						},
