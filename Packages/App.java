@@ -2,8 +2,8 @@
  * Instructions to compile:
  * ## This might vary for other computers ##
  * Compile/Run from "c/MyJava/MentorExercises/Packages"
- * Compile: javac -cp /c/MyJava/MentorExercises/Geometry/:/c/MyJava/MentorExercises/DataStructures/DynamicStacks:. App.java
- * Run: java -cp /c/MyJava/MentorExercises/Geometry/:/c/MyJava/MentorExercises/DataStructures/DynamicStacks:. App
+ * Compile: javac -cp /c/MyJava/MentorExercises/Geometry/:/c/MyJava/MentorExercises/DataStructures/DynamicStacks:/c/MyJava/MentorExercises/Packages/:/c/MyJava/MentorExercises/Packages/deep/deeper/deepest/Math/sum/: /c/MyJava/MentorExercises/Packages/App.java
+ * Run: java -cp /c/MyJava/MentorExercises/Geometry/:/c/MyJava/MentorExercises/DataStructures/DynamicStacks:/c/MyJava/MentorExercises/Packages/:/c/MyJava/MentorExercises/Packages/deep/deeper/deepest/Math/sum/:/c/MyJava/MentorExercises/Packages/. App
  * 
  */
 import test.Greeter;
