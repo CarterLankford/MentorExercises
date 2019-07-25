@@ -10,12 +10,12 @@ TODO:
 class Uno implements Game{
     @Override
     public String instructions(){
-        return "Unique instructions";
+        return "Unique instructions to Uno";
     }
 
     @Override
     public boolean move(Movement movement){
-        // System.out.println(move.getClass().getName());
+        System.out.println(movement.getClass().getName());
         return true;
     } 
 

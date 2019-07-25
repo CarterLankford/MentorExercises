@@ -15,7 +15,7 @@ class WordSearch implements Game{
 
     @Override
     public boolean move(Movement movement){
-        // System.out.println(move.getClass().getName());
+        System.out.println(movement.getClass().getName());
         return true;
     }  
 }
