@@ -37,9 +37,4 @@ public class Card{
     public String toString(){
         return this.getClass().getName() + '@' + Integer.toHexString(this.hashCode()) + '[' + this.number + ',' + (this.color) + ']';
     }
-
-    //The default Java implementation of toString() is roughly defined as follows:
-    //return this.getClass().getName() + '@' + Integer.toHexString(this.hashCode())
-    //Override the toString() method on the Card class to include the values of the card number and color to print something like this:
-    //game.lib.Card@12ab56[3, “red”]
 }
