@@ -12,7 +12,7 @@ public class BoardGameFactory{
 
     }
 
-    public Game newGame(BoardGames boardGame){
+    public static Game newGame(BoardGames boardGame){
         Game payload;
         switch (boardGame){
             case TIC_TAC_TOE:

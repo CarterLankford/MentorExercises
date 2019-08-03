@@ -7,7 +7,11 @@ public class SoloGameFactory{
         SOLITAIRE
     }
 
-    public Game newGame(SoloGames soloGame){
+    private SoloGameFactory(){
+
+    }
+
+    public static Game newGame(SoloGames soloGame){
         Game payload;
         switch(soloGame){
             case WORD_SEARCH:
