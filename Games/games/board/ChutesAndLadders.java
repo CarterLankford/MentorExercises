@@ -2,12 +2,12 @@ package games.board;
 import games.lib.Game;
 import games.lib.Movement;
 
-/*
-TODO:
-[] Add Print and correct return for move()
-*/
 
 class ChutesAndLadders implements Game{
+    ChutesAndLadders(){
+        
+    }
+
     @Override
     public String instructions(){
         return "Unique instructions";

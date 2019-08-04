@@ -15,6 +15,9 @@ public class App{
         uno = BoardGameFactory.newGame(BoardGameFactory.BoardGames.UNO);
         sudoku = SoloGameFactory.newGame(SoloGameFactory.SoloGames.SUDOKU);
 
+        // Game uno = BoardGameFactory.newGame(BoardGames.UNO);
+        // Game sudoku = SoloGameFactory.newGame(SoloGames.SUDOKU);
+
         // uno = new Uno();
         // sudoku = new Sudoku();
 
