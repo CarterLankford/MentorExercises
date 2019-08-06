@@ -357,7 +357,7 @@
 											"top": 682,
 											"width": 415.365234375,
 											"height": 13,
-											"text": "+convHourFormat(hour: int, minute: int, second: int): int",
+											"text": "+convHourFormat(hours: int, minutes: int, seconds: int): int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -478,13 +478,30 @@
 											"height": 13,
 											"text": "-IsMilitary(hour: int): void",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFsZH9Nsbyp5/Y=",
+											"_parent": {
+												"$ref": "AAAAAAFsXneXvgkJbp0="
+											},
+											"model": {
+												"$ref": "AAAAAAFsZH9NmLym9p4="
+											},
+											"font": "Arial;13;0",
+											"left": 69,
+											"top": 802,
+											"width": 415.365234375,
+											"height": 13,
+											"text": "+conFromSeconds(seconds: int): int",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 64,
 									"top": 572,
 									"width": 425.365234375,
-									"height": 233
+									"height": 248
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -1035,8 +1052,8 @@
 							"left": 16,
 							"top": 1024,
 							"width": 165.9326171875,
-							"height": 88,
-							"text": "diffTime should return an array int[H,M,S] StarUML won't allow me to add the brakets"
+							"height": 90,
+							"text": "diffTime, convFromSeconds should return an array int[H,M,S] StarUML won't allow me to add the brakets"
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -2687,7 +2704,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFsXr28Mgrzq+w="
 									},
-									"name": "hour",
+									"name": "hours",
 									"type": "int"
 								},
 								{
@@ -2696,7 +2713,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFsXr28Mgrzq+w="
 									},
-									"name": "minute",
+									"name": "minutes",
 									"type": "int"
 								},
 								{
@@ -2705,7 +2722,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFsXr28Mgrzq+w="
 									},
-									"name": "second",
+									"name": "seconds",
 									"type": "int"
 								},
 								{
@@ -2888,6 +2905,34 @@
 									"direction": "return"
 								}
 							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFsZH9NmLym9p4=",
+							"_parent": {
+								"$ref": "AAAAAAFsXneXugkA7NE="
+							},
+							"name": "conFromSeconds",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFsZH+q7bzLM9k=",
+									"_parent": {
+										"$ref": "AAAAAAFsZH9NmLym9p4="
+									},
+									"name": "seconds",
+									"type": "int"
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFsZH+q7bzMn/s=",
+									"_parent": {
+										"$ref": "AAAAAAFsZH9NmLym9p4="
+									},
+									"type": "int",
+									"direction": "return"
+								}
+							]
 						}
 					]
 				},
@@ -2996,6 +3041,7 @@
 							"name": "DAYCOUNT",
 							"visibility": "private",
 							"isStatic": true,
+							"type": "",
 							"defaultValue": "int[]"
 						},
 						{
@@ -3007,6 +3053,7 @@
 							"name": "MONTHABV",
 							"visibility": "private",
 							"isStatic": true,
+							"type": "",
 							"defaultValue": "String[]"
 						},
 						{
@@ -3018,6 +3065,7 @@
 							"name": "MONTHNAME",
 							"visibility": "private",
 							"isStatic": true,
+							"type": "",
 							"defaultValue": "String[]"
 						}
 					],
