@@ -1,47 +1,22 @@
 public class App{
     public static void main(String[] args){
-        System.out.println("hello world");
-        Time tm = new Time(5, 23, 45, "AM");
-        int sec = tm.convToSeconds(5, 23, 45);
-        System.out.println(Integer.toString(sec));
-        // int[] diff = tm.diffTime(3, 23, 45);
-        // System.out.println("H:" + diff[0] + " M:" + diff[1] + " S:" + diff[2] );
-        int j = 60/7; 
-        System.out.println(Integer.toString(j));
-        int minutes = 0;
-        int hours = 0;
-        while (sec > 60){
-            System.out.println(Integer.toString(sec));
-            sec-=60;
-            minutes+=1;
-        }
+        Time tm1;
+        Time tm2;
+        Time tm3;
 
-        while (minutes > 60){
-            System.out.println(Integer.toString(minutes));
-            minutes-=60;
-            hours+=1;
-        }
+        tm1 = new Time(60000);
+        tm2 = new Time(2, 20, 10);
 
-        System.out.println("h:" + hours + " m:" + minutes + " s:" + sec);
+        System.out.println(tm1.toString());
+        System.out.println(tm2.toString());
 
+        tm3 = tm1.add(tm2);
+        System.out.println(tm3.toString());
+
+        tm3 = tm1.subtract(tm2);
+        System.out.println(tm3.toString());
+
+// TODO: Make the below line compile and run :)
+        System.out.println(Date.Month.JUN.diff(Date.Month.AUG));
     }
-
-
-
-    // //Below is a demonstration of how to return an array
-    // static int[] getSumAndSub(int a, int b){ 
-    //     int[] ans = new int[2]; 
-    //     ans[0] = a + b; 
-    //     ans[1] = a - b; 
-  
-    //     // returning array of elements 
-    //     return ans; 
-    // } 
-  
-    // // Driver method 
-    // public static void main(String[] args){ 
-    //     int[] ans = getSumAndSub(100, 50); 
-    //     System.out.println("Sum = " + ans[0]); 
-    //     System.out.println("Sub = " + ans[1]); 
-    // } 
 }

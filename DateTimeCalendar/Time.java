@@ -1,115 +1,91 @@
-public class Time{
-    private static final int BASESIXTY = 60;
-    private int hour;
-    private int minute;
-    private int second;
-    private boolean isMilitary;
+public class Time {
+    private static final int SEC_IN_MIN = 60;
+    private static final int SEC_IN_HR = 3600;
 
-    public Time(){
+    public static long convToSeconds(int hours, int minutes, int seconds){
+        return ((hours*SEC_IN_HR) + (minutes*SEC_IN_MIN)) + seconds;
+    }
+
+    //TODO:
+    //[] Add method for Equals, must override from obj
+    //[] Add logic to Diff Method
+
+    private final long seconds;
+
+    private Time(){
 
     }
 
-    public Time(int hour, int minute, int second, String amPM){
-        setHour(hour);
-        setMinute(minute);
-        setSecond(second);
-        System.out.println(amPM);
+    public Time(long seconds){
+        this.seconds = seconds;
     }
 
-    public boolean addTime(int hours, int minutes, int seconds){
-        return true;
+    public Time(int hour, int minute, int second){
+        this.seconds = convToSeconds(hour, minute, second);      
     }
 
-    public boolean subtractTime(int hours, int minutes, int seconds){
-        return true;
+    public Time add(Time input){
+        return new Time(this.seconds + input.seconds);
     }
 
-    public int[] diffTime(int hours, int minutes, int seconds){
-        int[] x = new int[3];
-        int currentTime = convToSeconds(this.hour, this.minute, this.second);
-        int inputTime = convToSeconds(hours, minutes, seconds); 
-        if(currentTime > inputTime){
-            //TODO:
-            //[] Make diff able to accept an array and return it
-            int diff = currentTime - inputTime;
-        } else if(currentTime < inputTime){
-            //TODO:
-            //[] Make diff able to accept an array and return it
-            int diff = inputTime - currentTime;
-        } else if (currentTime == inputTime){
-            x[0] = 0;
-            x[1] = 0;
-            x[2] = 0;
-            return x;
-        } else {
-            throw new IllegalArgumentException("Something Broke");
-        }
-        
-        return x;
+    public Time add(int hours, int minutes, int seconds){
+        return new Time(this.seconds + convToSeconds(hours, minutes, seconds));
     }
 
-    public int compTime(int hours, int minutes, int seconds){
-        int currentTime = convToSeconds(this.hour, this.minute, this.second);
-        int inputTime = convToSeconds(hours, minutes, seconds); 
+    public Time subtract(Time input){
+        return new Time(this.seconds - input.seconds);
+    }
 
-        if(currentTime == inputTime){
+    public Time subtract(int hours, int minutes, int seconds){
+        return new Time(this.seconds - convToSeconds(hours, minutes, seconds));
+    }
+
+    public int compareTo(Time input){
+        if(this.seconds == input.seconds) {
             return 0;
-        } else if(currentTime > inputTime){
+        } else if(this.seconds > input.seconds) {
             return 1;
-        } else if(currentTime < inputTime){
+        } else {
             return -1;
-        } else{
-            throw new IllegalArgumentException("Incorrect value entered");
-        }
+        } 
     }
-
-    public int convToSeconds(int hours, int minutes, int seconds){
-        int payload = (((hours*BASESIXTY)*BASESIXTY) + (minutes*BASESIXTY)) + seconds;
-        return payload;
-    }
-
-    public int[] convFromSeconds(int seconds){
-        int[] x = new int[3];
-        x[0] = 0;
-        x[1] = 0;
-        x[2] = 0;
-        return x;
-    }
-
-    // public int convHourFormat(int hours, int minutes, int seconds){
-    //     //TODO: 
-    //     // This is for converting 
-    // }
 
     public int getHour(){
-        return this.hour;
+        return (int)(this.seconds / SEC_IN_HR);
     }
 
     public int getMinute(){
-        return this.minute;
+        return this.getMinute(false);
+    }
+
+    public int getMinute(boolean isAbsolute){
+        int result;
+        if(isAbsolute){
+            result = (int)(this.seconds / SEC_IN_MIN);
+        } else{
+            result = (int)(this.seconds % SEC_IN_HR);
+            result = (int)(result / SEC_IN_MIN);
+        }
+        return result;
     }
 
     public int getSecond(){
-        return this.second;
+        return this.getSecond(false);
     }
 
-    public void setHour(int hours){
-        this.hour = hours;
-    }
-
-    public void setMinute(int minutes){
-        this.minute = minutes;
-    }
-
-    public void setSecond(int seconds){
-        this.second = seconds;
-    }
-
-    private void isMilitary(int hour){
-        if(hour >= 13){
-            isMilitary = true;
+    public int getSecond(boolean isAbsolute){
+        int result;
+        if(isAbsolute){
+            return (int)(this.seconds);
         } else {
-            isMilitary = false;
+            result = (int)(this.seconds % SEC_IN_HR);
+            result = result % SEC_IN_MIN;
         }
+        return result;
+    }
+
+    @Override
+    public String toString(){
+        return this.getHour() + ":" + this.getMinute() + ":" + this.getSecond();
     }
 }
