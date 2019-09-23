@@ -31,36 +31,45 @@ public class Date{
             this.longName = longName;
             this.days = days;
         }
+
+        //CAL~Already exists under enum class[compareTO] made class to see how we would implement if required
+        // public int diff(Month input){
+        //     return this.ordinal() - input.ordinal();
+
+        //     // if (this.ordinal() == input.ordinal()) {
+        //     //     return 0;
+        //     // } else if (this.ordinal() > input.ordinal()){
+        //     //     return 1;
+        //     // } else {
+        //     //     return -1;
+        //     // }
+        // }
     }
 
     private long days;
+
     private int year;
+    private Month month;
+    private int day;
 
     private Date(){
-
+        this.days = 0l;
     }
 
 // new Date(2019, Month.AUG, 27); // absolute  CAL:(this is an absolute day, can you question what day this is?)
     private Date(int year, Month month, int day){
-
+        //TODO: think on how to tackel this....best I can do right now...at least it's "something"?
     }
 
 // new Date(90); CAL(a span of time)
     public Date(long days){
-
+        this.days = days;
     }
 
 // new Date(3, 4, 2); // relative CAL:(remember the definition of relative, this depends on something else to makes sense/ do you know if leap or which months?)
     public Date(int years, int months, int days){
-
-    }
-
-    // public Date add(Date input){
-    //     return null;
-    // }
-
-    public Date add(int years, int months, int days){
-        return null;
+        //TODO:
+        //[] Month will need to be translated into Month, use month number -1 with index to achieve
     }
 
     public Date subtract(Date input){
@@ -70,4 +79,32 @@ public class Date{
     public Date subtract(int years, int months, int days){
         return null;
     }
+
+    public Date diff(Date input){
+        return null;
+    }
+
+    //TODO:
+    //[] Update UML
+    //[] Add getters
+    //[] Add setters
+    //[] Add ability to subtract dates(8/20/19) by (9/10/20, days)
+    //[] Add ability to get the new date (8/20/19) if increased by days
+    //[] Add ability to add/subtract days by days
+    //[] Add isLeapYear Method, to return boolean based on year entered
+
+
+    //#################
+    //#### Removed ####
+    //#################
+
+    // public Date add(Date input){
+    //     return null;
+    // }
+
+    //CAL: Removed because you can't add two absolute Dates
+    // public Date add(int years, int months, int days){
+    //     return null;
+    // }
+
 }

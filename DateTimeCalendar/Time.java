@@ -8,12 +8,11 @@ public class Time {
 
     //TODO:
     //[] Add method for Equals, must override from obj
-    //[] Add logic to Diff Method
 
     private final long seconds;
 
     private Time(){
-
+        this.seconds = 0;
     }
 
     public Time(long seconds){
