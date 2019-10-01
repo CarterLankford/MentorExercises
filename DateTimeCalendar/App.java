@@ -36,5 +36,22 @@ public class App{
 
         System.out.println(Date.Month.DEC.days);
         System.out.println(Date.Month.values()[0]);
+
+        Date dt1 = new Date(201);
+        System.out.println(dt1.getDays());
+
+        Date dt2 = new Date(1999, 2, 3);
+        System.out.println(dt2.getYear());
+        System.out.println(dt2.getMonth());
+        System.out.println(Date.Month.DEC.ordinal());
+        System.out.println(Date.Month.DEC.shortName);
+        System.out.println(Date.Month.DEC.longName);
+        System.out.println(Date.Month.DEC.days);
+        System.out.println(dt2.toString());
+
+        Date dt3 = new Date(90);
+
+        Date dt4 = dt1.add(dt3);
+        System.out.println(dt4.getDays());
     }
 }

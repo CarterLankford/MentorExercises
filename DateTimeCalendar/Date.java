@@ -70,6 +70,9 @@ public class Date{
     public Date(int years, int months, int days){
         //TODO:
         //[] Month will need to be translated into Month, use month number -1 with index to achieve
+        this.year = years;
+        setMonth(months);
+        this.day = days;
     }
 
     public Date subtract(Date input){
@@ -82,6 +85,51 @@ public class Date{
 
     public Date diff(Date input){
         return null;
+    }
+
+    public Date add(Date input){
+        return new Date(this.days + input.days);
+    }
+
+    public long getDays(){
+        return this.days;
+    }
+
+    public int getYear(){
+        return this.year;
+    }
+
+    public Month getMonth(){
+        return this.month;
+    }
+
+    public int getDay(){
+        return this.day;
+    }
+
+    private void setDays(long days){
+        this.days = days;
+    }
+
+    private void setYear(int year){
+        this.year = year;
+    }
+
+    private void setMonth(int months){
+        if (months <= 12 && months >= 1) {
+            this.month = Month.values()[months-1];
+        }
+    }
+
+    private void setDay(int day){
+        this.day = day;
+    }
+
+
+
+    @Override  
+    public String toString(){
+        return Integer.toString(this.month.ordinal() + 1) + "/" + this.day + "/" + this.year;
     }
 
     //TODO:
