@@ -24,7 +24,7 @@ public class App{
         // Date d1 = new Date(1994, Date.Month.MAY, 23);
         // System.out.println(Date.Month.JUN);
 
-// TODO: Make the below line compile and run :)
+        // TODO: Make the below line compile and run :)
         System.out.println(Date.Month.JUN.compareTo(Date.Month.AUG));
         // System.out.println(Date.Month.JUN.diff(Date.Month.AUG));
         System.out.println(Date.Month.JAN.compareTo(Date.Month.DEC));
@@ -38,9 +38,9 @@ public class App{
         System.out.println(Date.Month.values()[0]);
 
         Date dt1 = new Date(201);
-        System.out.println(dt1.getDays());
+        System.out.println(dt1.getDayspan());
 
-        Date dt2 = new Date(1999, 2, 3);
+        Date dt2 = new Date(1999, Date.Month.FEB, 3);
         System.out.println(dt2.getYear());
         System.out.println(dt2.getMonth());
         System.out.println(Date.Month.DEC.ordinal());
@@ -49,9 +49,33 @@ public class App{
         System.out.println(Date.Month.DEC.days);
         System.out.println(dt2.toString());
 
-        Date dt3 = new Date(90);
 
-        Date dt4 = dt1.add(dt3);
-        System.out.println(dt4.getDays());
+        Date dt5 = new Date(1994, Date.Month.MAY, 13);
+        System.out.println(dt5.toString());
+
+        // testMethods();
+
+        Date dt6 = new Date(6000000);
+        dt6.convFromDays();
+        System.out.println(dt6.toString());
+        
+        //showing how math can be used to get the day count
+        System.out.println(Integer.toString((Date.Month.values()[Date.Month.JAN.ordinal() + 5]).days));
+        dt6.convToDays(1901, 2, 1);
+
+
+    }
+
+    private static void testMethods(){
+        //Testing Date.isLeapYear(int year)
+        for (int i = 1900; i <= 1950; i++) {
+            System.out.println(String.format("%d %s:%s", i, "isLeap", Date.isLeapYear(i)));
+        }
+
+    }
+
+    private static void howToDo(){
+        int x = Date.Month.DEC.days;
+        System.out.println(Integer.toString(x));
     }
 }

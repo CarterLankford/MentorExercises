@@ -4,7 +4,30 @@ public class Date{
     private static final int LEAP_YEAR_START = 1900;
 
     public static long convToDays(int year, int month, int day){
+        int y = year;
+        Month m = Date.Month.values()[month - 1];
+        int d = day;
+
+        System.out.println(m.shortName);
+        
+        while(y != LEAP_YEAR_START && m != Month.JAN && d != 1){
+            if (y > LEAP_YEAR_START) {
+                //count down to 1900-01-01
+            } else if (y < LEAP_YEAR_START) {
+                //count up to 1900-01-01
+                //would this be negative
+            }
+        }
+        
         return 0l;
+    }
+
+    public static boolean isLeapYear(int year){
+        if(year >= 1900 && (year % 4 == 0 && year % 100 != 0)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public enum Month {
@@ -46,33 +69,100 @@ public class Date{
         // }
     }
 
-    private long days;
-
+    private int dayspan;
     private int year;
     private Month month;
     private int day;
 
+// Constructors
     private Date(){
-        this.days = 0l;
+        this.dayspan = 0;
     }
 
-// new Date(2019, Month.AUG, 27); // absolute  CAL:(this is an absolute day, can you question what day this is?)
-    private Date(int year, Month month, int day){
-        //TODO: think on how to tackel this....best I can do right now...at least it's "something"?
+    // new Date(2019, Month.AUG, 27); // absolute  CAL:(this is an absolute day, can you question what day this is?)
+    public Date(int year, Month month, int day){
+        this.year = year;
+        this.day = day;
+        this.month = month;
     }
 
-// new Date(90); CAL(a span of time)
-    public Date(long days){
-        this.days = days;
+    public Date(Month month){
+        setMonth(month);
     }
 
-// new Date(3, 4, 2); // relative CAL:(remember the definition of relative, this depends on something else to makes sense/ do you know if leap or which months?)
-    public Date(int years, int months, int days){
-        //TODO:
-        //[] Month will need to be translated into Month, use month number -1 with index to achieve
-        this.year = years;
-        setMonth(months);
-        this.day = days;
+    public Date(int input){
+        this.dayspan = input;
+    }
+// End Constructors
+
+// Methods
+
+
+    public void convFromDays(){
+        //TODO: take days and start from 1900, from there calculate the set date
+        int y = LEAP_YEAR_START;
+        Month m = Month.JAN;
+        int d = this.dayspan;
+        /*
+        while(d >= DAYS_IN_LEAP_YEAR){
+            if(isLeapYear(y)){
+                d -= DAYS_IN_LEAP_YEAR;
+                y += 1;
+            } else {
+                d -= DAYS_IN_REG_YEAR;
+                y += 1;
+            }
+            System.out.println(Integer.toString(d));
+        }
+        
+        while(d >= 32){
+            int i = m.days;
+            // need to know if leap year, will effect output
+            if(d > m.days){
+                d -= i;
+                if(m == Month.DEC){
+                    m = Month.JAN;
+                } else {
+                    m = Month.values()[m.ordinal() + 1];
+                }
+            }
+            //System.out.println(Integer.toString((Date.Month.values()[Date.Month.JAN.ordinal() + 5]).days));
+        }
+        */
+        while (d >= 32){
+            boolean isly = isLeapYear(y);
+            if (d >= DAYS_IN_REG_YEAR) {
+                if (isly) {
+                    d -= DAYS_IN_LEAP_YEAR;
+                    y += 1;
+                } else {
+                    d -= DAYS_IN_REG_YEAR;
+                    y += 1;
+                }
+            } else {
+                int i = m.days;
+                if(isly && m == Month.FEB){
+                    i += 1;
+                }
+
+                if (i < d) {
+                    d -= i;
+                    if (m == Month.DEC) {
+                        m = Month.JAN;
+                    } else {
+                        m = Month.values()[m.ordinal() + 1];
+                    }
+                } 
+            }
+
+            // System.out.println("Merp" + Integer.toString(d));
+        }
+        
+        System.out.println(Integer.toString(m.days));
+        this.year = y;
+        this.month = m;
+        // this.month = Month.values()[m.ordinal() + 5];
+        this.day = d;
     }
 
     public Date subtract(Date input){
@@ -87,12 +177,20 @@ public class Date{
         return null;
     }
 
-    public Date add(Date input){
-        return new Date(this.days + input.days);
-    }
+    public Date add(int years, int months, int days){
+        int y;
+        int m;
+        int d;
 
-    public long getDays(){
-        return this.days;
+        // while (days > 31 && )
+
+        return new Date(this.year + years);
+    }
+// End Methods
+    
+// Getters and setters
+    public int getDayspan(){
+        return this.dayspan;
     }
 
     public int getYear(){
@@ -107,29 +205,26 @@ public class Date{
         return this.day;
     }
 
-    private void setDays(long days){
-        this.days = days;
+    public void setDayspan(int days){
+        this.dayspan = days;
     }
 
     private void setYear(int year){
         this.year = year;
     }
 
-    private void setMonth(int months){
-        if (months <= 12 && months >= 1) {
-            this.month = Month.values()[months-1];
-        }
+    private void setMonth(Month month){
+        this.month = month;
     }
-
-    private void setDay(int day){
-        this.day = day;
-    }
-
-
+// End Getters and setters
 
     @Override  
     public String toString(){
-        return Integer.toString(this.month.ordinal() + 1) + "/" + this.day + "/" + this.year;
+        // CAL: The below shows simplification 
+        // return String.format("%s/%s/%s", this.year, String.valueOf(this.month.ordinal() + 1), this.day);
+        // return this.getClass().getName() + '@' + Integer.toHexString(this.hashCode()) + '[' + this.year + "/" + String.valueOf(this.month.ordinal() + 1) + "/" + this.day + ']';
+        // return this.getClass().getName() + '@' + Integer.toHexString(this.hashCode()) + '[' + String.format("%d/%d/%d", this.year, this.month.ordinal() + 1, this.day) + ']';
+        return String.format("%s@%s[%4d/%02d/%02d]", this.getClass().getName(), Integer.toHexString(this.hashCode()), this.year, this.month.ordinal() + 1, this.day);
     }
 
     //TODO:
@@ -139,7 +234,23 @@ public class Date{
     //[] Add ability to subtract dates(8/20/19) by (9/10/20, days)
     //[] Add ability to get the new date (8/20/19) if increased by days
     //[] Add ability to add/subtract days by days
-    //[] Add isLeapYear Method, to return boolean based on year entered
+    //[x] Add isLeapYear Method, to return boolean based on year entered
+
+    /*
+    - [x] Date will be set by year, month and day.
+    - [x] The date can be set by year, month and date individually or as a whole.
+    - [] Addition of years, months or days or another date to the current established date.
+    - [] Any number of years, months or days can be added.
+    - [] Subtraction of years, months, days or another date to the current established date.
+    - [] Any number of years, months or days can be subtracted.
+    - [] Difference in days between current established date and another given date.
+    - [] Comparison between current established date and another given date.
+        -1 if current established date is less than the other date.
+        0 if both are equal.
+        1 if current established date is greater than the other time.
+    - [] Conversion of a date to number of days.
+
+    */
 
 
     //#################
