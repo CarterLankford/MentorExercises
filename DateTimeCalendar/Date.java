@@ -4,22 +4,34 @@ public class Date{
     private static final int LEAP_YEAR_START = 1900;
 
     public static long convToDays(int year, int month, int day){
-        int y = year;
+        int y = LEAP_YEAR_START;
         Month m = Date.Month.values()[month - 1];
-        int d = day;
+        long payload = (long)day;
 
-        System.out.println(m.shortName);
-        
-        while(y != LEAP_YEAR_START && m != Month.JAN && d != 1){
-            if (y > LEAP_YEAR_START) {
-                //count down to 1900-01-01
-            } else if (y < LEAP_YEAR_START) {
-                //count up to 1900-01-01
-                //would this be negative
+
+        //Process Year Value
+        if (year >= LEAP_YEAR_START){
+            while (y < year){
+               if (isLeapYear(y)){
+                    payload += (long)DAYS_IN_LEAP_YEAR;
+                } else {
+                    payload += (long)DAYS_IN_REG_YEAR;
+                } 
+                y++;
+            }
+        } else {
+            throw new IllegalArgumentException("Invalid Year entered");
+        }
+
+        //Process Month Value
+        for (int i = 0; i < month - 1;i++){
+            if(isLeapYear(year) && Date.Month.values()[i] == Month.FEB){
+                payload += Date.Month.values()[i].days + 1;
+            } else {
+                payload += Date.Month.values()[i].days;
             }
         }
-        
-        return 0l;
+        return payload;
     }
 
     public static boolean isLeapYear(int year){
@@ -96,80 +108,12 @@ public class Date{
 // End Constructors
 
 // Methods
-
-
-    public void convFromDays(){
-        //TODO: take days and start from 1900, from there calculate the set date
-        int y = LEAP_YEAR_START;
-        Month m = Month.JAN;
-        int d = this.dayspan;
-        /*
-        while(d >= DAYS_IN_LEAP_YEAR){
-            if(isLeapYear(y)){
-                d -= DAYS_IN_LEAP_YEAR;
-                y += 1;
-            } else {
-                d -= DAYS_IN_REG_YEAR;
-                y += 1;
-            }
-            System.out.println(Integer.toString(d));
-        }
-        
-        while(d >= 32){
-            int i = m.days;
-            // need to know if leap year, will effect output
-            if(d > m.days){
-                d -= i;
-                if(m == Month.DEC){
-                    m = Month.JAN;
-                } else {
-                    m = Month.values()[m.ordinal() + 1];
-                }
-            }
-            //System.out.println(Integer.toString((Date.Month.values()[Date.Month.JAN.ordinal() + 5]).days));
-        }
-        */
-        while (d >= 32){
-            boolean isly = isLeapYear(y);
-            if (d >= DAYS_IN_REG_YEAR) {
-                if (isly) {
-                    d -= DAYS_IN_LEAP_YEAR;
-                    y += 1;
-                } else {
-                    d -= DAYS_IN_REG_YEAR;
-                    y += 1;
-                }
-            } else {
-                int i = m.days;
-                if(isly && m == Month.FEB){
-                    i += 1;
-                }
-
-                if (i < d) {
-                    d -= i;
-                    if (m == Month.DEC) {
-                        m = Month.JAN;
-                    } else {
-                        m = Month.values()[m.ordinal() + 1];
-                    }
-                } 
-            }
-
-            // System.out.println("Merp" + Integer.toString(d));
-        }
-        
-        System.out.println(Integer.toString(m.days));
-        this.year = y;
-        this.month = m;
-        // this.month = Month.values()[m.ordinal() + 5];
-        this.day = d;
-    }
-
     public Date subtract(Date input){
         return null;
     }
 
     public Date subtract(int years, int months, int days){
+
         return null;
     }
 
@@ -185,6 +129,37 @@ public class Date{
         // while (days > 31 && )
 
         return new Date(this.year + years);
+    }
+
+    public static void convFromDays(int days){
+
+        int y = LEAP_YEAR_START;
+        Month m = Month.JAN;
+
+        while (days > DAYS_IN_REG_YEAR){
+            if (isLeapYear(y)){
+                days -= DAYS_IN_LEAP_YEAR;
+            } else {
+                days -= DAYS_IN_REG_YEAR;
+            }
+            y++;
+        }
+
+        while (days > 28){
+            int mdays = m.days;
+            if (isLeapYear(y) && m == Month.FEB){
+                mdays += 1;
+            }
+
+            if (days - mdays > 0) {
+                days -= mdays;
+                m = Date.Month.values()[m.ordinal() + 1];
+            } else {
+                break;
+            }
+        }
+
+        System.out.println(String.format("Y:%d, M:%s, D:%d", y, m.shortName, days ));
     }
 // End Methods
     
@@ -235,6 +210,7 @@ public class Date{
     //[] Add ability to get the new date (8/20/19) if increased by days
     //[] Add ability to add/subtract days by days
     //[x] Add isLeapYear Method, to return boolean based on year entered
+    //[x] Convert from days to date, need it to add/subtract
 
     /*
     - [x] Date will be set by year, month and day.
@@ -248,7 +224,7 @@ public class Date{
         -1 if current established date is less than the other date.
         0 if both are equal.
         1 if current established date is greater than the other time.
-    - [] Conversion of a date to number of days.
+    - [x] Conversion of a date to number of days.
 
     */
 
