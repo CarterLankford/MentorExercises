@@ -8,7 +8,6 @@ public class Date{
         Month m = Date.Month.values()[month - 1];
         long payload = (long)day;
 
-
         //Process Year Value
         if (year >= LEAP_YEAR_START){
             while (y < year){
@@ -23,7 +22,18 @@ public class Date{
             throw new IllegalArgumentException("Invalid Year entered");
         }
 
-        //Process Month Value
+        // if (month > 0) {
+        //     Month m = Date.Month.values()[month - 1];
+        //     for (int i = 0; i < month - 1;i++){
+        //         if(isLeapYear(year) && Date.Month.values()[i] == Month.FEB){
+        //             payload += Date.Month.values()[i].days + 1;
+        //         } else {
+        //             payload += Date.Month.values()[i].days;
+        //         }
+        //     }
+        // }
+
+        // //Process Month Value
         for (int i = 0; i < month - 1;i++){
             if(isLeapYear(year) && Date.Month.values()[i] == Month.FEB){
                 payload += Date.Month.values()[i].days + 1;
@@ -31,6 +41,7 @@ public class Date{
                 payload += Date.Month.values()[i].days;
             }
         }
+
         return payload;
     }
 
@@ -109,29 +120,69 @@ public class Date{
 
 // Methods
     public Date subtract(Date input){
+        //return new date obj
         return null;
     }
 
     public Date subtract(int years, int months, int days){
-
+        //return new date obj
         return null;
     }
 
     public Date diff(Date input){
+        //return in value of days
         return null;
     }
 
     public Date add(int years, int months, int days){
-        int y;
-        int m;
-        int d;
 
-        // while (days > 31 && )
+        if (years >= 0 && months >= 0 && days >= 0){
+            years += this.year;
+            months += this.month.ordinal() + 1;
+            days += this.day;
 
-        return new Date(this.year + years);
+            //handle Months
+            if (months > 12) {
+                years += months / 12;
+                months -= (months / 12) * 12;
+            }
+            //set months back to 0-11
+            months--;
+
+            while (days > 27){
+                int currentMonthDayCount = Date.Month.values()[months].days;
+                if (months == 1 && Date.isLeapYear(years)){
+                    currentMonthDayCount++;
+                }
+
+                if (days > currentMonthDayCount){
+                    if (days > DAYS_IN_REG_YEAR){
+                        if (isLeapYear(years)){
+                            days -= DAYS_IN_LEAP_YEAR;
+                        } else {
+                            days -= DAYS_IN_REG_YEAR;
+                        }
+                        years++;
+                    } else {
+                        days -= currentMonthDayCount;
+                        if (months == 11){
+                            months = 0;
+                        } else {
+                            months++;
+                        }
+                    }
+                    
+                } else {
+                    break;
+                }
+            }
+            return new Date(years, Date.Month.values()[months], days);
+        } else {
+            throw new IllegalArgumentException("Invalid integer entered");
+        }
     }
 
-    public static void convFromDays(int days){
+    public Date convFromDays(int days){
 
         int y = LEAP_YEAR_START;
         Month m = Month.JAN;
@@ -159,7 +210,21 @@ public class Date{
             }
         }
 
-        System.out.println(String.format("Y:%d, M:%s, D:%d", y, m.shortName, days ));
+        // System.out.println(String.format("Y:%d, M:%s, D:%d", y, m.shortName, days ));
+        return new Date(y, m, days);
+    }
+
+    public int compareTo(Date input){
+        long thisDays = convToDays(this.year, this.month.ordinal() + 1, this.day);
+        long inputDays = convToDays(input.year, input.month.ordinal() + 1, input.day);
+
+        if (thisDays == inputDays){
+            return 0;
+        } else if (thisDays > inputDays){
+            return 1;
+        } else {
+            return -1;
+        }
     }
 // End Methods
     
@@ -204,8 +269,8 @@ public class Date{
 
     //TODO:
     //[] Update UML
-    //[] Add getters
-    //[] Add setters
+    //[x] Add getters
+    //[x] Add setters
     //[] Add ability to subtract dates(8/20/19) by (9/10/20, days)
     //[] Add ability to get the new date (8/20/19) if increased by days
     //[] Add ability to add/subtract days by days
@@ -215,12 +280,12 @@ public class Date{
     /*
     - [x] Date will be set by year, month and day.
     - [x] The date can be set by year, month and date individually or as a whole.
-    - [] Addition of years, months or days or another date to the current established date.
-    - [] Any number of years, months or days can be added.
+    - [x] Addition of years, months or days or another date to the current established date.
+    - [x] Any number of years, months or days can be added.
     - [] Subtraction of years, months, days or another date to the current established date.
     - [] Any number of years, months or days can be subtracted.
     - [] Difference in days between current established date and another given date.
-    - [] Comparison between current established date and another given date.
+    - [x] Comparison between current established date and another given date.
         -1 if current established date is less than the other date.
         0 if both are equal.
         1 if current established date is greater than the other time.

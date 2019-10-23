@@ -21,18 +21,6 @@ public class App{
         tm3 = tm1.add(tm2);
         System.out.println(tm3.toString());
 
-        // Date d1 = new Date(1994, Date.Month.MAY, 23);
-        // System.out.println(Date.Month.JUN);
-
-        // TODO: Make the below line compile and run :)
-        System.out.println(Date.Month.JUN.compareTo(Date.Month.AUG));
-        // System.out.println(Date.Month.JUN.diff(Date.Month.AUG));
-        System.out.println(Date.Month.JAN.compareTo(Date.Month.DEC));
-        // System.out.println(Date.Month.JAN.diff(Date.Month.DEC));
-        System.out.println(Date.Month.SEP.compareTo(Date.Month.SEP));
-        // System.out.println(Date.Month.SEP.diff(Date.Month.SEP));
-        System.out.println(Date.Month.DEC.compareTo(Date.Month.SEP));
-        // System.out.println(Date.Month.DEC.diff(Date.Month.SEP));
 
         System.out.println(Date.Month.DEC.days);
         System.out.println(Date.Month.values()[0]);
@@ -41,92 +29,145 @@ public class App{
         System.out.println(dt1.getDayspan());
 
         Date dt2 = new Date(1999, Date.Month.FEB, 3);
-        System.out.println(dt2.getYear());
-        System.out.println(dt2.getMonth());
-        System.out.println(Date.Month.DEC.ordinal());
-        System.out.println(Date.Month.DEC.shortName);
-        System.out.println(Date.Month.DEC.longName);
-        System.out.println(Date.Month.DEC.days);
-        System.out.println(dt2.toString());
+        // System.out.println(dt2.getYear());
+        // System.out.println(dt2.getMonth());
+        // System.out.println(Date.Month.DEC.ordinal());
+        // System.out.println(Date.Month.DEC.shortName);
+        // System.out.println(Date.Month.DEC.longName);
+        // System.out.println(Date.Month.DEC.days);
+        // System.out.println(dt2.toString());
 
 
         Date dt5 = new Date(1994, Date.Month.MAY, 13);
         System.out.println(dt5.toString());
 
-        //testMethods();
+        Date dt9 = dt5.add(1, 1, 1);
+        Date dt10 = dt9.add(8, 8, 16);
+       
+        System.out.println(dt9.toString());
+        System.out.println(dt10.toString());
+        System.out.println(Date.isLeapYear(2004));
+
+        // unitTestConvToDays();
+
+        System.out.println(Date.Month.values().length);
+        System.out.println(Date.Month.values()[0].shortName);
+
         
-        //showing how math can be used to get the day count
-        System.out.println(Integer.toString((Date.Month.values()[Date.Month.JAN.ordinal() + 5]).days));
-        
-        System.out.println(Integer.toString((int)Date.convToDays(1960, 1, 1)));
+//Date.Add() - Start
+        //Days
+        Date dateTestAddControlObj = new Date(1900, Date.Month.JAN, 0);
+        Date dateTestAddExpectedOut1 = new Date(1900, Date.Month.JAN, 1);
+        unitTestDateAdd(dateTestAddControlObj, 0, 0, 1, dateTestAddExpectedOut1);
 
-        unitTestConvFromDays();
-        unitTestConvToDays();
+        Date dateTestAddExpectedOut2 = new Date(1900, Date.Month.JAN, 31);
+        unitTestDateAdd(dateTestAddControlObj, 0, 0, 31, dateTestAddExpectedOut2);
 
-    }
+        Date dateTestAddExpectedOut3 = new Date(1900, Date.Month.FEB, 10);
+        unitTestDateAdd(dateTestAddControlObj, 0, 0, 41, dateTestAddExpectedOut3);
 
-    private static void unitTestConvToDays(){
-        System.out.println("Start: Unit Test convToDays");
-        System.out.println(Integer.toString((int)Date.convToDays(1900, 1, 0)));
-        System.out.println(Integer.toString((int)Date.convToDays(1900, 1, 1)));
-        System.out.println(Integer.toString((int)Date.convToDays(1900, 1, 31)));
-        System.out.println(Integer.toString((int)Date.convToDays(1900, 2, 9)));
-        System.out.println(Integer.toString((int)Date.convToDays(1900, 3, 1)));
-        System.out.println(Integer.toString((int)Date.convToDays(1900, 4, 30)));
-        System.out.println(Integer.toString((int)Date.convToDays(1900, 8, 28)));
-        System.out.println(Integer.toString((int)Date.convToDays(1900, 12, 31)));
-        System.out.println(Integer.toString((int)Date.convToDays(1901, 1, 1)));
-        System.out.println(Integer.toString((int)Date.convToDays(1901, 5, 15)));
-        System.out.println(Integer.toString((int)Date.convToDays(1903, 12, 31)));
-        System.out.println(Integer.toString((int)Date.convToDays(1904, 2, 29)));
-        System.out.println(Integer.toString((int)Date.convToDays(1908, 4, 28)));
-        System.out.println(Integer.toString((int)Date.convToDays(1916, 8, 24)));
-        System.out.println(Integer.toString((int)Date.convToDays(1933, 4, 17)));
-        System.out.println(Integer.toString((int)Date.convToDays(1966, 8, 2)));
-        System.out.println(Integer.toString((int)Date.convToDays(2033, 3, 4)));
-        System.out.println(Integer.toString((int)Date.convToDays(2166, 5, 6)));
-        System.out.println("End: Unit Test convToDays\n");
-    }
+        Date dateTestAddExpectedOut4 = new Date(1900, Date.Month.MAR, 1);
+        unitTestDateAdd(dateTestAddControlObj, 0, 0, 60, dateTestAddExpectedOut4);
 
-    private static void unitTestConvFromDays(){
-        System.out.println("Start: Unit Test convFromDays");
-        Date.convFromDays(0);
-        Date.convFromDays(1);
-        Date.convFromDays(31);
-        Date.convFromDays(40);
-        Date.convFromDays(60);
-        Date.convFromDays(120);
-        Date.convFromDays(240);
-        Date.convFromDays(365);
-        Date.convFromDays(366);
-        Date.convFromDays(500);
-        Date.convFromDays(1460);
-        Date.convFromDays(1520);
-        Date.convFromDays(3040);
-        Date.convFromDays(6080);
-        Date.convFromDays(12160);
-        Date.convFromDays(24320);
-        Date.convFromDays(48640);
-        Date.convFromDays(97280);
-        System.out.println("End: Unit Test convFromDays\n");
-    }
+        Date dateTestAddExpectedOut5 = new Date(1901, Date.Month.MAY, 15);
+        unitTestDateAdd(dateTestAddControlObj, 0, 0, 500, dateTestAddExpectedOut5);
 
-    private static void testMethods(){
-        //Testing Date.isLeapYear(int year)
-        for (int i = 1900; i <= 1950; i++) {
-            System.out.println(String.format("%d %s:%s", i, "isLeap", Date.isLeapYear(i)));
+        Date dateTestAddExpectedOut6 = new Date(1902, Date.Month.SEP, 27);
+        unitTestDateAdd(dateTestAddControlObj, 0, 0, 1000, dateTestAddExpectedOut6);
+
+        Date dateTestAddExpectedOut7 = new Date(1905, Date.Month.JUN, 23);
+        unitTestDateAdd(dateTestAddControlObj, 0, 0, 2000, dateTestAddExpectedOut7);
+
+        //Months
+        Date dateTestAddExpectedOut8 = new Date(1900, Date.Month.FEB, 0);
+        unitTestDateAdd(dateTestAddControlObj, 0, 1, 0, dateTestAddExpectedOut8);
+
+        Date dateTestAddExpectedOut9 = new Date(1902, Date.Month.AUG, 0);
+        unitTestDateAdd(dateTestAddControlObj, 0, 31, 0, dateTestAddExpectedOut9);
+
+        Date dateTestAddExpectedOut10 = new Date(1903, Date.Month.JUN, 0);
+        unitTestDateAdd(dateTestAddControlObj, 0, 41, 0, dateTestAddExpectedOut10);
+
+        Date dateTestAddExpectedOut11 = new Date(1905, Date.Month.JAN, 0);
+        unitTestDateAdd(dateTestAddControlObj, 0, 60, 0, dateTestAddExpectedOut11);
+
+        Date dateTestAddExpectedOut12 = new Date(1941, Date.Month.SEP, 0);
+        unitTestDateAdd(dateTestAddControlObj, 0, 500, 0, dateTestAddExpectedOut12);
+
+        Date dateTestAddExpectedOut13 = new Date(1983, Date.Month.MAY, 0);
+        unitTestDateAdd(dateTestAddControlObj, 0, 1000, 0, dateTestAddExpectedOut13);
+
+        Date dateTestAddExpectedOut14 = new Date(2066, Date.Month.SEP, 0);
+        unitTestDateAdd(dateTestAddControlObj, 0, 2000, 0, dateTestAddExpectedOut14);
+
+
+
+        try {
+            unitTestDateAdd(dateTestAddControlObj, 0, 0, -1, dateTestAddControlObj);
+        } catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
         }
-        
-        for (int i = 1900; i <= 2000; i++){
-            int x = (int)Date.convToDays(i, 5, 1);
-            System.out.println(String.format("Year:%d ConvToDays:%s ", i, Integer.toString((int)Date.convToDays(i, 1, 1))));
-            Date.convFromDays(x);
+
+        try {
+            unitTestDateAdd(dateTestAddControlObj, 0, -1, 0, dateTestAddControlObj);
+        } catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
         }
-        
+
+        try {
+            unitTestDateAdd(dateTestAddControlObj, -1, 0, 0, dateTestAddControlObj);
+        } catch (IllegalArgumentException exception) {
+            exception.printStackTrace();
+        }
+//Date.Add() - End       
+
+//Date.compareTo() - Start       
+        Date dateTestCompareToControlObj = new Date(1900, Date.Month.JAN, 5);
+        Date dateTestCompareToCompareObj1 = new Date(1900, Date.Month.JAN, 5);
+        int dateTestComparedToExpectedOut1 = -0;
+        unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj1, dateTestComparedToExpectedOut1);
+
+        Date dateTestCompareToCompareObj2 = new Date(1900, Date.Month.JAN, 8);
+        int dateTestComparedToExpectedOut2 = -1;
+        unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj2, dateTestComparedToExpectedOut2);
+
+        Date dateTestCompareToCompareObj3 = new Date(1900, Date.Month.JAN, 1);
+        int dateTestComparedToExpectedOut3 = 1;
+        unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj3, dateTestComparedToExpectedOut3);
+//Date.compareTo() - End
     }
 
-    private static void howToDo(){
-        int x = Date.Month.DEC.days;
-        System.out.println(Integer.toString(x));
+    private static void unitTestDateCompareTo(Date obj1, Date obj2, int expectedOut){
+        int result = obj1.compareTo(obj2);
+        boolean testPass = false;
+
+        if (result == expectedOut){
+            testPass = true;
+        }
+
+        System.out.println(String.format("Test Date.compareTo() obj1:%s obj2:%s  ExpectedOut:%d TestPass:%s",obj1.toString(), obj2.toString(), result, testPass ));
     }
+
+    private static void unitTestDateAdd(Date obj1, int years, int months, int days, Date expectedOut){
+        Date result = obj1.add(years, months, days);
+        boolean testPass = false;
+        int x = expectedOut.compareTo(result);
+
+        if (x == 0){
+            testPass = true;
+        }
+
+        System.out.println(String.format("Test Date.add() obj1:%s + (%d/%d/%d) // EO:%s AO:%s // TestPass:%s", obj1.toString(), years, months, days, expectedOut.toString(), result.toString(), testPass ));
+    }
+
+    private static void unitTestDateSubtract(){
+
+    }
+
+    private static void unitTestDateConvToDays(){
+
+    }
+
+    //TODO:
+    //[] Add test for isLeapYear
 }
