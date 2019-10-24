@@ -129,9 +129,18 @@ public class Date{
         return null;
     }
 
-    public Date diff(Date input){
+    public int diff(Date input){
         //return in value of days
-        return null;
+        int payload = 0;
+        int currentDays = (int)convToDays(this.year, this.month.ordinal() + 1, this.day);
+        int inputDays = (int)convToDays(input.year, input.month.ordinal() + 1, input.day);
+
+        if (currentDays > inputDays){
+            payload = currentDays - inputDays;
+        } else {
+            payload = inputDays - currentDays;
+        }
+        return payload;
     }
 
     public Date add(int years, int months, int days){

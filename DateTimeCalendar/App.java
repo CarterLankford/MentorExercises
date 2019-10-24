@@ -53,74 +53,6 @@ public class App{
         System.out.println(Date.Month.values().length);
         System.out.println(Date.Month.values()[0].shortName);
 
-        
-//Date.Add() - Start
-        //Days
-        Date dateTestAddControlObj = new Date(1900, Date.Month.JAN, 0);
-        Date dateTestAddExpectedOut1 = new Date(1900, Date.Month.JAN, 1);
-        unitTestDateAdd(dateTestAddControlObj, 0, 0, 1, dateTestAddExpectedOut1);
-
-        Date dateTestAddExpectedOut2 = new Date(1900, Date.Month.JAN, 31);
-        unitTestDateAdd(dateTestAddControlObj, 0, 0, 31, dateTestAddExpectedOut2);
-
-        Date dateTestAddExpectedOut3 = new Date(1900, Date.Month.FEB, 10);
-        unitTestDateAdd(dateTestAddControlObj, 0, 0, 41, dateTestAddExpectedOut3);
-
-        Date dateTestAddExpectedOut4 = new Date(1900, Date.Month.MAR, 1);
-        unitTestDateAdd(dateTestAddControlObj, 0, 0, 60, dateTestAddExpectedOut4);
-
-        Date dateTestAddExpectedOut5 = new Date(1901, Date.Month.MAY, 15);
-        unitTestDateAdd(dateTestAddControlObj, 0, 0, 500, dateTestAddExpectedOut5);
-
-        Date dateTestAddExpectedOut6 = new Date(1902, Date.Month.SEP, 27);
-        unitTestDateAdd(dateTestAddControlObj, 0, 0, 1000, dateTestAddExpectedOut6);
-
-        Date dateTestAddExpectedOut7 = new Date(1905, Date.Month.JUN, 23);
-        unitTestDateAdd(dateTestAddControlObj, 0, 0, 2000, dateTestAddExpectedOut7);
-
-        //Months
-        Date dateTestAddExpectedOut8 = new Date(1900, Date.Month.FEB, 0);
-        unitTestDateAdd(dateTestAddControlObj, 0, 1, 0, dateTestAddExpectedOut8);
-
-        Date dateTestAddExpectedOut9 = new Date(1902, Date.Month.AUG, 0);
-        unitTestDateAdd(dateTestAddControlObj, 0, 31, 0, dateTestAddExpectedOut9);
-
-        Date dateTestAddExpectedOut10 = new Date(1903, Date.Month.JUN, 0);
-        unitTestDateAdd(dateTestAddControlObj, 0, 41, 0, dateTestAddExpectedOut10);
-
-        Date dateTestAddExpectedOut11 = new Date(1905, Date.Month.JAN, 0);
-        unitTestDateAdd(dateTestAddControlObj, 0, 60, 0, dateTestAddExpectedOut11);
-
-        Date dateTestAddExpectedOut12 = new Date(1941, Date.Month.SEP, 0);
-        unitTestDateAdd(dateTestAddControlObj, 0, 500, 0, dateTestAddExpectedOut12);
-
-        Date dateTestAddExpectedOut13 = new Date(1983, Date.Month.MAY, 0);
-        unitTestDateAdd(dateTestAddControlObj, 0, 1000, 0, dateTestAddExpectedOut13);
-
-        Date dateTestAddExpectedOut14 = new Date(2066, Date.Month.SEP, 0);
-        unitTestDateAdd(dateTestAddControlObj, 0, 2000, 0, dateTestAddExpectedOut14);
-
-
-
-        try {
-            unitTestDateAdd(dateTestAddControlObj, 0, 0, -1, dateTestAddControlObj);
-        } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();
-        }
-
-        try {
-            unitTestDateAdd(dateTestAddControlObj, 0, -1, 0, dateTestAddControlObj);
-        } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();
-        }
-
-        try {
-            unitTestDateAdd(dateTestAddControlObj, -1, 0, 0, dateTestAddControlObj);
-        } catch (IllegalArgumentException exception) {
-            exception.printStackTrace();
-        }
-//Date.Add() - End       
-
 //Date.compareTo() - Start       
         Date dateTestCompareToControlObj = new Date(1900, Date.Month.JAN, 5);
         Date dateTestCompareToCompareObj1 = new Date(1900, Date.Month.JAN, 5);
@@ -135,6 +67,30 @@ public class App{
         int dateTestComparedToExpectedOut3 = 1;
         unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj3, dateTestComparedToExpectedOut3);
 //Date.compareTo() - End
+
+//Date.Add() - Start
+        // try {
+        //     unitTestDateAdd(dateTestAddControlObj, 0, 0, -1, dateTestAddControlObj);
+        // } catch (IllegalArgumentException exception) {
+        //     exception.printStackTrace();
+        // }
+
+        // try {
+        //     unitTestDateAdd(dateTestAddControlObj, 0, -1, 0, dateTestAddControlObj);
+        // } catch (IllegalArgumentException exception) {
+        //     exception.printStackTrace();
+        // }
+
+        // try {
+        //     unitTestDateAdd(dateTestAddControlObj, -1, 0, 0, dateTestAddControlObj);
+        // } catch (IllegalArgumentException exception) {
+        //     exception.printStackTrace();
+        // }
+        unitTestDateAdd(0);
+//Date.Add() - End  
+
+
+        unitTestDateDiff(0);
     }
 
     private static void unitTestDateCompareTo(Date obj1, Date obj2, int expectedOut){
@@ -148,16 +104,120 @@ public class App{
         System.out.println(String.format("Test Date.compareTo() obj1:%s obj2:%s  ExpectedOut:%d TestPass:%s",obj1.toString(), obj2.toString(), result, testPass ));
     }
 
-    private static void unitTestDateAdd(Date obj1, int years, int months, int days, Date expectedOut){
-        Date result = obj1.add(years, months, days);
-        boolean testPass = false;
-        int x = expectedOut.compareTo(result);
+    private static void unitTestDateAdd(int showOutput){
+        //showOutput//0 = Show nothing, 1 = show failures, 2 = show all
+        Date dateTestAddControlObj = new Date(1900, Date.Month.JAN, 0);
+        int[][] mArray = {
+                          {0, 0, 1}, 
+                          {0, 0, 31},
+                          {0, 0, 41},
+                          {0, 0, 60},
+                          {0, 0, 500},
+                          {0, 0, 1000},
+                          {0, 0, 2000},
+                          {0, 1, 0},
+                          {0, 31, 0},
+                          {0, 41, 0},
+                          {0, 60, 0},
+                          {0, 500, 0},
+                          {0, 1000, 0},
+                          {0, 2000, 0}
+                         };
 
-        if (x == 0){
-            testPass = true;
+        Date[] expectedResult = new Date[14];
+        expectedResult[0] = new Date(1900, Date.Month.JAN, 1);
+        expectedResult[1] = new Date(1900, Date.Month.JAN, 31);
+        expectedResult[2] = new Date(1900, Date.Month.FEB, 10);
+        expectedResult[3] = new Date(1900, Date.Month.MAR, 10);
+        expectedResult[4] = new Date(1901, Date.Month.MAY, 15);
+        expectedResult[5] = new Date(1902, Date.Month.SEP, 27);
+        expectedResult[6] = new Date(1905, Date.Month.JUN, 23);
+        expectedResult[7] = new Date(1900, Date.Month.FEB, 0);
+        expectedResult[8] = new Date(1902, Date.Month.AUG, 0);
+        expectedResult[9] = new Date(1903, Date.Month.JUN, 0);
+        expectedResult[10] = new Date(1905, Date.Month.JAN, 0);
+        expectedResult[11] = new Date(1941, Date.Month.SEP, 0);
+        expectedResult[12] = new Date(1983, Date.Month.MAY, 0);
+        expectedResult[13] = new Date(2066, Date.Month.SEP, 0);
+
+        for (int i = 0; i < mArray.length; i++) {
+            boolean testPass = false;
+            int x;
+            Date result = new Date(1900, Date.Month.JAN, 0);
+            try {
+                result = dateTestAddControlObj.add(mArray[i][0], mArray[i][1], mArray[i][2]);
+                x = expectedResult[i].compareTo(result);
+            } catch (IllegalArgumentException exception) {
+                x = -1;
+            }
+            
+            
+            if (x == 0) {
+                testPass = true;
+            } 
+
+            if (showOutput == 2) {
+                System.out.println(String.format("Test Date.add() controlObj:%s + (%d/%d/%d) // EO:%s AO:%s // TestPass:%s", dateTestAddControlObj.toString(), mArray[i][0], mArray[i][1], mArray[i][2], expectedResult[i].toString(), result.toString(), testPass ));
+            } else if (showOutput == 1){
+                if (testPass == false){
+                    System.out.println(String.format("Test Date.add() controlObj:%s + (%d/%d/%d) // EO:%s AO:%s // TestPass:%s", dateTestAddControlObj.toString(), mArray[i][0], mArray[i][1], mArray[i][2], expectedResult[i].toString(), result.toString(), testPass ));
+                }
+            }
         }
+    }
 
-        System.out.println(String.format("Test Date.add() obj1:%s + (%d/%d/%d) // EO:%s AO:%s // TestPass:%s", obj1.toString(), years, months, days, expectedOut.toString(), result.toString(), testPass ));
+    private static void unitTestDateDiff(int showOutput){
+        //Wondering how to test for exception, and know that's the result I want
+        //showOutput//0 = Show nothing, 1 = show failures, 2 = show all
+        //expectedResult// -1 = exception thrown
+        Date[] testCases = new Date[10]; 
+        testCases[0] = new Date(1900, Date.Month.JAN, 0);
+        testCases[1] = new Date(1900, Date.Month.JAN, 0);
+        testCases[2] = new Date(1900, Date.Month.JAN, 1);
+        testCases[3] = new Date(1900, Date.Month.JAN, -1);
+        testCases[4] = new Date(0, Date.Month.JAN, 0);
+        testCases[5] = new Date(1900, Date.Month.JAN, 31);
+        testCases[6] = new Date(1900, Date.Month.FEB, 28);
+        testCases[7] = new Date(1900, Date.Month.AUG, 15);
+        testCases[8] = new Date(1900, Date.Month.DEC, 31);
+        testCases[9] = new Date(1904, Date.Month.FEB, 29);
+
+        int[] expectedResult = new int[10];
+        expectedResult[0] = 0;
+        expectedResult[1] = 0;
+        expectedResult[2] = 1;
+        expectedResult[3] = 1;
+        expectedResult[4] = -1;
+        expectedResult[5] = 31;
+        expectedResult[6] = 59;
+        expectedResult[7] = 227;
+        expectedResult[8] = 365;
+        expectedResult[9] = 1520;
+
+
+        for (int i = 0; i < testCases.length; i++){
+            boolean testPass = false;
+            int result;
+            try {
+                result = testCases[0].diff(testCases[i]);
+                // System.out.println(testCases[0].diff(testCases[i]));
+            } catch (IllegalArgumentException exception){
+                result = -1;
+            } 
+            
+            if (result == expectedResult[i]){
+                testPass = true;
+            }
+
+            //Print output options
+            if (showOutput == 2) {
+                System.out.println(String.format("Test Date.diff() obj1:%s obj2:%s // EO:%d AO:%d // TestPass:%s", testCases[0].toString(), testCases[i].toString(), expectedResult[i], result, testPass));
+            } else if (showOutput == 1){
+                if (testPass == false){
+                    System.out.println(String.format("Test Date.diff() obj1:%s obj2:%s // EO:%d AO:%d // TestPass:%s", testCases[0].toString(), testCases[i].toString(), expectedResult[i], result, testPass));
+                }
+            }
+        }
     }
 
     private static void unitTestDateSubtract(){
