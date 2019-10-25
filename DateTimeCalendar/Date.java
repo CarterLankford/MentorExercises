@@ -22,19 +22,8 @@ public class Date{
             throw new IllegalArgumentException("Invalid Year entered");
         }
 
-        // if (month > 0) {
-        //     Month m = Date.Month.values()[month - 1];
-        //     for (int i = 0; i < month - 1;i++){
-        //         if(isLeapYear(year) && Date.Month.values()[i] == Month.FEB){
-        //             payload += Date.Month.values()[i].days + 1;
-        //         } else {
-        //             payload += Date.Month.values()[i].days;
-        //         }
-        //     }
-        // }
-
         // //Process Month Value
-        for (int i = 0; i < month - 1;i++){
+        for (int i = 0; i < month - 1; i++){
             if(isLeapYear(year) && Date.Month.values()[i] == Month.FEB){
                 payload += Date.Month.values()[i].days + 1;
             } else {
@@ -119,14 +108,47 @@ public class Date{
 // End Constructors
 
 // Methods
-    public Date subtract(Date input){
-        //return new date obj
-        return null;
-    }
-
     public Date subtract(int years, int months, int days){
         //return new date obj
-        return null;
+        int y = this.year;
+        int m = this.month.ordinal() + 1;
+        int d = this.day;
+
+        if (years >= 0 && months >= 0 && days >= 0) {
+            //TODO: Check for leap years
+            y -= years;
+
+            if (m - months < 1){
+                while (m - months < 1){
+                    y--;
+                    months -= 12;
+                }
+            }
+            m -= months;
+
+            if (d - days < 1){
+                while(d - days < 1) {
+                    if (m - 1 < 1){
+                        y--;
+                        m = 12;
+                    } else {
+                        m--;
+                    }
+
+                    if (m == 2) {
+                        days -= Date.Month.values()[m - 1].days + 1;
+                    } else {
+                        days -= Date.Month.values()[m - 1].days;
+                    }
+                }
+            } 
+
+            d -= days;
+        } else {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+        return new Date(y, Date.Month.values()[m - 1], d);
     }
 
     public int diff(Date input){
@@ -313,6 +335,13 @@ public class Date{
 
     //CAL: Removed because you can't add two absolute Dates
     // public Date add(int years, int months, int days){
+    //     return null;
+    // }
+
+    // public Date subtract(Date input){
+    //     //return new date obj
+    //     //translate both into days, subtract and convert back to date. 
+    //     // This is the same as diff, removing this and keeping diff
     //     return null;
     // }
 

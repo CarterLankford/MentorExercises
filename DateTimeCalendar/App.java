@@ -57,15 +57,15 @@ public class App{
         Date dateTestCompareToControlObj = new Date(1900, Date.Month.JAN, 5);
         Date dateTestCompareToCompareObj1 = new Date(1900, Date.Month.JAN, 5);
         int dateTestComparedToExpectedOut1 = -0;
-        unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj1, dateTestComparedToExpectedOut1);
+        // unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj1, dateTestComparedToExpectedOut1);
 
         Date dateTestCompareToCompareObj2 = new Date(1900, Date.Month.JAN, 8);
         int dateTestComparedToExpectedOut2 = -1;
-        unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj2, dateTestComparedToExpectedOut2);
+        // unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj2, dateTestComparedToExpectedOut2);
 
         Date dateTestCompareToCompareObj3 = new Date(1900, Date.Month.JAN, 1);
         int dateTestComparedToExpectedOut3 = 1;
-        unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj3, dateTestComparedToExpectedOut3);
+        // unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj3, dateTestComparedToExpectedOut3);
 //Date.compareTo() - End
 
 //Date.Add() - Start
@@ -91,6 +91,9 @@ public class App{
 
 
         unitTestDateDiff(0);
+        unitTestDateSubtract(0);
+
+        // System.out.println(Date.isLeapYear(1948));
     }
 
     private static void unitTestDateCompareTo(Date obj1, Date obj2, int expectedOut){
@@ -220,7 +223,139 @@ public class App{
         }
     }
 
-    private static void unitTestDateSubtract(){
+    private static void unitTestDateSubtract(int showOutput){
+        //showOutput//0 = Show nothing, 1 = show failures, 2 = show all
+        Date dateTestSubtractControlObj = new Date(1950, Date.Month.MAY, 15);
+        Date valueToCheckForException = new Date(1900, Date.Month.DEC, 32);
+
+        // Date[] subtractBy = new Date[1];
+        // subtractBy[0] = new Date(1900, Date.Month.JAN, 14);
+
+        int[][] subtractBy = {
+                              {1, 0, 0},
+                              {0, 0, 0},
+                              {-1, 0, 0},
+                              {10, 0, 0},
+                              {50, 0, 0},
+                              {100, 0, 0},
+                              {0, 1, 0},
+                              {0, -1, 0},
+                              {0, 2, 0},
+                              {0, 5, 0},
+                              {0, 10, 0},
+                              {0, 20, 0},
+                              {0, 40, 0},
+                              {0, 0, 1},
+                              {0, 0, -1},
+                              {0, 0, 10},
+                              {0, 0, 20},
+                              {0, 0, 40},
+                              {0, 0, 80},
+                              {0, 0, 160},
+                              {1, 1, 1},
+                              {2, 2, 15},
+                              {10, 10, 10}
+                             };
+
+        Date[] expectedResult = new Date[23];
+        expectedResult[0] = new Date(1949, Date.Month.MAY, 15);
+        expectedResult[1] = new Date(1950, Date.Month.MAY, 15);
+        expectedResult[2] = new Date(1900, Date.Month.DEC, 32);
+        expectedResult[3] = new Date(1940, Date.Month.MAY, 15);
+        expectedResult[4] = new Date(1900, Date.Month.MAY, 15);
+        expectedResult[5] = new Date(1900, Date.Month.DEC, 32);
+        expectedResult[6] = new Date(1950, Date.Month.APR, 15);
+        expectedResult[7] = new Date(1900, Date.Month.DEC, 32);
+        expectedResult[8] = new Date(1950, Date.Month.MAR, 15);
+        expectedResult[9] = new Date(1949, Date.Month.DEC, 15);
+        expectedResult[10] = new Date(1949, Date.Month.JUL, 15);
+        expectedResult[11] = new Date(1948, Date.Month.SEP, 15);
+        expectedResult[12] = new Date(1947, Date.Month.JAN, 15);
+        expectedResult[13] = new Date(1950, Date.Month.MAY, 14);
+        expectedResult[14] = new Date(1900, Date.Month.DEC, 32);
+        expectedResult[15] = new Date(1950, Date.Month.MAY, 5);
+        expectedResult[16] = new Date(1950, Date.Month.APR, 25);
+        expectedResult[17] = new Date(1950, Date.Month.APR, 5);
+        expectedResult[18] = new Date(1950, Date.Month.FEB, 24);
+        expectedResult[19] = new Date(1949, Date.Month.DEC, 6);
+        expectedResult[20] = new Date(1949, Date.Month.APR, 14);
+        expectedResult[21] = new Date(1948, Date.Month.FEB, 29);
+        expectedResult[22] = new Date(1939, Date.Month.JUL, 5);
+
+        for (int i = 0; i < subtractBy.length; i++) {
+            //as a try catch for invalid input if the date is year/12/32, then that would be a queue to look for for the exception.
+            boolean testPass = false;
+
+            try {
+                Date actualResult = dateTestSubtractControlObj.subtract(subtractBy[i][0], subtractBy[i][1], subtractBy[i][2]);
+                int compareToExpected = expectedResult[i].compareTo(actualResult);
+
+                if (compareToExpected == 0) {
+                    testPass = true;
+                }
+
+                if (showOutput == 2) {
+                    System.out.println(String.format("Test Date.subtract() controlObj:%s modifier:%d/%d/%d // EO:%s AO:%s // TestPass:%s", dateTestSubtractControlObj.toString(), subtractBy[i][0], subtractBy[i][1], subtractBy[i][2], expectedResult[i].toString(), actualResult.toString(), testPass ));
+                } else if (showOutput == 1) {
+                    if (testPass == false) {
+
+                    }
+                }
+            } catch (IllegalArgumentException exception) {
+                if (expectedResult[i].compareTo(valueToCheckForException) == 0) {
+                    testPass = true;
+                } 
+
+                if (showOutput == 2) {
+                    System.out.println(String.format("Test Date.subtract() controlObj:%s modifier:%d/%d/%d // EO:%s AO:%s // TestPass:%s", dateTestSubtractControlObj.toString(), subtractBy[i][0], subtractBy[i][1], subtractBy[i][2], expectedResult[i].toString(), "Invalid value", testPass ));
+                } else if (showOutput == 1) {
+                    if (testPass == false) {
+
+                    }
+                }
+            }
+
+            
+            
+
+            
+
+            
+
+            // boolean testPass = false;
+            // Date actualResult = dateTestSubtractControlObj.subtract(subtractBy[i][0], subtractBy[i][1], subtractBy[i][2]);
+            // int compareToExpected = expectedResult[i].compareTo(actualResult);
+
+            // if (compareToExpected == 0){
+            //     testPass = true;
+            // }
+
+            // if (showOutput == 2) {
+            //     System.out.println(String.format("Test Date.subtract() controlObj:%s modifier:%d/%d/%d // EO:%s AO:%s // TestPass:%s", dateTestSubtractControlObj.toString(), subtractBy[i][0], subtractBy[i][1], subtractBy[i][2], expectedResult[i].toString(), actualResult.toString(), testPass ));
+            // } else if (showOutput == 1) {
+            //     if (testPass == false) {
+
+            //     }
+            // }
+        }
+
+        // Date actualResult = dateTestSubtractControlObj.subtract(subtractBy[0][0], subtractBy[0][1], subtractBy[0][2]);
+        // int compareToExpected = expectedResult[0].compareTo(actualResult);
+        // System.out.println(compareToExpected);
+        // if (compareToExpected == 0){
+        //     testPass = true;
+        // }
+
+        // if (showOutput == 2) {
+        //     System.out.println(String.format("Test Date.subtract() controlObj:%s modifier:%d/%d/%d // EO:%s AO:%s // TestPass:%s", dateTestSubtractControlObj.toString(), subtractBy[0][0], subtractBy[0][1], subtractBy[0][2], expectedResult[0].toString(), actualResult.toString(), testPass ));
+        // } else if (showOutput == 1) {
+        //     if (testPass == false) {
+
+        //     }
+        // }
+    }
+
+    private static void unitTestDateSubtractByInt(){
 
     }
 
