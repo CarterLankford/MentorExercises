@@ -91,11 +91,10 @@ public class Date{
         this.dayspan = 0;
     }
 
-    // new Date(2019, Month.AUG, 27); // absolute  CAL:(this is an absolute day, can you question what day this is?)
     public Date(int year, Month month, int day){
-        this.year = year;
-        this.day = day;
-        this.month = month;
+        setYear(year);
+        setDay(day);
+        setMonth(month);
     }
 
     public Date(Month month){
@@ -103,19 +102,17 @@ public class Date{
     }
 
     public Date(int input){
-        this.dayspan = input;
+        setDayspan(input);
     }
 // End Constructors
 
 // Methods
     public Date subtract(int years, int months, int days){
-        //return new date obj
         int y = this.year;
         int m = this.month.ordinal() + 1;
         int d = this.day;
 
         if (years >= 0 && months >= 0 && days >= 0) {
-            //TODO: Check for leap years
             y -= years;
 
             if (m - months < 1){
@@ -136,18 +133,20 @@ public class Date{
                     }
 
                     if (m == 2) {
-                        days -= Date.Month.values()[m - 1].days + 1;
-                    } else {
-                        days -= Date.Month.values()[m - 1].days;
-                    }
+                        if (isLeapYear(y)) {
+                            days -= Date.Month.values()[m - 1].days + 1;
+                        }
+                    } 
+
+                    days -= Date.Month.values()[m - 1].days;
                 }
             } 
-
             d -= days;
         } else {
             throw new IllegalArgumentException("Invalid input");
         }
-
+        
+        //Returning new object is a design decision. Unsure if new object or reference would be needed, to play it safe returning new obj. Example: returning vacation days might need to be a new hash.
         return new Date(y, Date.Month.values()[m - 1], d);
     }
 
@@ -175,7 +174,7 @@ public class Date{
             //handle Months
             if (months > 12) {
                 years += months / 12;
-                months -= (months / 12) * 12;
+                months = months % 12;
             }
             //set months back to 0-11
             months--;
@@ -202,7 +201,6 @@ public class Date{
                             months++;
                         }
                     }
-                    
                 } else {
                     break;
                 }
@@ -287,6 +285,10 @@ public class Date{
     private void setMonth(Month month){
         this.month = month;
     }
+
+    private void setDay(int day) {
+        this.day = day;
+    }
 // End Getters and setters
 
     @Override  
@@ -295,16 +297,19 @@ public class Date{
         // return String.format("%s/%s/%s", this.year, String.valueOf(this.month.ordinal() + 1), this.day);
         // return this.getClass().getName() + '@' + Integer.toHexString(this.hashCode()) + '[' + this.year + "/" + String.valueOf(this.month.ordinal() + 1) + "/" + this.day + ']';
         // return this.getClass().getName() + '@' + Integer.toHexString(this.hashCode()) + '[' + String.format("%d/%d/%d", this.year, this.month.ordinal() + 1, this.day) + ']';
-        return String.format("%s@%s[%4d/%02d/%02d]", this.getClass().getName(), Integer.toHexString(this.hashCode()), this.year, this.month.ordinal() + 1, this.day);
+
+        //Removed the has part, it's crowding all my tests with garbage. 
+        // return String.format("%s@%s[%4d/%02d/%02d]", this.getClass().getName(), Integer.toHexString(this.hashCode()), this.year, this.month.ordinal() + 1, this.day);
+        return String.format("[%4d/%02d/%02d]", this.year, this.month.ordinal() + 1, this.day);
     }
 
     //TODO:
     //[] Update UML
     //[x] Add getters
     //[x] Add setters
-    //[] Add ability to subtract dates(8/20/19) by (9/10/20, days)
-    //[] Add ability to get the new date (8/20/19) if increased by days
-    //[] Add ability to add/subtract days by days
+    //[x] Add ability to subtract dates(8/20/19) by (9/10/20, days)
+    //[x] Add ability to get the new date (8/20/19) if increased by days
+    //[x] Add ability to add/subtract days by days
     //[x] Add isLeapYear Method, to return boolean based on year entered
     //[x] Convert from days to date, need it to add/subtract
 
@@ -313,9 +318,9 @@ public class Date{
     - [x] The date can be set by year, month and date individually or as a whole.
     - [x] Addition of years, months or days or another date to the current established date.
     - [x] Any number of years, months or days can be added.
-    - [] Subtraction of years, months, days or another date to the current established date.
-    - [] Any number of years, months or days can be subtracted.
-    - [] Difference in days between current established date and another given date.
+    - [x] Subtraction of years, months, days or another date to the current established date.
+    - [x] Any number of years, months or days can be subtracted.
+    - [x] Difference in days between current established date and another given date.
     - [x] Comparison between current established date and another given date.
         -1 if current established date is less than the other date.
         0 if both are equal.
