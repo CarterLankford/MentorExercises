@@ -7,7 +7,7 @@ public class DateTime{
     [x] Addition to the current established DateTime by years, months, days, hours, 
        minutes or seconds or another DateTime.
     [] Subtraction to the current established DateTime by years, months, days, hours, 
-        minutes or seconds or another DateTime.
+        minutes or seconds.
     [] Given two DateTimes calculate the difference between them.
     */
 
@@ -47,35 +47,55 @@ public class DateTime{
 //
 
 //Methods
-    //Won't do this, similar to design decision made in Date.add() at best this is arbitrary
-    // public DateTime add(DateTime dateTime) {
-    //     return null;
-    // }
-
     public DateTime add(int years, int months, int days, int hours, int minutes, int seconds) {
-        int combindSeconds = time.getSecond(true) + (hours * 3600 + minutes * 60 + seconds);
-        int additionalDays = 0;
-
-        if ( combindSeconds >= 86400) {
-            //Obtain full "Days" from the total amount of seconds
-            additionalDays += combindSeconds / 86400;
-            //Obtain the remaining seconds
-            combindSeconds = combindSeconds % 86400;
+        if (years >= 0 && months >= 0 && days >= 0 && hours >= 0 && minutes >= 0 && seconds >= 0) {
+            int combindSeconds = time.getSecond(true) + (hours * 3600 + minutes * 60 + seconds);
+            int additionalDays = 0;
+    
+            if ( combindSeconds >= 86400) {
+                //Obtain full "Days" from the total amount of seconds
+                additionalDays += combindSeconds / 86400;
+                //Obtain the remaining seconds
+                combindSeconds = combindSeconds % 86400;
+            }
+    
+            Time timeOutput = new Time(0, 0, combindSeconds);
+            Date dateOutput = this.date.add(years, months, days + additionalDays);
+            return new DateTime(dateOutput, timeOutput);
+        } else {
+            throw new IllegalArgumentException("Invalid input");
         }
-
-        Time timeOutput = new Time(0, 0, combindSeconds);
-        Date dateOutput = this.date.add(years, months, days + additionalDays);
-
-        return new DateTime(dateOutput, timeOutput);
+        
     }
 
     public DateTime subtract(int years, int months, int days, int hours, int minutes, int seconds) {
-        //TODO: add logic
-        return null;
+        if (years >= 0 && months >= 0 && days >= 0 && hours >= 0 && minutes >= 0 && seconds >= 0) {
+            int reduceTimeBySeconds = hours * 3600 + minutes * 60 + seconds;
+            int reduceTimeRollover = reduceTimeBySeconds / 86400;
+
+            Time timeOutput;
+
+            if (time.getSecond(true) - reduceTimeBySeconds % 86400 <= 0) {
+                timeOutput = new Time(0, 0, time.getSecond(true));
+            } else {
+                timeOutput = new Time(0, 0, time.getSecond(true) - (reduceTimeBySeconds % 86400) );
+            }
+
+            // Time timeOutput = new Time(0, 0, time.getSecond(true) - (reduceTimeBySeconds % 86400) );
+            Date dateOutput = this.date.subtract(years, months, days + reduceTimeRollover);
+            return new DateTime(dateOutput, timeOutput);
+
+        } else {
+            throw new IllegalArgumentException("Invalid input");
+        }
+
+
+        // return null;
     }
 
     public String diff(DateTime dateTime) {
         //TODO: add logic
+        //use a String.format to provide payload
         return null;
     }
 
@@ -125,13 +145,16 @@ public class DateTime{
 //
 
 
-    //add Date Date
-    //add Time time
-    //add DateTime datetime
     //Subtract Date Date
     //Subtract Time time
     //Subtract DateTime datetime
     //Diff DateTime DateTime
 
     //toString()
+
+
+    //Won't do this, similar to design decision made in Date.add() at best this is arbitrary
+    // public DateTime add(DateTime dateTime) {
+    //     return null;
+    // }
 }

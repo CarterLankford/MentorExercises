@@ -76,6 +76,7 @@ public class App{
         //Test DateTime
         unitTestDateTimeConstructors(0);
         unitTestDateTimeAdd(0);
+        unitTestDateTimeSubtract(0);
     }
 
     private static void unitTestDateCompareTo(Date obj1, Date obj2, int expectedOut){
@@ -321,8 +322,8 @@ public class App{
     }
 
     private static void unitTestDateTimeAdd(int showOutput) {
-        DateTime dateTimeConstructorsControlObj = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 30);
-        DateTime valueToCheckForException = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+        DateTime dateTimeAddControlObj = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 30);
+        DateTime valueToCheckForException = new DateTime(1900, Date.Month.DEC, 32, 25, 61, 61);
 
         int[][] addBy = {
                          {0, 0, 0, 0, 0, 0},
@@ -361,10 +362,16 @@ public class App{
                          {20, 20, 20, 20, 20, 20},
                          {40, 40, 40, 40, 40, 40},
                          {80, 80, 80, 80, 80, 80},
-                         {160, 160, 160, 160, 160, 160}
+                         {160, 160, 160, 160, 160, 160},
+                         {-1, 0, 0, 0, 0, 0},
+                         {0, -1, 0, 0, 0, 0},
+                         {0, 0, -1, 0, 0, 0},
+                         {0, 0, 0, -1, 0, 0},
+                         {0, 0, 0, 0, -1, 0},
+                         {0, 0, 0, 0, 0, -1}
                         };
 
-        DateTime[] expectedResult = new DateTime[37];
+        DateTime[] expectedResult = new DateTime[43];
         expectedResult[0] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 30); //0
         expectedResult[1] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 31); //1
         expectedResult[2] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 40); //10
@@ -401,14 +408,20 @@ public class App{
         expectedResult[33] = new DateTime(2022, Date.Month.FEB, 5, 8, 50, 50); //0
         expectedResult[34] = new DateTime(2043, Date.Month.OCT, 27, 5, 11, 10); //0
         expectedResult[35] = new DateTime(2087, Date.Month.APR, 8, 21, 51, 50); //0
-        expectedResult[36] = new DateTime(2173, Date.Month.MAR, 1, 7, 13, 10); //0
+        expectedResult[36] = new DateTime(1900, Date.Month.DEC, 32, 25, 61, 61);
+        expectedResult[37] = new DateTime(1900, Date.Month.DEC, 32, 25, 61, 61);
+        expectedResult[38] = new DateTime(1900, Date.Month.DEC, 32, 25, 61, 61);
+        expectedResult[39] = new DateTime(1900, Date.Month.DEC, 32, 25, 61, 61);
+        expectedResult[40] = new DateTime(1900, Date.Month.DEC, 32, 25, 61, 61);
+        expectedResult[41] = new DateTime(1900, Date.Month.DEC, 32, 25, 61, 61);
+        expectedResult[42] = new DateTime(1900, Date.Month.DEC, 32, 25, 61, 61);
         
         for (int i = 0; i < addBy.length; i++) {
             boolean testPass = false;
             int compareToExpected;
 
             try {
-                DateTime actualResult = dateTimeConstructorsControlObj.add(addBy[i][0], addBy[i][1], addBy[i][2], addBy[i][3], addBy[i][4], addBy[i][5]);
+                DateTime actualResult = dateTimeAddControlObj.add(addBy[i][0], addBy[i][1], addBy[i][2], addBy[i][3], addBy[i][4], addBy[i][5]);
                 compareToExpected = expectedResult[i].compareTo(actualResult);
 
                 if (compareToExpected == 0) {
@@ -416,7 +429,7 @@ public class App{
                 }
 
                 if (showOutput == 2) {
-                    System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeConstructorsControlObj.toString(), addBy[i][0], addBy[i][1], addBy[i][2], addBy[i][3], addBy[i][4], addBy[i][5], expectedResult[i].toString(), actualResult.toString(), testPass ));
+                    System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeAddControlObj.toString(), addBy[i][0], addBy[i][1], addBy[i][2], addBy[i][3], addBy[i][4], addBy[i][5], expectedResult[i].toString(), actualResult.toString(), testPass ));
                 } else if (showOutput == 1) {
                     if (testPass == false) {
 
@@ -430,10 +443,144 @@ public class App{
                 } 
 
                 if (showOutput == 2) {
-                    // System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeConstructorsControlObj.toString(), addBy[i][0], addBy[i][1], addBy[i][2], addBy[i][3], addBy[i][4], addBy[i][5], expectedResult[i].toString(), actualResult.toString(), testPass ));
+                    System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeAddControlObj.toString(), addBy[i][0], addBy[i][1], addBy[i][2], addBy[i][3], addBy[i][4], addBy[i][5], expectedResult[i].toString(), "Invalid input", testPass ));
                 } else if (showOutput == 1) {
                     if (testPass == false) {
+                        System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeAddControlObj.toString(), addBy[i][0], addBy[i][1], addBy[i][2], addBy[i][3], addBy[i][4], addBy[i][5], expectedResult[i].toString(), "Invalid input", testPass ));
+                    }
+                }
+            }
+        }
+        // DateTime actualResult = dateTimeConstructorsControlObj.add(0, 0, 0, 0, 0, 1);
+        // System.out.println(actualResult.toString()); 
+    }
 
+    private static void unitTestDateTimeSubtract(int showOutput) {
+        DateTime dateTimeSubtractControlObj = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 30);
+        DateTime valueToCheckForException = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+
+        int[][] subtractBy = {
+                         {0, 0, 0, 0, 0, 0},
+                         {0, 0, 0, 0, 0, 1},
+                         {0, 0, 0, 0, 0, 10},
+                         {0, 0, 0, 0, 0, 20},
+                         {0, 0, 0, 0, 0, 40},
+                         {0, 0, 0, 0, 0, 80},
+                         {0, 0, 0, 0, 0, 160},
+                         {0, 0, 0, 0, 1, 1},
+                         {0, 0, 0, 0, 10, 10},
+                         {0, 0, 0, 0, 20, 20},
+                         {0, 0, 0, 0, 40, 40},
+                         {0, 0, 0, 0, 80, 80},
+                         {0, 0, 0, 0, 160, 160},
+                         {0, 0, 0, 1, 1, 1},
+                         {0, 0, 0, 10, 10, 10},
+                         {0, 0, 0, 20, 20, 20},
+                         {0, 0, 0, 40, 40, 40},
+                         {0, 0, 0, 80, 80, 80},
+                         {0, 0, 0, 160, 160, 160},
+                         {0, 0, 1, 1, 1, 1},
+                         {0, 0, 10, 10, 10, 10},
+                         {0, 0, 20, 20, 20, 20},
+                         {0, 0, 40, 40, 40, 40},
+                         {0, 0, 80, 80, 80, 80},
+                         {0, 0, 160, 160, 160, 160},
+                         {0, 1, 1, 1, 1, 1},
+                         {0, 10, 10, 10, 10, 10},
+                         {0, 10, 20, 20, 20, 20},
+                         {0, 40, 40, 40, 40, 40},
+                         {0, 80, 80, 80, 80, 80},
+                         {0, 160, 160, 160, 160, 160},
+                         {1, 1, 1, 1, 1, 1},
+                         {10, 10, 10, 10, 10, 10},
+                         {20, 20, 20, 20, 20, 20},
+                         {40, 40, 40, 40, 40, 40},
+                         {80, 80, 80, 80, 80, 80},
+                         {160, 160, 160, 160, 160, 160},
+                         {-1, 0, 0, 0, 0, 0},
+                         {0, -1, 0, 0, 0, 0},
+                         {0, 0, -1, 0, 0, 0},
+                         {0, 0, 0, -1, 0, 0},
+                         {0, 0, 0, 0, -1, 0},
+                         {0, 0, 0, 0, 0, -1}
+                        };
+
+        DateTime[] expectedResult = new DateTime[43];
+        expectedResult[0] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 30); //0
+        expectedResult[1] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 29); //1
+        expectedResult[2] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 20); //10
+        expectedResult[3] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 10); //20
+        expectedResult[4] = new DateTime(2000, Date.Month.MAY, 15, 12, 29, 50); //40
+        expectedResult[5] = new DateTime(2000, Date.Month.MAY, 15, 12, 29, 10); //80
+        expectedResult[6] = new DateTime(2000, Date.Month.MAY, 15, 12, 27, 50); //160
+        expectedResult[7] = new DateTime(2000, Date.Month.MAY, 15, 12, 29, 29); //0
+        expectedResult[8] = new DateTime(2000, Date.Month.MAY, 15, 12, 20, 20); //0
+        expectedResult[9] = new DateTime(2000, Date.Month.MAY, 15, 12, 10, 10); //0
+        expectedResult[10] = new DateTime(2000, Date.Month.MAY, 15, 11, 49, 50); //0
+        expectedResult[11] = new DateTime(2000, Date.Month.MAY, 15, 11, 9, 10); //0
+        expectedResult[12] = new DateTime(2000, Date.Month.MAY, 15, 9, 47, 50); //160, 160
+        expectedResult[13] = new DateTime(2000, Date.Month.MAY, 15, 11, 29, 29); //1, 1, 1
+        expectedResult[14] = new DateTime(2000, Date.Month.MAY, 15, 2, 20, 20); //10, 10, 10
+        expectedResult[15] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 30); //20, 20, 20
+        expectedResult[16] = new DateTime(2000, Date.Month.MAY, 14, 12, 30, 30); //0
+        expectedResult[17] = new DateTime(2000, Date.Month.MAY, 12, 3, 9, 10); 
+        expectedResult[18] = new DateTime(2000, Date.Month.MAY, 9, 12, 30, 30); 
+        expectedResult[19] = new DateTime(2000, Date.Month.MAY, 14, 11, 29, 29);
+        expectedResult[20] = new DateTime(2000, Date.Month.MAY, 5, 2, 20, 20);
+        expectedResult[21] = new DateTime(2000, Date.Month.APR, 25, 12, 30, 30);
+        expectedResult[22] = new DateTime(2000, Date.Month.APR, 4, 12, 30, 30);
+        expectedResult[23] = new DateTime(2000, Date.Month.FEB, 21, 3, 9, 10);
+        expectedResult[24] = new DateTime(1999, Date.Month.NOV, 30, 12, 30, 30);
+        expectedResult[25] = new DateTime(2000, Date.Month.APR, 14, 11, 29, 29);
+        expectedResult[26] = new DateTime(1999, Date.Month.JUL, 5, 2, 20, 20);//
+        expectedResult[27] = new DateTime(1999, Date.Month.JUN, 25, 12, 30, 30);//
+        expectedResult[28] = new DateTime(1996, Date.Month.DEC, 5, 12, 30, 30);//
+        expectedResult[29] = new DateTime(1993, Date.Month.JUN, 24, 3, 9, 10);//
+        expectedResult[30] = new DateTime(1986, Date.Month.AUG, 2, 12, 30, 30);//
+        expectedResult[31] = new DateTime(1999, Date.Month.APR, 14, 11, 29, 29); //
+        expectedResult[32] = new DateTime(1989, Date.Month.JUL, 5, 2, 20, 20);//
+        expectedResult[33] = new DateTime(1978, Date.Month.AUG, 26, 12, 30, 30);//
+        expectedResult[34] = new DateTime(1956, Date.Month.DEC, 5, 12, 30, 30);//
+        expectedResult[35] = new DateTime(1913, Date.Month.JUN, 24, 3, 9, 10);//
+        expectedResult[36] = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+        expectedResult[37] = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+        expectedResult[38] = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+        expectedResult[39] = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+        expectedResult[40] = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+        expectedResult[41] = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+        expectedResult[42] = new DateTime(1900, Date.Month.DEC, 32, 12, 30, 30);
+        
+        for (int i = 0; i < subtractBy.length; i++) {
+            boolean testPass = false;
+            int compareToExpected;
+
+            try {
+                DateTime actualResult = dateTimeSubtractControlObj.subtract(subtractBy[i][0], subtractBy[i][1], subtractBy[i][2], subtractBy[i][3], subtractBy[i][4], subtractBy[i][5]);
+                compareToExpected = expectedResult[i].compareTo(actualResult);
+
+                if (compareToExpected == 0) {
+                    testPass = true;
+                }
+
+                if (showOutput == 2) {
+                    System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeSubtractControlObj.toString(), subtractBy[i][0], subtractBy[i][1], subtractBy[i][2], subtractBy[i][3], subtractBy[i][4], subtractBy[i][5], expectedResult[i].toString(), actualResult.toString(), testPass ));
+                } else if (showOutput == 1) {
+                    if (testPass == false) {
+                        System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeSubtractControlObj.toString(), subtractBy[i][0], subtractBy[i][1], subtractBy[i][2], subtractBy[i][3], subtractBy[i][4], subtractBy[i][5], expectedResult[i].toString(), actualResult.toString(), testPass ));
+                    }
+                }
+
+                // System.out.println(actualResult.toString() + " " + actualResult.compareTo(expectedResult[i]));
+            } catch (IllegalArgumentException exception) {
+                if (expectedResult[i].compareTo(valueToCheckForException) == 0) {
+                    testPass = true;
+                } 
+
+                if (showOutput == 2) {
+                    System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeSubtractControlObj.toString(), subtractBy[i][0], subtractBy[i][1], subtractBy[i][2], subtractBy[i][3], subtractBy[i][4], subtractBy[i][5], expectedResult[i].toString(), "Invalid input", testPass ));
+                } else if (showOutput == 1) {
+                    if (testPass == false) {
+                        System.out.println(String.format("Test DateTime.add() controlObj:%s modifier:%d/%d/%d %d:%d:%d // EO:%s AO:%s // TestPass:%s", dateTimeSubtractControlObj.toString(), subtractBy[i][0], subtractBy[i][1], subtractBy[i][2], subtractBy[i][3], subtractBy[i][4], subtractBy[i][5], expectedResult[i].toString(), "Invalid input", testPass ));
                     }
                 }
             }
