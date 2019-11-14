@@ -6,9 +6,9 @@ public class DateTime{
     [x] Set of date or time can be done individually or as a whole.
     [x] Addition to the current established DateTime by years, months, days, hours, 
        minutes or seconds or another DateTime.
-    [] Subtraction to the current established DateTime by years, months, days, hours, 
+    [x] Subtraction to the current established DateTime by years, months, days, hours, 
         minutes or seconds.
-    [] Given two DateTimes calculate the difference between them.
+    [x] Given two DateTimes calculate the difference between them.
     */
 
     private Date date;
@@ -93,10 +93,33 @@ public class DateTime{
         // return null;
     }
 
-    public String diff(DateTime dateTime) {
-        //TODO: add logic
-        //use a String.format to provide payload
-        return null;
+    public DateTime diff(DateTime dateTime) {
+        Time diffTime;
+        Date diffDate;
+        long thisToDayspan = Date.convToDays(this.date.getYear(), this.date.getMonth().ordinal() + 1, this.date.getDay());
+        long inputToDayspan = Date.convToDays(dateTime.date.getYear(), dateTime.date.getMonth().ordinal() + 1, dateTime.date.getDay());
+        
+        //calculate diff time
+        if (this.time.compareTo(dateTime.time) == 1) {
+            diffTime = new Time(0, 0, this.time.getSecond(true) - dateTime.time.getSecond(true));
+        } else if (this.time.compareTo(dateTime.time) == -1) {
+            diffTime = new Time(0, 0, dateTime.time.getSecond(true) - this.time.getSecond(true));
+        } else {
+            diffTime = new Time(0, 0, 0);
+        }
+        
+        //calculate diff date
+        if (thisToDayspan > inputToDayspan) {
+            diffDate = new Date((int)thisToDayspan - (int)inputToDayspan);
+            // System.out.println((int)thisToDayspan - (int)inputToDayspan);
+        } else if (thisToDayspan < inputToDayspan) {
+            diffDate = new Date((int)inputToDayspan - (int)thisToDayspan);
+            // System.out.println((int)inputToDayspan - (int)thisToDayspan);
+        } else {
+            diffDate = new Date(0);
+        }
+
+        return new DateTime(diffDate, diffTime);
     }
 
     public int compareTo(DateTime input) {
@@ -124,7 +147,12 @@ public class DateTime{
     }
 
     private void setDate(Date date) {
-        this.date = new Date(date.getYear(), date.getMonth(), date.getDay());
+        if (date.getDayspan() > 0) {
+            this.date = new Date(date.getDayspan());
+        } else {
+            this.date = new Date(date.getYear(), date.getMonth(), date.getDay());    
+        }
+        // this.date = new Date(date.getYear(), date.getMonth(), date.getDay());
     }
 
     private void setTime(int hour, int minute, int second) {

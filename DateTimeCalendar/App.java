@@ -77,6 +77,12 @@ public class App{
         unitTestDateTimeConstructors(0);
         unitTestDateTimeAdd(0);
         unitTestDateTimeSubtract(0);
+        unitTestDateTimeDiff(2);
+
+        DateTime myNewDateTime1 = new DateTime(2019, Date.Month.NOV, 6, 8, 15, 0);
+        DateTime myNewDateTime2 = new DateTime(2019, Date.Month.NOV, 6, 16, 40, 0);
+        DateTime myNewDateCompare = myNewDateTime1.diff(myNewDateTime2);
+        System.out.println(String.format("%d days, %d:h %d:m %d:s", myNewDateCompare.getDate().getDayspan(), myNewDateCompare.getTime().getHour(), myNewDateCompare.getTime().getMinute(false), myNewDateCompare.getTime().getSecond(false) ));
     }
 
     private static void unitTestDateCompareTo(Date obj1, Date obj2, int expectedOut){
@@ -587,6 +593,39 @@ public class App{
         }
         // DateTime actualResult = dateTimeConstructorsControlObj.add(0, 0, 0, 0, 0, 1);
         // System.out.println(actualResult.toString()); 
+    }
+
+    private static void unitTestDateTimeDiff(int showOutput) {
+        DateTime dateTimeDiffControlObj = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 30);
+        dateTimeDiffControlObj.getDate().setDayspan(0);
+        DateTime valueToCheckForException = new DateTime(1900, Date.Month.DEC, 32, 12, 0, 0);
+
+        // DateTime checkValue1 = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 29);
+
+        DateTime[] diffBy = new DateTime[9];
+        diffBy[0] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 29);
+        diffBy[1] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 31);
+        diffBy[2] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 30);
+        diffBy[3] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 20);
+        diffBy[4] = new DateTime(2000, Date.Month.MAY, 15, 12, 30, 40);
+        diffBy[5] = new DateTime(2000, Date.Month.MAY, 17, 12, 20, 40);
+        diffBy[6] = new DateTime(2000, Date.Month.MAY, 20, 12, 20, 40);
+        diffBy[7] = new DateTime(2000, Date.Month.JUN, 20, 12, 20, 40);
+        diffBy[8] = new DateTime(2004, Date.Month.MAY, 15, 12, 30, 30);
+
+
+        for (int i = 0; i < diffBy.length; i++) {
+            DateTime checkDiff = dateTimeDiffControlObj.diff(diffBy[i]);
+            System.out.println(String.format("%d days, %d:h %d:m %d:s", checkDiff.getDate().getDayspan(), checkDiff.getTime().getHour(), checkDiff.getTime().getMinute(true), checkDiff.getTime().getSecond(false) ));
+            // System.out.println(diffBy[i].getDate().getDayspan());
+            // System.out.println(checkDiff.getDate().getDayspan());
+
+        }
+        // System.out.println(dateTimeDiffControlObj.getDate().getDayspan());
+
+        // DateTime checkDiff = dateTimeDiffControlObj.diff(diffBy[0]);
+
+        // System.out.println(String.format("D:, H:, M:, S:%d", checkDiff.getTime().getSecond(false) ));
     }
 
     private static void unitTestDateConvToDays(){
