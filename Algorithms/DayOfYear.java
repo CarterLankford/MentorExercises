@@ -15,7 +15,9 @@ class DayOfYear{
 		System.out.println("1900, " + calcFirstDayOfYear(1900));
 		System.out.println("1901, " + calcFirstDayOfYear(1901));
 		System.out.println("2005, " + calcFirstDayOfYear(2005));
+		System.out.println("2100, " + calcFirstDayOfYear(2100));
 		System.out.println("2200, " + calcFirstDayOfYear(2200));
+		System.out.println("2500, " + calcFirstDayOfYear(2500));
 		// System.out.println(101%2==0);
 
 		//GOAL: calculate day of week for 1/1/y = year
@@ -26,55 +28,46 @@ class DayOfYear{
 		//3.) number of days from start of the year until x
 		//4.) x % 7
 
-		//after doing the math to find out how many leap years there will be run a check on 
-		//each of them to confirm they are in fact leap years
-
 
 
 	}
 
 	//calculate first day of year
-	//calcFirstDayOfYear()
 	public static String calcFirstDayOfYear(int year) {
 		int leapYearCount;
-		int payload;
+		int realativeYear;
 
-		payload = year - 1900; //We consider 1900 the first year ever
-		leapYearCount = payload / 4; //Calculate number of leap years
-		
-		//validate leapYearCount; 25 leap years puts us at the year 2000
-		if (leapYearCount > 25) {
-			int validateLeapYearCount = 24; //reduced by one since we are checking 2000 at start
+		realativeYear = year - 1900; //We consider 1900 the first year ever
+		leapYearCount = (realativeYear - 1) / 4; //Calculate number of leap years
 
-			for (int i = 2000; i <= year; i++) {
-				//check to see if divisable by 4 before checking isLeapYear, 
-				if (i % 4 == 0) {
-					if (isLeapYear(i)) {
-						validateLeapYearCount++;
-					}
-				}
-			}
+		//Loop to check for tricky centry leap years, we are asking for at least 2100
+		if (realativeYear >= 200) {
 
-			if (leapYearCount != validateLeapYearCount) {
-				leapYearCount = validateLeapYearCount;
-			}
+			//realiveYear since 2100 without the intended year
+			int realitiveYearPost2k = realativeYear - 100 - 1;
+
+			//we get the century years (which are already divisible by 4 but shouldn't be counted as leap years -- note that this include also the four-hundred years)
+			int leapCenturyYears = realitiveYearPost2k / 100;
+
+			//we get the multiples of four-hundred (which should actually be counted as leap) 
+			int leap4CenturyYears = realitiveYearPost2k / 400;
+
+			//we do an intermediate calculation (to determine how many leap years we counted wrong)
+			int invalidLeapYears = leapCenturyYears - leap4CenturyYears;
+
+			//then we subtract those from the valid number of leap years
+			leapYearCount -= invalidLeapYears;
+
 		}
 		
-		payload += leapYearCount + 1; //Calculate date offset since 1900
-		payload = payload % 7; //By doing modulas of 7 and gaining the ramainder we will know the day of the week
+		realativeYear += leapYearCount + 1; //Calculate date offset since 1900
+		realativeYear %= 7; //By doing modulas of 7 and gaining the ramainder we will know the day of the week
 
-
-		// payload = 0;
-
-		return DayOfWeek.values()[payload].longName;
+		return DayOfWeek.values()[realativeYear].longName;
 	}
 
 	public static boolean isLeapYear(int year) {
-		if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
-			return true;
-		} else {
-			return false;
-		}
+		return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
 	}
 
 	public enum DayOfWeek {
