@@ -299,33 +299,6 @@ public class Date{
         return String.format("[%4d/%02d/%02d]", this.year, this.month.ordinal() + 1, this.day);
     }
 
-    //TODO:
-    //[] Update UML
-    //[x] Add getters
-    //[x] Add setters
-    //[x] Add ability to subtract dates(8/20/19) by (9/10/20, days)
-    //[x] Add ability to get the new date (8/20/19) if increased by days
-    //[x] Add ability to add/subtract days by days
-    //[x] Add isLeapYear Method, to return boolean based on year entered
-    //[x] Convert from days to date, need it to add/subtract
-
-    /*
-    - [x] Date will be set by year, month and day.
-    - [x] The date can be set by year, month and date individually or as a whole.
-    - [x] Addition of years, months or days or another date to the current established date.
-    - [x] Any number of years, months or days can be added.
-    - [x] Subtraction of years, months, days or another date to the current established date.
-    - [x] Any number of years, months or days can be subtracted.
-    - [x] Difference in days between current established date and another given date.
-    - [x] Comparison between current established date and another given date.
-        -1 if current established date is less than the other date.
-        0 if both are equal.
-        1 if current established date is greater than the other time.
-    - [x] Conversion of a date to number of days.
-
-    */
-
-
     //#################
     //#### Removed ####
     //#################
