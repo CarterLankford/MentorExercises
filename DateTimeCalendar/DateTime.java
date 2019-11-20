@@ -1,16 +1,4 @@
 public class DateTime{
-    //GOAL
-    /*
-    [x] A date time is given by a date (defined by year, month and day) and a time 
-       (in hours, minutes and seconds).
-    [x] Set of date or time can be done individually or as a whole.
-    [x] Addition to the current established DateTime by years, months, days, hours, 
-       minutes or seconds or another DateTime.
-    [x] Subtraction to the current established DateTime by years, months, days, hours, 
-        minutes or seconds.
-    [x] Given two DateTimes calculate the difference between them.
-    */
-
     private Date date;
     private Time time;
     
@@ -65,7 +53,6 @@ public class DateTime{
         } else {
             throw new IllegalArgumentException("Invalid input");
         }
-        
     }
 
     public DateTime subtract(int years, int months, int days, int hours, int minutes, int seconds) {
@@ -152,7 +139,6 @@ public class DateTime{
         } else {
             this.date = new Date(date.getYear(), date.getMonth(), date.getDay());    
         }
-        // this.date = new Date(date.getYear(), date.getMonth(), date.getDay());
     }
 
     private void setTime(int hour, int minute, int second) {
@@ -168,21 +154,6 @@ public class DateTime{
     @Override
     public String toString() {
         return String.format("[%s]:[%s]", this.date.toString(), this.time.toString() );
-        // return String.format("%s@%s[%4d/%02d/%02d]:[%d:%d:%d]", this.getClass().getName(), Integer.toHexString(this.hashCode()), this.date.getYear(), this.date.getMonth().ordinal() + 1, this.date.getDay(), this.time.getHour(), this.time.getMinute(), this.time.getSecond());
     }
 //
-
-
-    //Subtract Date Date
-    //Subtract Time time
-    //Subtract DateTime datetime
-    //Diff DateTime DateTime
-
-    //toString()
-
-
-    //Won't do this, similar to design decision made in Date.add() at best this is arbitrary
-    // public DateTime add(DateTime dateTime) {
-    //     return null;
-    // }
 }
