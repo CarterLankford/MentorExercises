@@ -53,7 +53,7 @@ public class App{
         System.out.println(Date.Month.values().length);
         System.out.println(Date.Month.values()[0].shortName);
 
-//Date.compareTo() - Start       
+        //Date.compareTo() - Start       
         Date dateTestCompareToControlObj = new Date(1900, Date.Month.JAN, 5);
         Date dateTestCompareToCompareObj1 = new Date(1900, Date.Month.JAN, 5);
         int dateTestComparedToExpectedOut1 = -0;
@@ -66,7 +66,7 @@ public class App{
         Date dateTestCompareToCompareObj3 = new Date(1900, Date.Month.JAN, 1);
         int dateTestComparedToExpectedOut3 = 1;
         // unitTestDateCompareTo(dateTestCompareToControlObj, dateTestCompareToCompareObj3, dateTestComparedToExpectedOut3);
-//Date.compareTo() - End
+        //Date.compareTo() - End
 
 
         unitTestDateAdd(0);
@@ -83,6 +83,15 @@ public class App{
         DateTime myNewDateTime2 = new DateTime(2019, Date.Month.NOV, 6, 16, 40, 0);
         DateTime myNewDateCompare = myNewDateTime1.diff(myNewDateTime2);
         System.out.println(String.format("%d days, %d:h %d:m %d:s", myNewDateCompare.getDate().getDayspan(), myNewDateCompare.getTime().getHour(), myNewDateCompare.getTime().getMinute(false), myNewDateCompare.getTime().getSecond(false) ));
+
+        unitTestCalendarCalcDayOfWeek(0);
+
+        DateTime[] dta = new DateTime[3];
+        dta[0] = new DateTime(1900, Date.Month.JAN, 1, 12, 30, 30);
+        dta[1] = new DateTime(1900, Date.Month.JAN, 1, 12, 30, 30);
+        dta[2] = new DateTime(1900, Date.Month.JAN, 1, 12, 30, 29);
+
+        genericTestMethod(dta, myNewDateTime2);
     }
 
     private static void unitTestDateCompareTo(Date obj1, Date obj2, int expectedOut){
@@ -632,6 +641,58 @@ public class App{
 
     }
 
-    //TODO:
-    //[] Add test for isLeapYear
+    private static void unitTestCalendarCalcDayOfWeek(int showOutput){
+      //1.) Provide a date
+      //2.) Give an expected int day of the week value
+      //3.) Check for match
+
+      Date[] inputValues = new Date[10];
+      inputValues[0] = new Date(1900, Date.Month.JAN, 1);
+      inputValues[1] = new Date(1900, Date.Month.JAN, 2);
+      inputValues[2] = new Date(1900, Date.Month.FEB, 1);
+      inputValues[3] = new Date(1900, Date.Month.MAR, 1);
+      inputValues[4] = new Date(1900, Date.Month.DEC, 30);
+      inputValues[5] = new Date(1904, Date.Month.JAN, 1);
+      inputValues[6] = new Date(1904, Date.Month.JAN, 2);
+      inputValues[7] = new Date(1904, Date.Month.FEB, 1);
+      inputValues[8] = new Date(1904, Date.Month.MAR, 1);
+      inputValues[9] = new Date(1904, Date.Month.DEC, 30);
+
+      int[] expectedValue = new int[10];
+      expectedValue[0] = 1;
+      expectedValue[1] = 2;
+      expectedValue[2] = 4;
+      expectedValue[3] = 4;
+      expectedValue[4] = 0;
+      expectedValue[5] = 5;
+      expectedValue[6] = 6;
+      expectedValue[7] = 1;
+      expectedValue[8] = 2;
+      expectedValue[9] = 5;
+
+      for (int i = 0; i < inputValues.length; i++) {
+        boolean testPass = false;
+        int payload = Calendar.calcDayOfWeek(inputValues[i]);
+        //testing print statement
+        Calendar.calcWeeksInMonth(inputValues[i]);
+
+        if (expectedValue[i] == payload) {
+          testPass = true;
+        }
+
+        if (showOutput == 2) {
+          System.out.println(String.format("Test Calendar.calcDayOfWeek() inputValue:%s// EO:%d AO:%d // TestPass:%s", inputValues[i].toString(), expectedValue[i], payload, testPass));
+        } else if (showOutput ==1 && testPass == false) {
+          System.out.println(String.format("Test Calendar.calcDayOfWeek() inputValue:%s// EO:%d AO:%d // TestPass:%s", inputValues[i].toString(), expectedValue[i], payload, testPass));          
+        } 
+      }
+    }
+
+    private static void genericTestMethod(Object[] input, Object expectedOutput) {
+        //I want to test <(input), (expectedOutput), (class to test in), (method to use)>
+        //current thinking: since I can find the class that is input, should I have an override for equals in each of my classes to make testing easier
+        System.out.println(input[0].toString());
+        System.out.println(input[0].getClass());
+        System.out.println(input[1].hashCode());
+    }
 }
