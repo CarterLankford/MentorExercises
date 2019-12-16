@@ -104,46 +104,143 @@ public class Date{
 
 // Methods
     public Date subtract(int years, int months, int days){
-        int y = this.year;
-        int m = this.month.ordinal() + 1;
-        int d = this.day;
+        //what if any number goes below zero?
+        /*
+        Order of opperation
+        need to remove years -> months -> days
+        - No negatives for input
+        - should I make multiple objects and do years/months/days one by one or just have the extra logic
+        - are the days greater than 365?
+        */
+        final int monthsInYear = 12;
+        int modifiedYear = this.year;
+        int modifiedMonth = this.month.ordinal() + 1;
+        int modifiedDay = this.day;
 
         if (years >= 0 && months >= 0 && days >= 0) {
-            y -= years;
+            //years
+            //remove full years, from days that are greater than 366 and months greater than 12
+            while (years > 0 || months > 12 || days > 366) {
+                modifiedYear -= years;
+                years = 0;
 
-            if (m - months < 1){
-                while (m - months < 1){
-                    y--;
-                    months -= 12;
+                if (months > monthsInYear) {
+                    modifiedYear -= months / monthsInYear; // calculate how many full years to remove
+                    months = months % monthsInYear;
+                }
+
+                if (isLeapYear(modifiedYear) && days >= DAYS_IN_LEAP_YEAR || !this.isLeapYear() && days >= DAYS_IN_REG_YEAR) {
+                    days -= isLeapYear(modifiedYear) ? DAYS_IN_LEAP_YEAR : DAYS_IN_REG_YEAR;
+                    modifiedYear--;
                 }
             }
-            m -= months;
 
-            if (d - days < 1){
-                while(d - days < 1) {
-                    if (m - 1 < 1){
-                        y--;
-                        m = 12;
+            //months
+            //if subtraction takes us back a year
+            if (modifiedMonth - months < 1) {
+                modifiedYear--;
+                modifiedMonth = (modifiedMonth - months) + monthsInYear; // I wanted to use the cool new if statement, but couldn't figure out how to do modulas plus subtract a year. 
+            } else {
+                modifiedMonth -= months;
+            }
+
+            //days
+            //lets make it simple and just remove month by month, can simplify later
+            // May/5/1950 - 0, 0, 50
+            while (days > 0) {
+                int currentDaysInMonth = isLeapYear(modifiedYear) && modifiedMonth == 2 ? Date.Month.values()[modifiedMonth - 1].days + 1 : Date.Month.values()[modifiedMonth - 1].days;
+
+                //5 - 50 !> 0
+                if (modifiedDay - days > 0){
+                    modifiedDay -= days;
+                    break;
+                } else if (days - modifiedDay > 0 || modifiedDay == days) {
+                    //If there are more days than are days in this month or if modified days and days to subtract are the same, which would cause it to roll back to the end of the prior month
+                    days -= modifiedDay; //50 - 5 = 45 days
+
+                    //reduce month by 1
+                    if (modifiedMonth - 1 < 1) {
+                        //if month goes from JAN to DEC
+                        modifiedYear--;
+                        modifiedMonth = monthsInYear;
                     } else {
-                        m--;
+                        modifiedMonth--;
                     }
+                    //New date for full amount of days in APR 1950
+                    modifiedDay = isLeapYear(modifiedYear) && modifiedMonth == 2 ? Date.Month.values()[modifiedMonth - 1].days + 1 : Date.Month.values()[modifiedMonth - 1].days;
 
-                    if (m == 2) {
-                        if (isLeapYear(y)) {
-                            days -= Date.Month.values()[m - 1].days + 1;
-                        }
-                    } 
+                } 
+            }
 
-                    days -= Date.Month.values()[m - 1].days;
-                }
-            } 
-            d -= days;
+
+
+
+            // //original
+            // while (days > 0) {
+            //     int currentDaysInMonth = isLeapYear(modifiedYear) && modifiedMonth == 2 ? Date.Month.values()[modifiedMonth - 1].days + 1 : Date.Month.values()[modifiedMonth - 1].days;
+            //     if (modifiedDay - 1 == 0) {
+            //         if (modifiedMonth - 1 < 1) {
+            //             modifiedYear--;
+            //             modifiedMonth = monthsInYear;
+            //         } else {
+            //             modifiedMonth--;
+            //         }
+            //         currentDaysInMonth = isLeapYear(modifiedYear) && modifiedMonth == 2 ? Date.Month.values()[modifiedMonth - 1].days + 1 : Date.Month.values()[modifiedMonth - 1].days;   
+            //         modifiedDay = currentDaysInMonth; 
+            //     } else {
+            //         modifiedDay--;
+            //     }
+            //     days--;
+            // }
+
+            // modifiedDay -= days;
+            return new Date(modifiedYear, Date.Month.values()[modifiedMonth - 1], modifiedDay);
         } else {
-            throw new IllegalArgumentException("Invalid input");
+            throw new IllegalArgumentException("Invalid integer entered");
         }
+        // return new Date(modifiedYear, Date.Month.values()[modifiedMonth - 1], modifiedDay);
+
+        // int y = this.year;
+        // int m = this.month.ordinal() + 1;
+        // int d = this.day;
+
+
+        // if (years >= 0 && months >= 0 && days >= 0) {
+        //     y -= years;
+            
+        //     if (m - months < 1){
+        //         while (m - months < 1){
+        //             y--;
+        //             months -= 12;
+        //         }
+        //     }
+        //     m -= months;
+
+        //     if (d - days < 1){
+        //         while(d - days < 1) {
+        //             if (m - 1 < 1){
+        //                 y--;
+        //                 m = 12;
+        //             } else {
+        //                 m--;
+        //             }
+
+        //             if (m == 2) {
+        //                 if (isLeapYear(y)) {
+        //                     days -= Date.Month.values()[m - 1].days + 1;
+        //                 }
+        //             } 
+
+        //             days -= Date.Month.values()[m - 1].days;
+        //         }
+        //     } 
+        //     d -= days;
+        // } else {
+        //     throw new IllegalArgumentException("Invalid input");
+        // }
         
         //Returning new object is a design decision. Unsure if new object or reference would be needed, to play it safe returning new obj. Example: returning vacation days might need to be a new hash.
-        return new Date(y, Date.Month.values()[m - 1], d);
+        // return new Date(y, Date.Month.values()[m - 1], d);
     }
 
     public int diff(Date input){
@@ -191,11 +288,7 @@ public class Date{
                         years++;
                     } else {
                         days -= currentMonthDayCount;
-                        if (months == 11){
-                            months = 0;
-                        } else {
-                            months++;
-                        }
+                        months = (months + 1) % 12;
                     }
                 } else {
                     break;
@@ -250,6 +343,10 @@ public class Date{
         } else {
             return -1;
         }
+    }
+
+    public boolean isLeapYear(){
+        return this.year % 4 == 0 && (this.year % 100 != 0 || this.year % 400 == 0);
     }
 // End Methods
     

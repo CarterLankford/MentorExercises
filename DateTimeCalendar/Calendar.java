@@ -39,8 +39,10 @@ public class Calendar{
 
     public static int calcWeeksInMonth(Date date){
         //a week is considered mon-sun
-        
         //Example: 3/1/1900
+
+        final Date firstOfTheMonth = new Date(date.getYear(), date.getMonth(), 1); // creating obj to represent first of the month
+        final int firstWeekDayOfMonth = calcDayOfWeek(firstOfTheMonth); // calculate first week day of the month -> 4 (Thursday)
         int monthDayCount = date.getMonth().days; // 31
 
         //check for month feb and for leap year
@@ -48,8 +50,7 @@ public class Calendar{
             monthDayCount++;
         }
 
-        Date firstOfTheMonth = new Date(date.getYear(), date.getMonth(), 1); // creating obj to represent first of the month
-        int firstWeekDayOfMonth = calcDayOfWeek(firstOfTheMonth); // calculate first week day of the month -> 4 (Thursday)
+        // int firstWeekDayOfMonth = calcDayOfWeek(firstOfTheMonth); // calculate first week day of the month -> 4 (Thursday)
 
         //want to use first day of the month as a place holder while we tick ahead to tell us the day of the first monday
         int firstMondayOfMonth = 1; //Every month starts on day 1
@@ -57,11 +58,7 @@ public class Calendar{
 
         //Validate if input isn't already 1 (Monday)
         if (firstWeekDayOfMonth != 1) {
-            //counting until reaching Monday, since it includes 7, that would be equivelent on <= sunday. will run again equaling monday
-            while (dayCountToFirstMonday <= 7) {
-                firstMondayOfMonth++;
-                dayCountToFirstMonday++;
-            }
+            firstMondayOfMonth += (7 - firstWeekDayOfMonth);
         }
         return (monthDayCount - firstMondayOfMonth) / 7; // full count minus the ammount of days until the first monday, then divid by 7 to get full week count
     }
@@ -98,17 +95,18 @@ public class Calendar{
         //the above works only til the start of the year, this is what comes after if it's not 1/1
         if (date.getDay() > 1 || date.getMonth().ordinal() > 0) {
             int daysUntilCurrentDay = 0;
-
             //Count full count of days in each month until our partial month
-            for (int i = 0; i < date.getMonth().ordinal(); i++) {
-                daysUntilCurrentDay += Date.Month.values()[i].days;
+            for (Date.Month month : Date.Month.values()) {
+                if (month == date.getMonth()) {
+                    break;
+                }
+                daysUntilCurrentDay += month.days;
             }
 
             //check for leap year and add a day if true
-            if (Date.isLeapYear( date.getYear() ) && date.getMonth().ordinal() > 1 ) {
-                daysUntilCurrentDay += date.getDay() + 1;
-            } else {
-                daysUntilCurrentDay += date.getDay();
+            daysUntilCurrentDay += date.getDay();
+            if (Date.isLeapYear(date.getYear()) && date.getMonth().ordinal() > 1) {
+                daysUntilCurrentDay++;
             }
 
             //if the day is the first it will be added, here we trim that off so that our count is accurate. 

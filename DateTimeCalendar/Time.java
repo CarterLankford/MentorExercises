@@ -40,13 +40,7 @@ public class Time {
     }
 
     public int compareTo(Time input){
-        if(this.seconds == input.seconds) {
-            return 0;
-        } else if(this.seconds > input.seconds) {
-            return 1;
-        } else {
-            return -1;
-        } 
+        return Long.compare(this.seconds, input.seconds);
     }
 
     public int getHour(){

@@ -1,4 +1,5 @@
 public class DateTime{
+    private static final int SEC_IN_DAY = 86400;
     private Date date;
     private Time time;
     
@@ -40,11 +41,11 @@ public class DateTime{
             int combindSeconds = time.getSecond(true) + (hours * 3600 + minutes * 60 + seconds);
             int additionalDays = 0;
     
-            if ( combindSeconds >= 86400) {
+            if ( combindSeconds >= SEC_IN_DAY) {
                 //Obtain full "Days" from the total amount of seconds
-                additionalDays += combindSeconds / 86400;
+                additionalDays += combindSeconds / SEC_IN_DAY;
                 //Obtain the remaining seconds
-                combindSeconds = combindSeconds % 86400;
+                combindSeconds = combindSeconds % SEC_IN_DAY;
             }
     
             Time timeOutput = new Time(0, 0, combindSeconds);
@@ -58,17 +59,17 @@ public class DateTime{
     public DateTime subtract(int years, int months, int days, int hours, int minutes, int seconds) {
         if (years >= 0 && months >= 0 && days >= 0 && hours >= 0 && minutes >= 0 && seconds >= 0) {
             int reduceTimeBySeconds = hours * 3600 + minutes * 60 + seconds;
-            int reduceTimeRollover = reduceTimeBySeconds / 86400;
+            int reduceTimeRollover = reduceTimeBySeconds / SEC_IN_DAY;
 
             Time timeOutput;
 
-            if (time.getSecond(true) - reduceTimeBySeconds % 86400 <= 0) {
+            if (time.getSecond(true) - reduceTimeBySeconds % SEC_IN_DAY <= 0) {
                 timeOutput = new Time(0, 0, time.getSecond(true));
             } else {
-                timeOutput = new Time(0, 0, time.getSecond(true) - (reduceTimeBySeconds % 86400) );
+                timeOutput = new Time(0, 0, time.getSecond(true) - (reduceTimeBySeconds % SEC_IN_DAY) );
             }
 
-            // Time timeOutput = new Time(0, 0, time.getSecond(true) - (reduceTimeBySeconds % 86400) );
+            // Time timeOutput = new Time(0, 0, time.getSecond(true) - (reduceTimeBySeconds % SEC_IN_DAY) );
             Date dateOutput = this.date.subtract(years, months, days + reduceTimeRollover);
             return new DateTime(dateOutput, timeOutput);
 
