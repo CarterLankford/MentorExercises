@@ -79,8 +79,8 @@ public class App{
         //Date.compareTo() - End
 
 
-        unitTestDateAdd(ShowTestOutput.NONE);
-        unitTestDateDiff(ShowTestOutput.NONE);
+        unitTestDateAdd(ShowTestOutput.ALL);
+        unitTestDateDiff(ShowTestOutput.ALL);
         unitTestDateSubtract(ShowTestOutput.ON_ERROR);
 
         //Test DateTime
@@ -123,55 +123,40 @@ public class App{
     }
 
     private static void unitTestDateDiff(ShowTestOutput selectedTypeOfOutput){
-        //Wondering how to test for exception, and know that's the result I want
-        //showOutput//0 = Show nothing, 1 = show failures, 2 = show all
-        //expectedResult// -1 = exception thrown
-        Date[] testCases = new Date[10]; 
-        testCases[0] = new Date(1900, Date.Month.JAN, 0);
-        testCases[1] = new Date(1900, Date.Month.JAN, 0);
-        testCases[2] = new Date(1900, Date.Month.JAN, 1);
-        testCases[3] = new Date(1900, Date.Month.JAN, -1);
-        testCases[4] = new Date(0, Date.Month.JAN, 0);
-        testCases[5] = new Date(1900, Date.Month.JAN, 31);
-        testCases[6] = new Date(1900, Date.Month.FEB, 28);
-        testCases[7] = new Date(1900, Date.Month.AUG, 15);
-        testCases[8] = new Date(1900, Date.Month.DEC, 31);
-        testCases[9] = new Date(1904, Date.Month.FEB, 29);
+        final Date base = new Date(1900, Date.Month.JAN, 0);
+        DateDiffTestCase[] testCasess = new DateDiffTestCase[10];
+        testCasess[0] = new DateDiffTestCase(base, new Date(1900, Date.Month.JAN, 0), 0);
+        testCasess[1] = new DateDiffTestCase(base, new Date(1900, Date.Month.JAN, 0), 0);
+        testCasess[2] = new DateDiffTestCase(base, new Date(1900, Date.Month.JAN, 1), 1);
+        testCasess[3] = new DateDiffTestCase(base, new Date(1900, Date.Month.JAN, -1), 1);
+        testCasess[4] = new DateDiffTestCase(base, new Date(0, Date.Month.JAN, 0), -1);
+        testCasess[5] = new DateDiffTestCase(base, new Date(1900, Date.Month.JAN, 31), 31);
+        testCasess[6] = new DateDiffTestCase(base, new Date(1900, Date.Month.FEB, 28), 59);
+        testCasess[7] = new DateDiffTestCase(base, new Date(1900, Date.Month.AUG, 15), 227);
+        testCasess[8] = new DateDiffTestCase(base, new Date(1900, Date.Month.DEC, 31), 365);
+        testCasess[9] = new DateDiffTestCase(base, new Date(1904, Date.Month.FEB, 29), 1520);
 
-        int[] expectedResult = new int[10];
-        expectedResult[0] = 0;
-        expectedResult[1] = 0;
-        expectedResult[2] = 1;
-        expectedResult[3] = 1;
-        expectedResult[4] = -1;
-        expectedResult[5] = 31;
-        expectedResult[6] = 59;
-        expectedResult[7] = 227;
-        expectedResult[8] = 365;
-        expectedResult[9] = 1520;
-
-
-        for (int i = 0; i < testCases.length; i++){
+        for (DateDiffTestCase testCase : testCasess) {
             boolean testPass = false;
             int result;
-            try {
-                result = testCases[0].diff(testCases[i]);
-                // System.out.println(testCases[0].diff(testCases[i]));
-            } catch (IllegalArgumentException exception){
-                result = -1;
-            } 
-            
-            if (result == expectedResult[i]){
-                testPass = true;
-            }
 
-            //Print output options
-            if (selectedTypeOfOutput == ShowTestOutput.ALL) {
-                System.out.println(String.format("Test Date.diff() obj1:%s obj2:%s // EO:%d AO:%d // TestPass:%s", testCases[0].toString(), testCases[i].toString(), expectedResult[i], result, testPass));
-            } else if (selectedTypeOfOutput == ShowTestOutput.ON_ERROR && !testPass){
-                System.out.println(String.format("Test Date.diff() obj1:%s obj2:%s // EO:%d AO:%d // TestPass:%s", testCases[0].toString(), testCases[i].toString(), expectedResult[i], result, testPass));
+            try {
+                result = base.diff(testCase.secondInput);
+                testPass = testCase.expected == result;
+
+                if (selectedTypeOfOutput == ShowTestOutput.ALL) {
+                    System.out.println(String.format("Test Date.diff() %s AO:%d // TestPass%s", testCase.toString(), result, testPass));
+                } else if (selectedTypeOfOutput == ShowTestOutput.ON_ERROR && !testPass) {
+                    System.out.println(String.format("Test Date.diff() %s AO:%d // TestPass%s", testCase.toString(), result, testPass));
+                }
+            } catch (IllegalArgumentException exception) {
+                if (selectedTypeOfOutput == ShowTestOutput.ALL || selectedTypeOfOutput == ShowTestOutput.ON_ERROR) {
+                    System.out.println(exception);
+                }
             }
         }
+
+        System.out.println(testCasess[9].firstInputYears + " Well hello");
     }
 
     private static void unitTestDateAdd(ShowTestOutput selectedTypeOfOutput){
@@ -549,6 +534,68 @@ public class App{
         @Override
         public String toString() {
             return String.format("(%d/%d/%d) // E):%s", this.years, this.months, this.days, this.expected.toString());
+        }
+    }
+
+    private static class DateDiffTestCase {
+        private final Date firstInput;
+        private final Date secondInput;
+        private final int firstInputYears;
+        private final int firstInputMonths;
+        private final int firstInputDays;
+        private final int secondInputYears;
+        private final int secondInputMonths;
+        private final int secondInputDays;
+        private final int expected;
+
+        private DateDiffTestCase(final Date firstInput, final Date secondInput, final int expected) {
+            this.firstInput = firstInput;
+            this.secondInput = secondInput;
+            this.firstInputYears = firstInput.getYear();
+            this.firstInputMonths = firstInput.getMonth().ordinal() + 1;
+            this.firstInputDays = firstInput.getDay();
+            this.secondInputYears = secondInput.getYear();
+            this.secondInputMonths = secondInput.getMonth().ordinal() + 1;
+            this.secondInputDays = secondInput.getDay();
+
+            this.expected = expected;
+        }
+
+        Date getFirstInput() {
+            return this.firstInput;
+        }
+
+        Date getSecondInput() {
+            return this.secondInput;
+        }
+
+        int getFirstInputYears() {
+            return this.firstInputYears;
+        }
+
+        int getFirstInputMonths() {
+            return this.firstInputMonths;
+        }
+
+        int getFirstInputDays() {
+            return this.firstInputDays;
+        }
+
+        int getSecondInputYears() {
+            return this.secondInputYears;
+        }
+
+        int getSecondInputMonths() {
+            return this.secondInputMonths;
+        }
+
+        int getSecondInputDays() {
+            return this.secondInputDays;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("baseOBJ:%d/%d/%d diffOBJ:%d/%d/%d // EO:%d", this.firstInputYears, this.firstInputMonths, this.firstInputDays, this.secondInputYears, this.secondInputMonths, this.secondInputDays, this.expected);
         }
     }
 

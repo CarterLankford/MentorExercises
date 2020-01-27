@@ -120,10 +120,10 @@ public class Date{
         if (years >= 0 && months >= 0 && days >= 0) {
             //years
             //remove full years, from days that are greater than 366 and months greater than 12
-            while (years > 0 || months > 12 || days > 366) {
-                modifiedYear -= years;
-                years = 0;
 
+            modifiedYear -= years;
+            years = 0;
+            while (years > 0 || months > 12 || days > 366) {
                 if (months > monthsInYear) {
                     modifiedYear -= months / monthsInYear; // calculate how many full years to remove
                     months = months % monthsInYear;
@@ -249,11 +249,7 @@ public class Date{
         int currentDays = (int)convToDays(this.year, this.month.ordinal() + 1, this.day);
         int inputDays = (int)convToDays(input.year, input.month.ordinal() + 1, input.day);
 
-        if (currentDays > inputDays){
-            payload = currentDays - inputDays;
-        } else {
-            payload = inputDays - currentDays;
-        }
+        payload = Math.abs(currentDays - inputDays);
         return payload;
     }
 
@@ -280,11 +276,7 @@ public class Date{
 
                 if (days > currentMonthDayCount){
                     if (days > DAYS_IN_REG_YEAR){
-                        if (isLeapYear(years)){
-                            days -= DAYS_IN_LEAP_YEAR;
-                        } else {
-                            days -= DAYS_IN_REG_YEAR;
-                        }
+                        days -= isLeapYear(years) ? DAYS_IN_LEAP_YEAR : DAYS_IN_REG_YEAR;
                         years++;
                     } else {
                         days -= currentMonthDayCount;
