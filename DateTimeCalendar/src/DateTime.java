@@ -1,3 +1,5 @@
+package priv.exercises.datetime;
+
 public class DateTime{
     private static final int SEC_IN_DAY = 86400;
     private Date date;

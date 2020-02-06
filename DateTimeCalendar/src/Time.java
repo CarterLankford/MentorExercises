@@ -1,3 +1,5 @@
+package priv.exercises.datetime;
+
 public class Time {
     private static final int SEC_IN_MIN = 60;
     private static final int SEC_IN_HR = 3600;
