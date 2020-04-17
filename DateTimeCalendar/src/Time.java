@@ -4,7 +4,7 @@ public class Time {
     private static final int SEC_IN_MIN = 60;
     private static final int SEC_IN_HR = 3600;
 
-    public static long convToSeconds(int hours, int minutes, int seconds){
+    public static long convToSeconds(long hours, long minutes, long seconds){
         return ((hours*SEC_IN_HR) + (minutes*SEC_IN_MIN)) + seconds;
     }
 
@@ -37,8 +37,25 @@ public class Time {
         return new Time(this.seconds - input.seconds);
     }
 
-    public Time subtract(int hours, int minutes, int seconds){
+    public Time subtract(long hours, long minutes, long seconds){
         return new Time(this.seconds - convToSeconds(hours, minutes, seconds));
+    }
+
+    public Time subtract(TimeUnit.Unit timeUnit, long duration) {
+        /* Notes
+        *  You cann't subtract time by another time, but with this implementation since all time is saved as seconds
+        *  it's up to us to remember the difference when moving the code to access subtract rather than diff 
+        */
+        switch(timeUnit) {
+            case SECOND:
+                return new Time(this.seconds - convToSeconds(0, 0, duration));
+            case MINUTE:
+                return new Time(this.seconds - convToSeconds(0, duration, 0));
+            case HOUR:
+                return new Time(this.seconds - convToSeconds(duration, 0, 0));
+            default:
+                return null;
+        }
     }
 
     public int compareTo(Time input){
