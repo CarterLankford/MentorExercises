@@ -1,3 +1,5 @@
+package priv.exercises.datetime;
+
 public class DateTime{
     private static final int SEC_IN_DAY = 86400;
     private Date date;
@@ -107,6 +109,9 @@ public class DateTime{
             diffDate = new Date(0);
         }
 
+        System.err.println("DATE:: " + diffDate.toString());
+        System.err.println("TIME:: " + diffTime.toString());
+
         return new DateTime(diffDate, diffTime);
     }
 
@@ -135,11 +140,12 @@ public class DateTime{
     }
 
     private void setDate(Date date) {
-        if (date.getDayspan() > 0) {
-            this.date = new Date(date.getDayspan());
-        } else {
-            this.date = new Date(date.getYear(), date.getMonth(), date.getDay());    
-        }
+        this.date = date;
+        //if (date.getDayspan() > 0) {
+        //    this.date = new Date(date.getDayspan());
+        //} else {
+        //    this.date = new Date(date.getYear(), date.getMonth(), date.getDay());    
+        //}
     }
 
     private void setTime(int hour, int minute, int second) {
@@ -147,7 +153,7 @@ public class DateTime{
     }
 
     private void setTime(Time time) {
-        this.time = new Time(time.getHour(), time.getMinute(), time.getSecond());
+        this.time = time;//new Time(time.getHour(), time.getMinute(), time.getSecond());
     }
 //
 
